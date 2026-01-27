@@ -1,9 +1,10 @@
 """
-Interactive interface for manual word/segment marking.
+Interactive interface for manual word/segment marking with zoomable trajectory.
 """
 
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib.widgets import Button
 
 from pause_detection import detect_pauses
 
@@ -48,7 +49,7 @@ class InteractiveSegmenter:
         self.fig = plt.figure(figsize=(12, 10))
         gs = self.fig.add_gridspec(4, 1, height_ratios=[4, 2, 2, 1], hspace=0.3)
         
-        # Plot 1: Trajectoire spatiale
+        # Plot 1: Trajectoire spatiale (ZOOMABLE)
         self.ax_traj = self.fig.add_subplot(gs[0])
         self.plot_trajectory()
         
@@ -126,8 +127,10 @@ class InteractiveSegmenter:
                              fontsize=10, bbox=dict(boxstyle='round', facecolor='yellow', alpha=0.7))
         
         self.ax_traj.set_aspect(224 / 140)
-        self.ax_traj.set_title("Trajectoire spatiale (cliquez pour placer des marqueurs)")
-        self.ax_traj.axis("off")
+        self.ax_traj.set_title("Trajectoire spatiale (cliquez pour placer des marqueurs | molette pour zoom)")
+        self.ax_traj.set_xlabel("X (px)")
+        self.ax_traj.set_ylabel("Y (px)")
+        self.ax_traj.grid(True, alpha=0.3)
         
         if self.markers:
             self.ax_traj.legend(loc='upper right')
@@ -187,6 +190,7 @@ class InteractiveSegmenter:
         
         text = "INSTRUCTIONS:\n"
         text += "• Cliquez sur la trajectoire pour placer des marqueurs\n"
+        text += "• Utilisez la MOLETTE ou le ZOOM de Matplotlib pour zoomer sur la trajectoire\n"
         text += "• Appuyez sur 'm' pour créer un segment entre les 2 derniers points\n"
         text += "• Appuyez sur 'u' pour annuler le dernier marqueur\n"
         text += "• Appuyez sur 'r' pour recommencer (supprimer tout)\n"

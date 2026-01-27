@@ -7,7 +7,6 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
-from matplotlib.colors import Normalize
 from typing import List, Dict, Optional
 import logging
 
@@ -94,35 +93,29 @@ class ReportGenerator:
         trial_letters = [l for l in all_letters if l['trial'] == trial_id] if all_letters else []
         trial_segments = [s for s in all_segments if s['trial'] == trial_id] if all_segments else []
         
-        # Create figure
-        fig = plt.figure(figsize=(12, 14))
-        gs = fig.add_gridspec(7, 2, height_ratios=[4, 0.3, 0.3, 2, 2, 1, 0.5],
+        # Create figure - REMOVED HEATMAPS
+        fig = plt.figure(figsize=(12, 12))
+        gs = fig.add_gridspec(5, 2, height_ratios=[4, 2, 2, 1, 0.5],
                              width_ratios=[3, 1], hspace=0.4, wspace=0.3)
         
         # Plot 1: Spatial trajectory
         self._plot_trajectory(fig, gs[0, :], trial, trial_letters, trial_segments)
         
-        # Plot 2: Pressure heatmap
-        self._plot_pressure_heatmap(fig, gs[1, :], t, p)
+        # Plot 2: X/Y temporal
+        self._plot_xy_temporal(fig, gs[1, :], t, trial, pauses, trial_letters)
         
-        # Plot 3: Speed heatmap
-        self._plot_speed_heatmap(fig, gs[2, :], t, speed)
+        # Plot 3: Speed & Pressure
+        self._plot_speed_pressure(fig, gs[2, :], t, speed, p, pauses)
         
-        # Plot 4: X/Y temporal
-        self._plot_xy_temporal(fig, gs[3, :], t, trial, pauses, trial_letters)
+        # Plot 4: Statistics table
+        self._plot_statistics_table(fig, gs[3, 0], trial, t, speed, p, pauses)
         
-        # Plot 5: Speed & Pressure
-        self._plot_speed_pressure(fig, gs[4, :], t, speed, p, pauses)
+        # Plot 5: Pause distribution
+        self._plot_pause_distribution(fig, gs[3, 1], pauses)
         
-        # Plot 6: Statistics table
-        self._plot_statistics_table(fig, gs[5, 0], trial, t, speed, p, pauses)
-        
-        # Plot 7: Pause distribution
-        self._plot_pause_distribution(fig, gs[5, 1], pauses)
-        
-        # Plot 8: Letter table (if available)
+        # Plot 6: Letter table (if available)
         if trial_letters:
-            self._plot_letter_table(fig, gs[6, :], trial_letters)
+            self._plot_letter_table(fig, gs[4, :], trial_letters)
         
         # Title
         title = f"Trial {trial_id}"
@@ -139,14 +132,15 @@ class ReportGenerator:
         plt.close(fig)
     
     def _plot_trajectory(self, fig, gs_cell, trial, letters, segments):
-        """Plot spatial trajectory"""
+        """Plot spatial trajectory with color-coded letters (NO LABELS)"""
         ax = fig.add_subplot(gs_cell)
         
-        # Base trajectory
-        ax.plot(trial["X"], trial["Y"], color="lightgray", linewidth=1, alpha=0.5)
-        
-        # Color by letters
+        # If we have letters, color-code by letter
         if letters:
+            # First plot a light gray background trajectory
+            ax.plot(trial["X"], trial["Y"], color="lightgray", linewidth=1, alpha=0.3)
+            
+            # Color each letter segment with different color
             colors = plt.cm.tab20.colors
             for i, letter in enumerate(letters):
                 idx1, idx2 = letter['idx1'], letter['idx2']
@@ -154,16 +148,11 @@ class ReportGenerator:
                 ax.plot(subset["X"], subset["Y"],
                        color=colors[i % len(colors)],
                        linewidth=2.5, alpha=0.9)
-                
-                # Label
-                mid_x = subset["X"].mean()
-                mid_y = subset["Y"].mean()
-                label_text = letter.get('label', str(i+1))
-                ax.text(mid_x, mid_y, label_text,
-                       fontsize=10, weight='bold',
-                       bbox=dict(boxstyle='circle', facecolor='white', alpha=0.8))
+        else:
+            # No letters, just plot the trajectory
+            ax.plot(trial["X"], trial["Y"], color="black", linewidth=1.5)
         
-        # Mark segments
+        # Mark segments (if any)
         for seg in segments:
             idx1, idx2 = seg['idx1'], seg['idx2']
             ax.plot([trial["X"].iloc[idx1], trial["X"].iloc[idx2]],
@@ -172,29 +161,9 @@ class ReportGenerator:
         
         ax.set_aspect(self.config.trajectory_aspect_ratio)
         ax.set_title("Spatial Trajectory", fontsize=11, weight="bold")
-        ax.axis("off")
-    
-    def _plot_pressure_heatmap(self, fig, gs_cell, t, p):
-        """Plot pressure as color gradient"""
-        ax = fig.add_subplot(gs_cell)
-        norm = Normalize(vmin=p.min(), vmax=p.max())
-        pressure_gradient = p.values.reshape(1, -1)
-        ax.imshow(pressure_gradient, aspect='auto', cmap='YlOrRd',
-                 extent=[t.iloc[0], t.iloc[-1], 0, 1], norm=norm)
-        ax.set_ylabel('Pressure', fontsize=8)
-        ax.set_yticks([])
-        ax.set_xticks([])
-    
-    def _plot_speed_heatmap(self, fig, gs_cell, t, speed):
-        """Plot speed as color gradient"""
-        ax = fig.add_subplot(gs_cell)
-        norm = Normalize(vmin=speed.min(), vmax=speed.max())
-        speed_gradient = speed.reshape(1, -1)
-        ax.imshow(speed_gradient, aspect='auto', cmap='viridis',
-                 extent=[t.iloc[0], t.iloc[-1], 0, 1], norm=norm)
-        ax.set_ylabel('Speed', fontsize=8)
-        ax.set_yticks([])
-        ax.set_xlabel('Time (s)', fontsize=8)
+        ax.set_xlabel("X (px)")
+        ax.set_ylabel("Y (px)")
+        ax.grid(True, alpha=0.3)
     
     def _plot_xy_temporal(self, fig, gs_cell, t, trial, pauses, letters):
         """Plot X and Y over time"""

@@ -36,7 +36,7 @@ class InteractiveLetterSegmenter:
         gs = self.fig.add_gridspec(5, 2, height_ratios=[4, 2, 2, 1, 0.5], 
                                    width_ratios=[3, 1], hspace=0.3, wspace=0.3)
         
-        # Plot principal : Trajectoire
+        # Plot principal : Trajectoire (ZOOMABLE)
         self.ax_traj = self.fig.add_subplot(gs[0, 0])
         
         # Plot secondaire : Vitesse/Pression
@@ -153,8 +153,10 @@ class InteractiveLetterSegmenter:
                              'ro', markersize=10, zorder=10)
         
         self.ax_traj.set_aspect(224 / 140)
-        self.ax_traj.set_title(f"Trajectoire ({len(all_bounds)-1} lettres)")
-        self.ax_traj.axis('off')
+        self.ax_traj.set_title(f"Trajectoire ({len(all_bounds)-1} lettres) - Molette pour zoom")
+        self.ax_traj.set_xlabel("X (px)")
+        self.ax_traj.set_ylabel("Y (px)")
+        self.ax_traj.grid(True, alpha=0.3)
     
     def _plot_speed_pressure(self):
         """Affiche vitesse et pression avec frontières"""
@@ -203,6 +205,7 @@ class InteractiveLetterSegmenter:
         
         text = "INSTRUCTIONS:\n"
         text += "• Cliquez sur la TRAJECTOIRE pour ajouter/déplacer une frontière\n"
+        text += "• Utilisez la MOLETTE ou le ZOOM de Matplotlib pour zoomer sur la trajectoire\n"
         text += "• Cliquez sur une frontière (point rouge) puis 'd' pour la supprimer\n"
         text += "• 'Auto Segment': Re-calculer automatiquement\n"
         text += "• 'Validate & Label': Passer à la labellisation\n"
