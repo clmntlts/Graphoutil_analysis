@@ -132,25 +132,57 @@ class ReportGenerator:
         plt.close(fig)
     
     def _plot_trajectory(self, fig, gs_cell, trial, letters, segments):
-        """Plot spatial trajectory with color-coded letters (NO LABELS)"""
+        """Plot spatial trajectory with color-coded letters - only where pressure > 0"""
         ax = fig.add_subplot(gs_cell)
         
         # If we have letters, color-code by letter
         if letters:
-            # First plot a light gray background trajectory
-            ax.plot(trial["X"], trial["Y"], color="lightgray", linewidth=1, alpha=0.3)
-            
-            # Color each letter segment with different color
+            # Color each letter segment with different color (only where pressure > 0)
             colors = plt.cm.tab20.colors
             for i, letter in enumerate(letters):
                 idx1, idx2 = letter['idx1'], letter['idx2']
                 subset = trial.iloc[idx1:idx2+1]
-                ax.plot(subset["X"], subset["Y"],
-                       color=colors[i % len(colors)],
-                       linewidth=2.5, alpha=0.9)
+                
+                # Only plot segments where pressure > 0
+                pressure_mask = subset["NormalPressure"] > 0
+                
+                # Find continuous segments with pressure
+                pressure_changes = pressure_mask.astype(int).diff().fillna(0)
+                segment_starts = subset.index[pressure_changes == 1].tolist()
+                segment_ends = subset.index[pressure_changes == -1].tolist()
+                
+                # Handle edge cases
+                if len(pressure_mask) > 0 and pressure_mask.iloc[0]:
+                    segment_starts.insert(0, subset.index[0])
+                if len(pressure_mask) > 0 and pressure_mask.iloc[-1]:
+                    segment_ends.append(subset.index[-1])
+                
+                # Plot each continuous segment with pressure
+                for start_idx, end_idx in zip(segment_starts, segment_ends):
+                    segment = subset.loc[start_idx:end_idx]
+                    ax.plot(segment["X"], segment["Y"],
+                           color=colors[i % len(colors)],
+                           linewidth=2.5, alpha=0.9)
         else:
-            # No letters, just plot the trajectory
-            ax.plot(trial["X"], trial["Y"], color="black", linewidth=1.5)
+            # No letters - plot trajectory only where pressure > 0
+            pressure_mask = trial["NormalPressure"] > 0
+            
+            # Find continuous segments with pressure
+            pressure_changes = pressure_mask.astype(int).diff().fillna(0)
+            segment_starts = trial.index[pressure_changes == 1].tolist()
+            segment_ends = trial.index[pressure_changes == -1].tolist()
+            
+            # Handle edge cases
+            if len(pressure_mask) > 0 and pressure_mask.iloc[0]:
+                segment_starts.insert(0, trial.index[0])
+            if len(pressure_mask) > 0 and pressure_mask.iloc[-1]:
+                segment_ends.append(trial.index[-1])
+            
+            # Plot each continuous segment
+            for start_idx, end_idx in zip(segment_starts, segment_ends):
+                segment = trial.loc[start_idx:end_idx]
+                ax.plot(segment["X"], segment["Y"], 
+                       color="black", linewidth=1.5)
         
         # Mark segments (if any)
         for seg in segments:
@@ -160,7 +192,7 @@ class ReportGenerator:
                    'r-', linewidth=3, alpha=0.4)
         
         ax.set_aspect(self.config.trajectory_aspect_ratio)
-        ax.set_title("Spatial Trajectory", fontsize=11, weight="bold")
+        ax.set_title("Spatial Trajectory (pressure > 0 only)", fontsize=11, weight="bold")
         ax.set_xlabel("X (px)")
         ax.set_ylabel("Y (px)")
         ax.grid(True, alpha=0.3)

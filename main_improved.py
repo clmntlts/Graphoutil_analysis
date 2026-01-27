@@ -200,9 +200,9 @@ def main():
         logger.info("Starting handwriting analysis pipeline")
         
         config = AnalysisConfig(
-            input_file=Path(r"C:\Users\cletesson\Downloads\Hurisah-Erpent-prétest.xlsx"),
+            input_file=Path(r"C:\Users\cletesson\Downloads\Enregistrement sophia lmf.xlsx"),
 
-            n_trials=30,
+            n_trials=32,
 
             # Trial detection
             min_separation_ms=500,
@@ -232,7 +232,7 @@ def main():
         logger.info("Loading data...")
         df, seg = load_and_validate(config)
         
-        # ============================================
+        # ============================================y
         # 3. TRIAL DETECTION
         # ============================================
         logger.info("Detecting trials...")

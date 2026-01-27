@@ -69,18 +69,18 @@ class TrialDetector:
         # Find candidate boundaries with confidence scores
         candidates = self._find_candidates(df)
         
-        # Optimize boundary selection (timestamp-based priority)
+        # Optimize boundary selection
         boundary_idx = self._optimize_boundaries(candidates, df)
-        
-        # Store for interactive review
-        self.candidates_info = self._prepare_candidates_info(candidates, df)
+
+        # Store for interactive review  ✅ FIXED ORDER
         self.selected_boundaries = boundary_idx
-        
+        self.candidates_info = self._prepare_candidates_info(candidates, df)
+
         # Interactive validation if requested
         if interactive:
             boundary_idx = self._interactive_validation(df, candidates, boundary_idx)
             self.selected_boundaries = boundary_idx
-        
+
         # Add trial labels
         df["NewTrial"] = False
         if len(boundary_idx) > 0:
@@ -350,14 +350,32 @@ class TrialDetector:
         ax2.legend()
         ax2.grid(True, alpha=0.3)
         
-        # Plot 3: Spatial trajectory with trial colors
+        # Plot 3: Spatial trajectory with trial colors - only where pressure > 0
         ax3 = axes[2]
         colors = plt.cm.tab20.colors
         for trial_id in df["Trial"].unique():
             trial_data = df[df["Trial"] == trial_id]
-            ax3.plot(trial_data["X"], trial_data["Y"],
-                    color=colors[int(trial_id) % len(colors)],
-                    linewidth=1.5, alpha=0.8, label=f"Trial {trial_id}")
+            
+            # Only plot segments where pressure > 0
+            pressure_mask = trial_data["NormalPressure"] > 0
+            
+            # Find continuous segments with pressure
+            pressure_changes = pressure_mask.astype(int).diff().fillna(0)
+            segment_starts = trial_data.index[pressure_changes == 1].tolist()
+            segment_ends = trial_data.index[pressure_changes == -1].tolist()
+            
+            # Handle edge cases
+            if pressure_mask.iloc[0]:
+                segment_starts.insert(0, trial_data.index[0])
+            if pressure_mask.iloc[-1]:
+                segment_ends.append(trial_data.index[-1])
+            
+            # Plot each continuous segment
+            for start_idx, end_idx in zip(segment_starts, segment_ends):
+                segment = trial_data.loc[start_idx:end_idx]
+                ax3.plot(segment["X"], segment["Y"],
+                        color=colors[int(trial_id) % len(colors)],
+                        linewidth=1.5, alpha=0.8, label=f"Trial {trial_id}" if start_idx == segment_starts[0] else "")
         
         ax3.set_aspect(self.config.trajectory_aspect_ratio)
         ax3.set_xlabel("X (px)")
@@ -426,27 +444,35 @@ class InteractiveTrialValidator:
         # For manual point selection
         self.manual_points = []
         
+        # Scrolling state - show 1/10 of time range at once
+        self.time_min = self.df["PacketTime"].min()
+        self.time_max = self.df["PacketTime"].max()
+        self.time_range = self.time_max - self.time_min
+        self.window_size = self.time_range / 10  # Show 1/10 of data
+        self.view_start = self.time_min
+        self.view_end = self.view_start + self.window_size
+        
     def run(self) -> List[int]:
         """Launch interactive interface and return validated boundaries"""
-        self.fig = plt.figure(figsize=(16, 10))
-        gs = self.fig.add_gridspec(4, 3, height_ratios=[3, 2, 2, 0.5],
-                                  width_ratios=[2, 2, 1], hspace=0.3, wspace=0.3)
+        # Create figure with 3 rows and 5 columns
+        self.fig = plt.figure(figsize=(18, 11))
+        gs = self.fig.add_gridspec(4, 5, 
+                                  height_ratios=[2, 2, 0.6, 0.6],  # Upper 2 rows, then 2 aligned lower rows
+                                  width_ratios=[1, 1, 1, 1, 0.9],  # 4 cols for plots, 1 for list
+                                  hspace=0.08, wspace=0.3)
         
-        # Main plot: Temporal gaps with candidates
-        self.ax_temporal = self.fig.add_subplot(gs[0, :2])
+        # Rows 1-2, Columns 1-4: Spatial trajectory (upper 2/3)
+        self.ax_spatial = self.fig.add_subplot(gs[0:2, 0:4])
         
-        # Candidate list
-        self.ax_candidates = self.fig.add_subplot(gs[0, 2])
+        # Row 3, Columns 1-4: Temporal gaps (lower 1/3, top half)
+        self.ax_temporal = self.fig.add_subplot(gs[2, 0:4])
         
-        # Spatial trajectory
-        self.ax_spatial = self.fig.add_subplot(gs[1, :])
+        # Row 4, Columns 1-4: Spatial jumps (lower 1/3, bottom half, shared x-axis)
+        self.ax_jumps = self.fig.add_subplot(gs[3, 0:4], sharex=self.ax_temporal)
         
-        # Spatial jumps
-        self.ax_jumps = self.fig.add_subplot(gs[2, :])
-        
-        # Instructions
-        self.ax_info = self.fig.add_subplot(gs[3, :])
-        self.ax_info.axis('off')
+        # Rows 1-4, Column 5: Candidate list (all rows on right side)
+        self.ax_candidates = self.fig.add_subplot(gs[0:4, 4])
+        self.ax_candidates.axis('off')
         
         # Initial plots
         self._plot_all()
@@ -454,19 +480,27 @@ class InteractiveTrialValidator:
         # Connect events
         self.cid_click = self.fig.canvas.mpl_connect('button_press_event', self._on_click)
         self.cid_key = self.fig.canvas.mpl_connect('key_press_event', self._on_key)
+        self.cid_scroll = self.fig.canvas.mpl_connect('scroll_event', self._on_scroll)
         
-        plt.suptitle(f"Interactive Trial Boundary Validation - Need {self.n_trials-1} boundaries for {self.n_trials} trials",
-                    fontsize=14, weight='bold')
+        plt.suptitle(f"Interactive Trial Boundary Validation - Need {self.n_trials-1} boundaries for {self.n_trials} trials\n"
+                    f"[Scroll to navigate timeline | Arrow keys: ← → to scroll | Click temporal plot to toggle boundaries]",
+                    fontsize=11, weight='bold', y=0.995)
         
-        print("\n" + "="*60)
+        print("\n" + "="*70)
         print("INTERACTIVE VALIDATION MODE")
-        print("="*60)
-        print("Click on the temporal gap plot to toggle boundaries")
-        print("Press 'a' to auto-select top N candidates")
-        print("Press 'r' to reset to initial selection")
-        print("Press 'c' to clear all boundaries")
-        print("Close the window when satisfied")
-        print("="*60 + "\n")
+        print("="*70)
+        print("NAVIGATION:")
+        print("  • Scroll wheel or arrow keys (← →) to pan timeline")
+        print("  • Click on the temporal gap plot to toggle boundaries")
+        print("\nCOMMANDS:")
+        print("  • Press 'a' to auto-select top N candidates")
+        print("  • Press 'r' to reset to initial selection") 
+        print("  • Press 'c' to clear all boundaries")
+        print("  • Press 'h' to view full timeline (reset zoom)")
+        print("  • Close the window when satisfied")
+        print("="*70)
+        print(f"Viewing window: {self.window_size/1000:.1f}s ({100/10:.0f}% of total)")
+        print("="*70 + "\n")
         
         plt.show()
         
@@ -474,76 +508,18 @@ class InteractiveTrialValidator:
     
     def _plot_all(self):
         """Refresh all plots"""
-        self._plot_temporal()
-        self._plot_candidates_list()
         self._plot_spatial()
+        self._plot_temporal()
         self._plot_jumps()
-        self._update_info()
+        self._plot_candidates_list()
+        self._update_status()
         self.fig.canvas.draw()
     
-    def _plot_temporal(self):
-        """Plot temporal gaps with selected boundaries"""
-        self.ax_temporal.clear()
-        
-        # Plot all gaps
-        self.ax_temporal.plot(self.df["PacketTime"], self.df["DeltaT"], 
-                             alpha=0.5, linewidth=0.5, color='gray')
-        
-        # Mark all candidates
-        self.ax_temporal.scatter(
-            self.df.loc[self.candidates.index, "PacketTime"],
-            self.df.loc[self.candidates.index, "DeltaT"],
-            c='orange', s=30, alpha=0.5, label='All candidates', marker='x'
-        )
-        
-        # Mark selected boundaries
-        if self.boundaries:
-            self.ax_temporal.scatter(
-                self.df.loc[self.boundaries, "PacketTime"],
-                self.df.loc[self.boundaries, "DeltaT"],
-                c='red', s=100, zorder=5, label='Selected', marker='o', 
-                edgecolors='black', linewidths=2
-            )
-        
-        # Show threshold
-        self.ax_temporal.axhline(self.config.min_gap_ms, color='green',
-                                linestyle='--', alpha=0.5, 
-                                label=f'Min gap ({self.config.min_gap_ms}ms)')
-        
-        self.ax_temporal.set_yscale('log')
-        self.ax_temporal.set_xlabel('Time (ms)', fontsize=10)
-        self.ax_temporal.set_ylabel('Time Gap (ms)', fontsize=10)
-        self.ax_temporal.set_title('Temporal Gaps (Click to toggle boundaries)', fontsize=11)
-        self.ax_temporal.legend(loc='upper right')
-        self.ax_temporal.grid(True, alpha=0.3)
-    
-    def _plot_candidates_list(self):
-        """Display list of candidates with confidence scores"""
-        self.ax_candidates.clear()
-        self.ax_candidates.axis('off')
-        
-        text = "TOP CANDIDATES\n" + "="*35 + "\n\n"
-        
-        for i, (idx, row) in enumerate(self.candidates.head(15).iterrows()):
-            is_selected = idx in self.boundaries
-            marker = "✓" if is_selected else " "
-            
-            text += f"{marker} #{i+1}: t={row.get('Time_s', self.df.loc[idx, 'PacketTime']/1000):.1f}s\n"
-            text += f"   ΔT={row['DeltaT']:.0f}ms"
-            text += f" | Conf={row.get('Confidence', 0):.0f}%\n"
-            text += f"   Jump={row['DistJump']:.0f}px\n\n"
-        
-        self.ax_candidates.text(0.05, 0.95, text,
-                               transform=self.ax_candidates.transAxes,
-                               fontsize=8, verticalalignment='top',
-                               family='monospace',
-                               bbox=dict(boxstyle='round', facecolor='lightyellow', alpha=0.8))
-    
     def _plot_spatial(self):
-        """Plot spatial trajectory colored by trial"""
+        """Plot spatial trajectory colored by trial - only when pressure > 0"""
         self.ax_spatial.clear()
         
-        # Create temporary trial labels
+        # Create temporary trial labels based on current boundaries
         temp_df = self.df.copy()
         temp_df["TempTrial"] = 0
         for i, boundary in enumerate(sorted(self.boundaries)):
@@ -553,55 +529,192 @@ class InteractiveTrialValidator:
         colors = plt.cm.tab20.colors
         for trial_id in temp_df["TempTrial"].unique():
             trial_data = temp_df[temp_df["TempTrial"] == trial_id]
-            self.ax_spatial.plot(trial_data["X"], trial_data["Y"],
-                                color=colors[int(trial_id) % len(colors)],
-                                linewidth=1.5, alpha=0.8)
+            
+            # Only plot segments where pressure > 0
+            # Find continuous segments with pressure
+            pressure_mask = trial_data["NormalPressure"] > 0
+            
+            # Find transitions to identify continuous segments
+            pressure_changes = pressure_mask.astype(int).diff().fillna(0)
+            segment_starts = trial_data.index[pressure_changes == 1].tolist()
+            segment_ends = trial_data.index[pressure_changes == -1].tolist()
+            
+            # Handle edge cases
+            if pressure_mask.iloc[0]:
+                segment_starts.insert(0, trial_data.index[0])
+            if pressure_mask.iloc[-1]:
+                segment_ends.append(trial_data.index[-1])
+            
+            # Plot each continuous segment
+            for start_idx, end_idx in zip(segment_starts, segment_ends):
+                segment = trial_data.loc[start_idx:end_idx]
+                self.ax_spatial.plot(segment["X"], segment["Y"],
+                                    color=colors[int(trial_id) % len(colors)],
+                                    linewidth=1.5, alpha=0.8)
         
+        # Respect aspect ratio from config
         self.ax_spatial.set_aspect(self.config.trajectory_aspect_ratio)
-        self.ax_spatial.set_xlabel('X (px)')
-        self.ax_spatial.set_ylabel('Y (px)')
-        self.ax_spatial.set_title(f'Spatial Trajectory ({len(self.boundaries)+1} trials)')
-        self.ax_spatial.grid(True, alpha=0.3)
-    
-    def _plot_jumps(self):
-        """Plot spatial jumps"""
-        self.ax_jumps.clear()
+        self.ax_spatial.set_xlabel('X (px)', fontsize=10)
+        self.ax_spatial.set_ylabel('Y (px)', fontsize=10)
         
-        self.ax_jumps.plot(self.df["PacketTime"], self.df["DistJump"],
-                          alpha=0.5, linewidth=0.5, color='blue')
-        
-        if self.boundaries:
-            self.ax_jumps.scatter(
-                self.df.loc[self.boundaries, "PacketTime"],
-                self.df.loc[self.boundaries, "DistJump"],
-                c='red', s=100, zorder=5, marker='o',
-                edgecolors='black', linewidths=2
-            )
-        
-        self.ax_jumps.set_xlabel('Time (ms)')
-        self.ax_jumps.set_ylabel('Spatial Jump (px)')
-        self.ax_jumps.set_title('Spatial Jumps')
-        self.ax_jumps.grid(True, alpha=0.3)
-    
-    def _update_info(self):
-        """Update information panel"""
-        self.ax_info.clear()
-        self.ax_info.axis('off')
-        
+        # Status indicator
         n_current = len(self.boundaries) + 1
         n_needed = self.n_trials
-        status = "✓ CORRECT" if n_current == n_needed else f"⚠ INCORRECT"
+        status = "✓ CORRECT" if n_current == n_needed else f"⚠ NEED {n_needed}"
+        color = 'green' if n_current == n_needed else 'red'
         
-        text = f"BOUNDARIES: {len(self.boundaries)} selected → {n_current} trials "
-        text += f"(need {n_needed}) {status}\n\n"
-        text += "CONTROLS: Click plot to toggle | 'a': auto-select | 'r': reset | 'c': clear | Close when done"
+        self.ax_spatial.set_title(
+            f'Spatial Trajectory: {n_current} trials detected {status}',
+            fontsize=11, weight='bold', color=color
+        )
+        self.ax_spatial.grid(True, alpha=0.3)
+    
+    def _plot_temporal(self):
+        """Plot temporal gaps with selected boundaries - scrollable view"""
+        self.ax_temporal.clear()
         
-        color = 'lightgreen' if n_current == n_needed else 'lightcoral'
+        # Filter data to current view window
+        mask = (self.df["PacketTime"] >= self.view_start) & (self.df["PacketTime"] <= self.view_end)
+        view_df = self.df[mask]
         
-        self.ax_info.text(0.05, 0.5, text,
-                         transform=self.ax_info.transAxes,
-                         fontsize=11, verticalalignment='center',
-                         bbox=dict(boxstyle='round', facecolor=color, alpha=0.7))
+        if len(view_df) == 0:
+            self.ax_temporal.text(0.5, 0.5, 'No data in view', 
+                                 transform=self.ax_temporal.transAxes,
+                                 ha='center', va='center')
+            return
+        
+        # Plot all gaps in view
+        self.ax_temporal.plot(view_df["PacketTime"], view_df["DeltaT"], 
+                             alpha=0.6, linewidth=1, color='gray', label='Temporal gaps')
+        
+        # Mark all candidates in view
+        candidates_in_view = self.candidates[
+            (self.df.loc[self.candidates.index, "PacketTime"] >= self.view_start) &
+            (self.df.loc[self.candidates.index, "PacketTime"] <= self.view_end)
+        ]
+        
+        if len(candidates_in_view) > 0:
+            self.ax_temporal.scatter(
+                self.df.loc[candidates_in_view.index, "PacketTime"],
+                self.df.loc[candidates_in_view.index, "DeltaT"],
+                c='orange', s=50, alpha=0.6, label='Candidates', marker='x', linewidths=2
+            )
+        
+        # Mark selected boundaries in view
+        boundaries_in_view = [b for b in self.boundaries 
+                             if self.view_start <= self.df.loc[b, "PacketTime"] <= self.view_end]
+        
+        if boundaries_in_view:
+            self.ax_temporal.scatter(
+                self.df.loc[boundaries_in_view, "PacketTime"],
+                self.df.loc[boundaries_in_view, "DeltaT"],
+                c='red', s=120, zorder=5, label='Selected', marker='o', 
+                edgecolors='black', linewidths=2.5
+            )
+        
+        # Show threshold
+        self.ax_temporal.axhline(self.config.min_gap_ms, color='green',
+                                linestyle='--', alpha=0.5, linewidth=1.5,
+                                label=f'Min gap ({self.config.min_gap_ms}ms)')
+        
+        self.ax_temporal.set_yscale('log')
+        self.ax_temporal.set_xlim(self.view_start, self.view_end)
+        self.ax_temporal.set_ylabel('Time Gap (ms)', fontsize=9)
+        self.ax_temporal.set_title('Temporal Gaps (Click to toggle) - Scroll to navigate', fontsize=10)
+        self.ax_temporal.legend(loc='upper right', fontsize=8)
+        self.ax_temporal.grid(True, alpha=0.3)
+        
+        # Remove x-axis labels (shared with jumps plot below)
+        self.ax_temporal.tick_params(labelbottom=False)
+    
+    def _plot_jumps(self):
+        """Plot spatial jumps - aligned with temporal plot"""
+        self.ax_jumps.clear()
+        
+        # Filter data to current view window
+        mask = (self.df["PacketTime"] >= self.view_start) & (self.df["PacketTime"] <= self.view_end)
+        view_df = self.df[mask]
+        
+        if len(view_df) == 0:
+            return
+        
+        # Plot spatial jumps in view
+        self.ax_jumps.plot(view_df["PacketTime"], view_df["DistJump"],
+                          alpha=0.6, linewidth=1, color='blue', label='Spatial jumps')
+        
+        # Mark selected boundaries in view
+        boundaries_in_view = [b for b in self.boundaries 
+                             if self.view_start <= self.df.loc[b, "PacketTime"] <= self.view_end]
+        
+        if boundaries_in_view:
+            self.ax_jumps.scatter(
+                self.df.loc[boundaries_in_view, "PacketTime"],
+                self.df.loc[boundaries_in_view, "DistJump"],
+                c='red', s=120, zorder=5, marker='o',
+                edgecolors='black', linewidths=2.5, label='Selected'
+            )
+        
+        self.ax_jumps.set_xlim(self.view_start, self.view_end)
+        self.ax_jumps.set_xlabel('Time (ms)', fontsize=9)
+        self.ax_jumps.set_ylabel('Spatial Jump (px)', fontsize=9)
+        self.ax_jumps.set_title('Spatial Jumps', fontsize=10)
+        self.ax_jumps.legend(loc='upper right', fontsize=8)
+        self.ax_jumps.grid(True, alpha=0.3)
+    
+    def _plot_candidates_list(self):
+        """Display list of candidates with confidence scores"""
+        self.ax_candidates.clear()
+        self.ax_candidates.axis('off')
+        
+        text = "CANDIDATES & TRIALS\n" + "="*40 + "\n\n"
+        
+        # Status summary
+        n_current = len(self.boundaries) + 1
+        n_needed = self.n_trials
+        status_symbol = "✓" if n_current == n_needed else "⚠"
+        text += f"{status_symbol} Trials: {n_current}/{n_needed}\n"
+        text += f"   Boundaries: {len(self.boundaries)}/{n_needed-1}\n\n"
+        text += "="*40 + "\n\n"
+        
+        # Show top candidates
+        text += "TOP CANDIDATES:\n" + "-"*40 + "\n"
+        for i, (idx, row) in enumerate(self.candidates.head(20).iterrows()):
+            is_selected = idx in self.boundaries
+            marker = "✓" if is_selected else "○"
+            
+            time_val = row.get('Time_s', self.df.loc[idx, 'PacketTime']/1000)
+            text += f"{marker} #{i+1}: t={time_val:.1f}s\n"
+            text += f"    ΔT={row['DeltaT']:.0f}ms"
+            text += f" Conf={row.get('Confidence', 0):.0f}%\n"
+            text += f"    Jump={row['DistJump']:.0f}px\n"
+            
+            if i < 19:  # Add spacing except for last
+                text += "\n"
+        
+        bgcolor = 'lightgreen' if n_current == n_needed else 'lightyellow'
+        
+        self.ax_candidates.text(0.05, 0.98, text,
+                               transform=self.ax_candidates.transAxes,
+                               fontsize=7.5, verticalalignment='top',
+                               family='monospace',
+                               bbox=dict(boxstyle='round', facecolor=bgcolor, 
+                                       alpha=0.8, edgecolor='gray', linewidth=1))
+    
+    def _update_status(self):
+        """Update status in title"""
+        n_current = len(self.boundaries) + 1
+        n_needed = self.n_trials
+        
+        # Update figure title with scroll position
+        progress = (self.view_start - self.time_min) / self.time_range * 100
+        
+        status = f"Need {self.n_trials-1} boundaries for {self.n_trials} trials | "
+        status += f"View: {progress:.0f}%-{progress+10:.0f}% of timeline"
+        
+        self.fig.suptitle(
+            f"Interactive Trial Boundary Validation\n{status}",
+            fontsize=11, weight='bold', y=0.995
+        )
     
     def _on_click(self, event):
         """Handle click events to toggle boundaries"""
@@ -613,25 +726,70 @@ class InteractiveTrialValidator:
         if click_time is None:
             return
         
+        # Only consider candidates in current view
+        candidates_in_view = self.candidates[
+            (self.df.loc[self.candidates.index, "PacketTime"] >= self.view_start) &
+            (self.df.loc[self.candidates.index, "PacketTime"] <= self.view_end)
+        ]
+        
+        if len(candidates_in_view) == 0:
+            print("No candidates in current view")
+            return
+        
         # Get candidate indices and times
-        candidate_times = self.df.loc[self.candidates.index, "PacketTime"]
+        candidate_times = self.df.loc[candidates_in_view.index, "PacketTime"]
         distances = np.abs(candidate_times - click_time)
-        nearest_idx = self.candidates.index[distances.argmin()]
+        nearest_idx = candidates_in_view.index[distances.argmin()]
+        
+        # Only toggle if click is reasonably close (within 5% of window)
+        if distances.min() > self.window_size * 0.05:
+            return
         
         # Toggle selection
         if nearest_idx in self.boundaries:
             self.boundaries.remove(nearest_idx)
-            print(f"✗ Removed boundary at t={self.df.loc[nearest_idx, 'PacketTime']/1000:.1f}s")
+            print(f"✗ Removed boundary at t={self.df.loc[nearest_idx, 'PacketTime']/1000:.1f}s "
+                  f"({len(self.boundaries)+1} trials)")
         else:
             self.boundaries.append(nearest_idx)
             self.boundaries = sorted(self.boundaries)
-            print(f"✓ Added boundary at t={self.df.loc[nearest_idx, 'PacketTime']/1000:.1f}s")
+            print(f"✓ Added boundary at t={self.df.loc[nearest_idx, 'PacketTime']/1000:.1f}s "
+                  f"({len(self.boundaries)+1} trials)")
         
         self._plot_all()
     
+    def _on_scroll(self, event):
+        """Handle scroll events to pan the timeline"""
+        if event.inaxes not in [self.ax_temporal, self.ax_jumps]:
+            return
+        
+        # Scroll direction: up = forward in time, down = backward
+        direction = 1 if event.button == 'up' else -1
+        
+        # Scroll by 10% of window
+        scroll_amount = self.window_size * 0.1 * direction
+        
+        self._pan_view(scroll_amount)
+    
     def _on_key(self, event):
         """Handle keyboard events"""
-        if event.key == 'a':
+        if event.key == 'left':
+            # Pan backward in time
+            self._pan_view(-self.window_size * 0.2)
+            
+        elif event.key == 'right':
+            # Pan forward in time
+            self._pan_view(self.window_size * 0.2)
+            
+        elif event.key == 'h':
+            # Reset to full view
+            self.view_start = self.time_min
+            self.view_end = self.time_max
+            self.window_size = self.time_range
+            print("↻ Reset to full timeline view")
+            self._plot_all()
+            
+        elif event.key == 'a':
             # Auto-select top N candidates
             n_needed = self.n_trials - 1
             self.boundaries = []
@@ -643,19 +801,36 @@ class InteractiveTrialValidator:
                         break
             
             self.boundaries = sorted(self.boundaries)
-            print(f"✓ Auto-selected top {len(self.boundaries)} candidates")
-            
-        elif event.key == 'r':
-            # Reset to initial
-            print("↶ Reset to initial selection")
-            # Would need to store initial state
+            print(f"✓ Auto-selected top {len(self.boundaries)} candidates → {len(self.boundaries)+1} trials")
+            self._plot_all()
             
         elif event.key == 'c':
             # Clear all
             self.boundaries = []
-            print("✗ Cleared all boundaries")
+            print("✗ Cleared all boundaries → 1 trial")
+            self._plot_all()
+    
+    def _pan_view(self, amount):
+        """Pan the view by the given amount"""
+        new_start = self.view_start + amount
+        new_end = self.view_end + amount
         
-        self._plot_all()
+        # Keep within bounds
+        if new_start < self.time_min:
+            new_start = self.time_min
+            new_end = new_start + self.window_size
+        elif new_end > self.time_max:
+            new_end = self.time_max
+            new_start = new_end - self.window_size
+        
+        self.view_start = new_start
+        self.view_end = new_end
+        
+        # Update only the time-series plots (faster)
+        self._plot_temporal()
+        self._plot_jumps()
+        self._update_status()
+        self.fig.canvas.draw()
 
 
 def detect_trials_auto(df: pd.DataFrame, config, interactive: bool = False) -> pd.DataFrame:

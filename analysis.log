@@ -1,0 +1,118 @@
+2026-01-27 14:20:25,337 - __main__ - INFO - Starting handwriting analysis pipeline
+2026-01-27 14:20:25,337 - __main__ - INFO - Configuration: {'input_file': 'C:\\Users\\cletesson\\Downloads\\Hurisah-Erpent-prétest.xlsx', 'output_dir': 'C:\\Users\\cletesson\\OneDrive - UCL\\Documents\\Graphoutil_analysis\\results', 'n_trials': 30, 'sampling_rate': 200, 'min_pause_duration_ms': 20, 'speed_threshold_px_per_s': 50, 'min_letter_duration_ms': 100}
+2026-01-27 14:20:25,337 - __main__ - INFO - Loading data...
+2026-01-27 14:20:25,338 - data_loader - INFO - Loading data from C:\Users\cletesson\Downloads\Hurisah-Erpent-prétest.xlsx
+2026-01-27 14:20:26,375 - data_loader - INFO - Loaded 67874 data points
+2026-01-27 14:20:26,389 - data_loader - INFO - Loaded segmentation sheet
+2026-01-27 14:20:26,399 - __main__ - INFO - Detecting trials...
+2026-01-27 14:20:26,399 - trial_detector - INFO - Detecting 30 trials...
+2026-01-27 14:20:26,405 - trial_detector - INFO - Found 48 candidate boundaries (gap > 25.0ms)
+2026-01-27 14:20:26,406 - __main__ - ERROR - Analysis failed: only list-like objects are allowed to be passed to isin(), you passed a `NoneType`
+Traceback (most recent call last):
+  File "c:\Users\cletesson\OneDrive - UCL\Documents\Graphoutil_analysis\main_improved.py", line 239, in main
+    df = detect_trials_auto(df, config, interactive=True)
+  File "c:\Users\cletesson\OneDrive - UCL\Documents\Graphoutil_analysis\trial_detector.py", line 674, in detect_trials_auto
+    df = detector.detect_trials(df, interactive=interactive)
+  File "c:\Users\cletesson\OneDrive - UCL\Documents\Graphoutil_analysis\trial_detector.py", line 76, in detect_trials
+    self.candidates_info = self._prepare_candidates_info(candidates, df)
+                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "c:\Users\cletesson\OneDrive - UCL\Documents\Graphoutil_analysis\trial_detector.py", line 282, in _prepare_candidates_info
+    info["IsSelected"] = info.index.isin(self.selected_boundaries)
+                         ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\cletesson\AppData\Roaming\Python\Python313\site-packages\pandas\core\indexes\base.py", line 6657, in isin
+    return algos.isin(self._values, values)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\cletesson\AppData\Roaming\Python\Python313\site-packages\pandas\core\algorithms.py", line 477, in isin
+    raise TypeError(
+    ...<2 lines>...
+    )
+TypeError: only list-like objects are allowed to be passed to isin(), you passed a `NoneType`
+2026-01-27 14:23:00,533 - __main__ - INFO - Starting handwriting analysis pipeline
+2026-01-27 14:23:00,534 - __main__ - INFO - Configuration: {'input_file': 'C:\\Users\\cletesson\\Downloads\\Hurisah-Erpent-prétest.xlsx', 'output_dir': 'C:\\Users\\cletesson\\OneDrive - UCL\\Documents\\Graphoutil_analysis\\results', 'n_trials': 30, 'sampling_rate': 200, 'min_pause_duration_ms': 20, 'speed_threshold_px_per_s': 50, 'min_letter_duration_ms': 100}
+2026-01-27 14:23:00,534 - __main__ - INFO - Loading data...
+2026-01-27 14:23:00,534 - data_loader - INFO - Loading data from C:\Users\cletesson\Downloads\Hurisah-Erpent-prétest.xlsx
+2026-01-27 14:23:01,523 - data_loader - INFO - Loaded 67874 data points
+2026-01-27 14:23:01,538 - data_loader - INFO - Loaded segmentation sheet
+2026-01-27 14:23:01,538 - __main__ - INFO - Detecting trials...
+2026-01-27 14:23:01,539 - trial_detector - INFO - Detecting 30 trials...
+2026-01-27 14:23:01,546 - trial_detector - INFO - Found 48 candidate boundaries (gap > 25.0ms)
+2026-01-27 14:29:33,825 - trial_detector - INFO - Successfully detected 30 trials
+2026-01-27 14:29:33,848 - __main__ - INFO - Analyzing trials...
+2026-01-27 14:29:33,931 - trial_analyzer - WARNING - Trial 3 has no pressure data
+2026-01-27 14:29:34,054 - trial_analyzer - WARNING - Trial 17 has no pressure data
+2026-01-27 14:29:34,173 - trial_analyzer - INFO - Analyzed 30 trials
+2026-01-27 14:29:45,459 - __main__ - INFO - Saving results...
+2026-01-27 14:29:45,498 - __main__ - INFO - Generating PDF report...
+2026-01-27 14:29:45,498 - visualization - INFO - Generating PDF report to C:\Users\cletesson\OneDrive - UCL\Documents\Graphoutil_analysis\results\Hurisah-Erpent-prétest_report.pdf
+2026-01-27 14:29:46,170 - visualization - WARNING - Skipping trial 3 - no pressure data
+2026-01-27 14:29:49,098 - visualization - WARNING - Skipping trial 17 - no pressure data
+2026-01-27 14:29:52,016 - visualization - INFO - Report saved successfully: C:\Users\cletesson\OneDrive - UCL\Documents\Graphoutil_analysis\results\Hurisah-Erpent-prétest_report.pdf
+2026-01-27 14:29:52,017 - __main__ - INFO - Analysis completed successfully!
+2026-01-27 14:43:33,737 - __main__ - INFO - Starting handwriting analysis pipeline
+2026-01-27 14:43:33,737 - __main__ - INFO - Configuration: {'input_file': 'C:\\Users\\cletesson\\Downloads\\Hurisah-Erpent-prétest.xlsx', 'output_dir': 'C:\\Users\\cletesson\\OneDrive - UCL\\Documents\\Graphoutil_analysis\\results', 'n_trials': 30, 'sampling_rate': 200, 'min_pause_duration_ms': 20, 'speed_threshold_px_per_s': 50, 'min_letter_duration_ms': 100}
+2026-01-27 14:43:33,737 - __main__ - INFO - Loading data...
+2026-01-27 14:43:33,738 - data_loader - INFO - Loading data from C:\Users\cletesson\Downloads\Hurisah-Erpent-prétest.xlsx
+2026-01-27 14:43:34,788 - data_loader - INFO - Loaded 67874 data points
+2026-01-27 14:43:34,802 - data_loader - INFO - Loaded segmentation sheet
+2026-01-27 14:43:34,802 - __main__ - INFO - Detecting trials...
+2026-01-27 14:43:34,802 - trial_detector - INFO - Detecting 30 trials...
+2026-01-27 14:43:34,808 - trial_detector - INFO - Found 48 candidate boundaries (gap > 25.0ms)
+2026-01-27 14:43:34,810 - trial_detector - INFO - Successfully detected 30 trials
+2026-01-27 14:43:34,814 - __main__ - INFO - Analyzing trials...
+2026-01-27 14:43:34,885 - trial_analyzer - WARNING - Trial 3 has no pressure data
+2026-01-27 14:43:34,930 - trial_analyzer - WARNING - Trial 17 has no pressure data
+2026-01-27 14:43:34,974 - trial_analyzer - INFO - Analyzed 30 trials
+2026-01-27 14:43:42,979 - __main__ - INFO - Segmenting words for trial 1
+2026-01-27 14:44:25,892 - __main__ - INFO - Segmenting letters for trial 1
+2026-01-27 14:45:18,616 - __main__ - INFO - Segmenting letters for trial 3
+2026-01-27 14:45:31,725 - __main__ - INFO - Segmenting letters for trial 5
+2026-01-27 14:45:44,176 - __main__ - INFO - Saving results...
+2026-01-27 14:45:44,352 - __main__ - INFO - Generating PDF report...
+2026-01-27 14:45:44,352 - visualization - INFO - Generating PDF report to C:\Users\cletesson\OneDrive - UCL\Documents\Graphoutil_analysis\results\Hurisah-Erpent-prétest_report.pdf
+2026-01-27 14:45:45,059 - visualization - WARNING - Skipping trial 3 - no pressure data
+2026-01-27 14:45:47,972 - visualization - WARNING - Skipping trial 17 - no pressure data
+2026-01-27 14:45:50,702 - visualization - INFO - Report saved successfully: C:\Users\cletesson\OneDrive - UCL\Documents\Graphoutil_analysis\results\Hurisah-Erpent-prétest_report.pdf
+2026-01-27 14:45:50,703 - __main__ - INFO - Analysis completed successfully!
+2026-01-27 14:47:45,438 - __main__ - INFO - Starting handwriting analysis pipeline
+2026-01-27 14:47:45,438 - __main__ - INFO - Configuration: {'input_file': 'C:\\Users\\cletesson\\Downloads\\Hurisah-Erpent-prétest.xlsx', 'output_dir': 'C:\\Users\\cletesson\\OneDrive - UCL\\Documents\\Graphoutil_analysis\\results', 'n_trials': 30, 'sampling_rate': 200, 'min_pause_duration_ms': 20, 'speed_threshold_px_per_s': 50, 'min_letter_duration_ms': 100}
+2026-01-27 14:47:45,439 - __main__ - INFO - Loading data...
+2026-01-27 14:47:45,439 - data_loader - INFO - Loading data from C:\Users\cletesson\Downloads\Hurisah-Erpent-prétest.xlsx
+2026-01-27 14:47:46,424 - data_loader - INFO - Loaded 67874 data points
+2026-01-27 14:47:46,436 - data_loader - INFO - Loaded segmentation sheet
+2026-01-27 14:47:46,437 - __main__ - INFO - Detecting trials...
+2026-01-27 14:47:46,437 - trial_detector - INFO - Detecting 30 trials...
+2026-01-27 14:47:46,443 - trial_detector - INFO - Found 48 candidate boundaries (gap > 25.0ms)
+2026-01-27 14:51:47,998 - trial_detector - INFO - Successfully detected 37 trials
+2026-01-27 14:51:47,998 - trial_detector - WARNING - Expected 30 trials but found 37
+2026-01-27 14:51:48,004 - __main__ - INFO - Analyzing trials...
+2026-01-27 14:51:48,066 - trial_analyzer - WARNING - Trial 18 has no pressure data
+2026-01-27 14:51:48,070 - trial_analyzer - WARNING - Trial 20 has no pressure data
+2026-01-27 14:51:48,070 - trial_analyzer - WARNING - Trial 21 has no pressure data
+2026-01-27 14:51:48,078 - trial_analyzer - WARNING - Trial 25 has no pressure data
+2026-01-27 14:51:48,089 - trial_analyzer - WARNING - Trial 28 has no pressure data
+2026-01-27 14:51:48,109 - trial_analyzer - WARNING - Trial 34 has no pressure data
+2026-01-27 14:51:48,116 - trial_analyzer - INFO - Analyzed 37 trials
+2026-01-27 14:51:58,233 - __main__ - INFO - Segmenting words for trial 1
+2026-01-27 15:26:58,794 - __main__ - INFO - Starting handwriting analysis pipeline
+2026-01-27 15:26:58,794 - __main__ - INFO - Configuration: {'input_file': 'C:\\Users\\cletesson\\Downloads\\Enregistrement sophia lmf.xlsx', 'output_dir': 'C:\\Users\\cletesson\\OneDrive - UCL\\Documents\\Graphoutil_analysis\\results', 'n_trials': 32, 'sampling_rate': 200, 'min_pause_duration_ms': 20, 'speed_threshold_px_per_s': 50, 'min_letter_duration_ms': 100}
+2026-01-27 15:26:58,795 - __main__ - INFO - Loading data...
+2026-01-27 15:26:58,795 - data_loader - INFO - Loading data from C:\Users\cletesson\Downloads\Enregistrement sophia lmf.xlsx
+2026-01-27 15:26:59,640 - data_loader - INFO - Loaded 52150 data points
+2026-01-27 15:26:59,651 - data_loader - INFO - Loaded segmentation sheet
+2026-01-27 15:26:59,651 - __main__ - INFO - Detecting trials...
+2026-01-27 15:26:59,651 - trial_detector - INFO - Detecting 32 trials...
+2026-01-27 15:26:59,656 - trial_detector - INFO - Found 40 candidate boundaries (gap > 25.0ms)
+2026-01-27 15:28:28,931 - trial_detector - INFO - Successfully detected 32 trials
+2026-01-27 15:28:28,940 - __main__ - INFO - Analyzing trials...
+2026-01-27 15:28:29,005 - trial_analyzer - WARNING - Trial 2 has no pressure data
+2026-01-27 15:28:29,068 - trial_analyzer - WARNING - Trial 15 has no pressure data
+2026-01-27 15:28:29,162 - trial_analyzer - INFO - Analyzed 32 trials
+2026-01-27 15:28:36,761 - __main__ - INFO - Segmenting words for trial 1
+2026-01-27 15:29:13,106 - __main__ - INFO - Segmenting letters for trial 2
+2026-01-27 15:29:28,549 - __main__ - INFO - Saving results...
+2026-01-27 15:29:28,698 - __main__ - INFO - Generating PDF report...
+2026-01-27 15:29:28,699 - visualization - INFO - Generating PDF report to C:\Users\cletesson\OneDrive - UCL\Documents\Graphoutil_analysis\results\Enregistrement sophia lmf_report.pdf
+2026-01-27 15:29:29,123 - visualization - WARNING - Skipping trial 2 - no pressure data
+2026-01-27 15:29:31,774 - visualization - WARNING - Skipping trial 15 - no pressure data
+2026-01-27 15:29:37,538 - visualization - INFO - Report saved successfully: C:\Users\cletesson\OneDrive - UCL\Documents\Graphoutil_analysis\results\Enregistrement sophia lmf_report.pdf
+2026-01-27 15:29:37,543 - __main__ - INFO - Analysis completed successfully!
