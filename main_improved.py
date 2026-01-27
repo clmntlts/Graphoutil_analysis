@@ -201,13 +201,29 @@ def main():
         
         config = AnalysisConfig(
             input_file=Path(r"C:\Users\cletesson\Downloads\Hurisah-Erpent-prétest.xlsx"),
+            output_dir=Path(r"C:\Users\cletesson\Downloads\analysis_output"),
             n_trials=30,
+
+            # Trial detection
+            min_separation_ms=500,
+            min_gap_ms=20,
+
+            # Sampling
             sampling_rate=200,
+
+            # Pause detection
             min_pause_duration_ms=20,
             speed_threshold_px_per_s=50,
-            min_letter_duration_ms=100
+
+            # Letter segmentation
+            min_letter_duration_ms=100,
+            smoothing_window=5,
+
+            # Visualization
+            trajectory_aspect_ratio=224 / 140,
+            pdf_dpi=300
         )
-        
+     
         logger.info(f"Configuration: {config.to_dict()}")
         
         # ============================================

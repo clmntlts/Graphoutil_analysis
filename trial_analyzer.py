@@ -27,7 +27,7 @@ class TrialAnalyzer:
         """
         self.config = config
     
-    def analyze_all_trials(self, df: pd.DataFrame) -> Tuple[pd.DataFrame, List[Dict]]:
+    def analyze_all_trials(self, df: pd.DataFrame) -> tuple[pd.DataFrame, List[Dict]]:
         """
         Analyze all trials in the dataset
         
@@ -54,7 +54,7 @@ class TrialAnalyzer:
         
         return summary_df, all_pauses
     
-    def analyze_trial(self, trial: pd.DataFrame, trial_id: int) -> Tuple[Dict, List[Dict]]:
+    def analyze_trial(self, trial: pd.DataFrame, trial_id: int) -> tuple[Dict, List[Dict]]:
         """
         Analyze a single trial
         
@@ -198,7 +198,7 @@ class TrialAnalyzer:
         }
 
 
-def analyze_trials(df: pd.DataFrame, config) -> Tuple[pd.DataFrame, List[Dict]]:
+def analyze_trials(df: pd.DataFrame, config) -> tuple[pd.DataFrame, List[Dict]]:
     """
     Convenience function for trial analysis
     
