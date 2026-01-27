@@ -1,0 +1,290 @@
+"""
+Interactive interface for manual word/segment marking.
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+from pause_detection import detect_pauses
+
+
+class InteractiveSegmenter:
+    """
+    Interface interactive pour marquer manuellement des segments de mots.
+    """
+    
+    def __init__(self, trial_data, trial_id, seg=None, 
+                 speed_threshold_px_per_s=50, min_pause_samples=4):
+        self.trial = trial_data.reset_index(drop=True)
+        self.trial_id = trial_id
+        self.t = (self.trial["PacketTime"] - self.trial["PacketTime"].iloc[0]) / 1000
+        self.markers = []
+        self.segments = []
+        self.seg = seg  # Segmentation sheet data (optional)
+        
+        # Paramètres de détection des pauses
+        self.speed_threshold = speed_threshold_px_per_s
+        self.min_pause_samples = min_pause_samples
+        
+        # Calculer la vitesse
+        vx = np.gradient(self.trial["X"], self.t)
+        vy = np.gradient(self.trial["Y"], self.t)
+        self.speed = np.sqrt(vx**2 + vy**2)
+        
+        # Détecter les pauses
+        self.pause_mask, self.pauses = detect_pauses(
+            self.t, self.speed, self.trial["NormalPressure"],
+            self.speed_threshold, self.min_pause_samples
+        )
+        
+    def find_nearest_point(self, x_click, y_click):
+        """Trouve le point le plus proche du clic"""
+        distances = np.sqrt((self.trial["X"] - x_click)**2 + (self.trial["Y"] - y_click)**2)
+        idx = np.argmin(distances)
+        return idx
+    
+    def start_interactive(self):
+        """Lance l'interface interactive de segmentation"""
+        self.fig = plt.figure(figsize=(12, 10))
+        gs = self.fig.add_gridspec(4, 1, height_ratios=[4, 2, 2, 1], hspace=0.3)
+        
+        # Plot 1: Trajectoire spatiale
+        self.ax_traj = self.fig.add_subplot(gs[0])
+        self.plot_trajectory()
+        
+        # Plot 2: X/Y temporel
+        self.ax_xy = self.fig.add_subplot(gs[1])
+        self.plot_xy_temporal()
+        
+        # Plot 3: Speed & Pressure
+        self.ax_speed = self.fig.add_subplot(gs[2])
+        self.plot_speed_pressure()
+        
+        # Plot 4: Instructions
+        self.ax_info = self.fig.add_subplot(gs[3])
+        self.ax_info.axis('off')
+        self.update_instructions()
+        
+        # Connexion des événements
+        self.cid_click = self.fig.canvas.mpl_connect('button_press_event', self.on_click)
+        self.cid_key = self.fig.canvas.mpl_connect('key_press_event', self.on_key)
+        
+        plt.suptitle(f"Trial {self.trial_id} - Segmentation Interactive", 
+                    fontsize=14, weight="bold")
+        plt.show()
+        
+        # Demander un nom/label pour chaque segment créé
+        for seg in self.segments:
+            label = input(f"\nDonnez un nom au segment {seg['segment_id']} (durée: {seg['duration_ms']:.1f}ms)\n"
+                         f"  (ex: 't-i', 'base', 'suffixe', ou appuyez sur Entrée pour ignorer): ")
+            seg['label'] = label.strip() if label.strip() else f"segment_{seg['segment_id']}"
+        
+        return self.segments
+    
+    def plot_trajectory(self):
+        """Affiche la trajectoire spatiale"""
+        self.ax_traj.clear()
+        
+        # Tracer la trajectoire
+        colors = plt.cm.tab10.colors
+        if self.seg is not None:
+            for _, row in self.seg.iterrows():
+                start_idx, end_idx = int(row["Start"]), int(row["End"])
+                word_id = int(row["WordIndex"])
+                if start_idx >= len(self.trial) or end_idx > len(self.trial):
+                    continue
+                subset = self.trial.iloc[start_idx:end_idx]
+                if len(subset) < 2:
+                    continue
+                
+                if row["Type"] == "Writing":
+                    self.ax_traj.plot(subset["X"], subset["Y"],
+                                     color=colors[word_id % len(colors)],
+                                     linewidth=1.5, alpha=0.9)
+        else:
+            self.ax_traj.plot(self.trial["X"], self.trial["Y"], 
+                             color="black", linewidth=1.5)
+        
+        # Afficher les marqueurs
+        for i, marker in enumerate(self.markers):
+            idx = marker['idx']
+            self.ax_traj.plot(self.trial["X"].iloc[idx], self.trial["Y"].iloc[idx],
+                             'ro', markersize=10, label=f"Point {i+1}")
+            self.ax_traj.text(self.trial["X"].iloc[idx], self.trial["Y"].iloc[idx],
+                             f"  {i+1}", fontsize=12, weight="bold")
+        
+        # Afficher les segments
+        for seg_data in self.segments:
+            idx1, idx2 = seg_data['idx1'], seg_data['idx2']
+            self.ax_traj.plot([self.trial["X"].iloc[idx1], self.trial["X"].iloc[idx2]],
+                             [self.trial["Y"].iloc[idx1], self.trial["Y"].iloc[idx2]],
+                             'g-', linewidth=2, alpha=0.5)
+            # Afficher la durée
+            mid_x = (self.trial["X"].iloc[idx1] + self.trial["X"].iloc[idx2]) / 2
+            mid_y = (self.trial["Y"].iloc[idx1] + self.trial["Y"].iloc[idx2]) / 2
+            self.ax_traj.text(mid_x, mid_y, f"{seg_data['duration_ms']:.1f}ms",
+                             fontsize=10, bbox=dict(boxstyle='round', facecolor='yellow', alpha=0.7))
+        
+        self.ax_traj.set_aspect(224 / 140)
+        self.ax_traj.set_title("Trajectoire spatiale (cliquez pour placer des marqueurs)")
+        self.ax_traj.axis("off")
+        
+        if self.markers:
+            self.ax_traj.legend(loc='upper right')
+    
+    def plot_xy_temporal(self):
+        """Affiche X et Y temporels"""
+        self.ax_xy.clear()
+        self.ax_xy.plot(self.t, self.trial["X"], color="steelblue", lw=1, label="X")
+        self.ax_xy.set_ylabel("X (px)", color="steelblue")
+        
+        ax_y = self.ax_xy.twinx()
+        ax_y.plot(self.t, self.trial["Y"], color="darkorange", lw=1, label="Y")
+        ax_y.set_ylabel("Y (px)", color="darkorange")
+        
+        # Marquer les points sélectionnés
+        for i, marker in enumerate(self.markers):
+            t_val = self.t.iloc[marker['idx']]
+            self.ax_xy.axvline(t_val, color='red', linestyle='--', alpha=0.7)
+            self.ax_xy.text(t_val, self.ax_xy.get_ylim()[1], f"{i+1}",
+                           fontsize=10, ha='center', weight='bold')
+        
+        self.ax_xy.set_xlabel("Time (s)")
+        self.ax_xy.set_title("X & Y temporels")
+        self.ax_xy.grid(True, alpha=0.3)
+    
+    def plot_speed_pressure(self):
+        """Affiche vitesse et pression"""
+        self.ax_speed.clear()
+        self.ax_speed.plot(self.t, self.speed, color="purple", lw=1)
+        self.ax_speed.axhline(self.speed_threshold, color='purple',
+                             linestyle='--', alpha=0.5)
+        self.ax_speed.set_ylabel("Speed (px/s)", color="purple")
+        
+        ax_p = self.ax_speed.twinx()
+        ax_p.plot(self.t, self.trial["NormalPressure"], color="gray", lw=1)
+        ax_p.set_ylabel("Pressure", color="gray")
+        
+        # Marquer les pauses
+        for pause in self.pauses:
+            color = {'pen_lift': 'red', 'low_speed': 'blue', 'mixed': 'purple'}[pause['type']]
+            self.ax_speed.axvspan(pause['start_time'], pause['end_time'],
+                                 color=color, alpha=0.2)
+        
+        # Marquer les points sélectionnés
+        for i, marker in enumerate(self.markers):
+            t_val = self.t.iloc[marker['idx']]
+            self.ax_speed.axvline(t_val, color='red', linestyle='--', alpha=0.7)
+        
+        self.ax_speed.set_xlabel("Time (s)")
+        self.ax_speed.set_title("Speed & Pressure")
+        self.ax_speed.grid(True, alpha=0.3)
+    
+    def update_instructions(self):
+        """Met à jour les instructions"""
+        self.ax_info.clear()
+        self.ax_info.axis('off')
+        
+        text = "INSTRUCTIONS:\n"
+        text += "• Cliquez sur la trajectoire pour placer des marqueurs\n"
+        text += "• Appuyez sur 'm' pour créer un segment entre les 2 derniers points\n"
+        text += "• Appuyez sur 'u' pour annuler le dernier marqueur\n"
+        text += "• Appuyez sur 'r' pour recommencer (supprimer tout)\n"
+        text += "• Fermez la fenêtre pour terminer\n\n"
+        
+        if self.markers:
+            text += f"Marqueurs placés: {len(self.markers)}\n"
+        if self.segments:
+            text += f"Segments créés: {len(self.segments)}\n"
+            for i, seg in enumerate(self.segments):
+                text += f"  Segment {i+1}: {seg['duration_ms']:.1f}ms (avec {seg['num_pauses']} pauses)\n"
+        
+        self.ax_info.text(0.05, 0.95, text, transform=self.ax_info.transAxes,
+                         fontsize=10, verticalalignment='top',
+                         bbox=dict(boxstyle='round', facecolor='lightblue', alpha=0.5))
+    
+    def on_click(self, event):
+        """Gère les clics de souris"""
+        if event.inaxes != self.ax_traj:
+            return
+        
+        # Trouver le point le plus proche
+        idx = self.find_nearest_point(event.xdata, event.ydata)
+        
+        self.markers.append({
+            'idx': idx,
+            'x': self.trial["X"].iloc[idx],
+            'y': self.trial["Y"].iloc[idx],
+            't': self.t.iloc[idx]
+        })
+        
+        print(f"✓ Marqueur {len(self.markers)} placé à t={self.t.iloc[idx]:.3f}s")
+        
+        self.refresh_plots()
+    
+    def on_key(self, event):
+        """Gère les touches clavier"""
+        if event.key == 'm':
+            # Créer un segment entre les 2 derniers points
+            if len(self.markers) < 2:
+                print("❌ Il faut au moins 2 marqueurs pour créer un segment")
+                return
+            
+            m1 = self.markers[-2]
+            m2 = self.markers[-1]
+            
+            idx1, idx2 = min(m1['idx'], m2['idx']), max(m1['idx'], m2['idx'])
+            duration = (self.t.iloc[idx2] - self.t.iloc[idx1]) * 1000  # ms
+            
+            # Calculer les statistiques du segment
+            segment_speed = self.speed[idx1:idx2+1]
+            segment_pressure = self.trial["NormalPressure"].iloc[idx1:idx2+1]
+            
+            # Compter les pauses dans le segment
+            segment_pauses = [p for p in self.pauses 
+                             if idx1 <= p['start_idx'] <= idx2 or idx1 <= p['end_idx'] <= idx2]
+            
+            seg_data = {
+                'trial': self.trial_id,
+                'segment_id': len(self.segments) + 1,
+                'idx1': idx1,
+                'idx2': idx2,
+                't1': self.t.iloc[idx1],
+                't2': self.t.iloc[idx2],
+                'duration_ms': duration,
+                'num_pauses': len(segment_pauses),
+                'total_pause_duration_ms': sum([p['duration_ms'] for p in segment_pauses]),
+                'net_writing_duration_ms': duration - sum([p['duration_ms'] for p in segment_pauses]),
+                'mean_speed': segment_speed.mean(),
+                'mean_pressure': segment_pressure.mean(),
+                'path_length': np.sum(np.sqrt(
+                    np.diff(self.trial["X"].iloc[idx1:idx2+1])**2 + 
+                    np.diff(self.trial["Y"].iloc[idx1:idx2+1])**2
+                )),
+                'label': ''  # Sera rempli après la session interactive
+            }
+            
+            self.segments.append(seg_data)
+            print(f"✓ Segment {len(self.segments)} créé: {duration:.1f}ms, {len(segment_pauses)} pauses")
+            
+        elif event.key == 'u':
+            # Annuler le dernier marqueur
+            if self.markers:
+                self.markers.pop()
+                print("↶ Dernier marqueur annulé")
+            
+        elif event.key == 'r':
+            # Recommencer
+            self.markers = []
+            self.segments = []
+            print("⟳ Remise à zéro")
+        
+        self.refresh_plots()
+    
+    def refresh_plots(self):
+        """Rafraîchit tous les graphiques"""
+        self.plot_trajectory()
+        self.plot_xy_temporal()
+        self.plot_speed_pressure()
+        self.update_instructions()
+        self.fig.canvas.draw()
