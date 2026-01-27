@@ -201,7 +201,7 @@ def main():
         
         config = AnalysisConfig(
             input_file=Path(r"C:\Users\cletesson\Downloads\Hurisah-Erpent-prétest.xlsx"),
-            output_dir=Path(r"C:\Users\cletesson\Downloads\analysis_output"),
+
             n_trials=30,
 
             # Trial detection
@@ -236,7 +236,7 @@ def main():
         # 3. TRIAL DETECTION
         # ============================================
         logger.info("Detecting trials...")
-        df = detect_trials_auto(df, config)
+        df = detect_trials_auto(df, config, interactive=True)
         
         # Optional: Visualize detection
         # from trial_detector import TrialDetector

@@ -1,0 +1,47 @@
+2026-01-27 11:34:37,485 - __main__ - INFO - Starting handwriting analysis pipeline
+2026-01-27 11:34:37,485 - __main__ - INFO - Configuration: {'input_file': 'C:\\Users\\cletesson\\Downloads\\Hurisah-Erpent-prétest.xlsx', 'output_dir': 'C:\\Users\\cletesson\\Downloads', 'n_trials': 30, 'sampling_rate': 200, 'min_pause_duration_ms': 20, 'speed_threshold_px_per_s': 50, 'min_letter_duration_ms': 100}
+2026-01-27 11:34:37,486 - __main__ - INFO - Loading data...
+2026-01-27 11:34:37,486 - data_loader - INFO - Loading data from C:\Users\cletesson\Downloads\Hurisah-Erpent-prétest.xlsx
+2026-01-27 11:34:38,460 - data_loader - INFO - Loaded 67874 data points
+2026-01-27 11:34:38,474 - data_loader - INFO - Loaded segmentation sheet
+2026-01-27 11:34:38,482 - __main__ - INFO - Detecting trials...
+2026-01-27 11:34:38,482 - trial_detector - INFO - Detecting 30 trials...
+2026-01-27 11:34:38,486 - trial_detector - INFO - Found 49 candidate boundaries
+2026-01-27 11:34:38,489 - trial_detector - INFO - Successfully detected 30 trials
+2026-01-27 11:34:38,489 - __main__ - INFO - Analyzing trials...
+2026-01-27 11:34:38,503 - trial_analyzer - WARNING - Trial 3 has no pressure data
+2026-01-27 11:34:38,545 - trial_analyzer - WARNING - Trial 17 has no pressure data
+2026-01-27 11:34:38,597 - trial_analyzer - INFO - Analyzed 30 trials
+2026-01-27 11:35:14,617 - __main__ - INFO - Segmenting words for trial 1
+2026-01-27 11:35:37,179 - __main__ - INFO - Segmenting letters for trial 5
+2026-01-27 11:36:10,205 - __main__ - INFO - Saving results...
+2026-01-27 11:36:10,390 - __main__ - INFO - Generating PDF report...
+2026-01-27 11:36:10,390 - visualization - INFO - Generating PDF report to C:\Users\cletesson\Downloads\Hurisah-Erpent-prétest_report.pdf
+2026-01-27 11:36:11,169 - visualization - WARNING - Skipping trial 3 - no pressure data
+2026-01-27 11:36:14,306 - visualization - WARNING - Skipping trial 17 - no pressure data
+2026-01-27 11:36:17,340 - visualization - INFO - Report saved successfully: C:\Users\cletesson\Downloads\Hurisah-Erpent-prétest_report.pdf
+2026-01-27 11:36:17,343 - __main__ - INFO - Analysis completed successfully!
+2026-01-27 13:43:48,348 - __main__ - INFO - Starting handwriting analysis pipeline
+2026-01-27 13:43:48,348 - __main__ - INFO - Configuration: {'input_file': 'C:\\Users\\cletesson\\Downloads\\Hurisah-Erpent-prétest.xlsx', 'output_dir': 'C:\\Users\\cletesson\\Downloads\\analysis_output', 'n_trials': 30, 'sampling_rate': 200, 'min_pause_duration_ms': 20, 'speed_threshold_px_per_s': 50, 'min_letter_duration_ms': 100}
+2026-01-27 13:43:48,348 - __main__ - INFO - Loading data...
+2026-01-27 13:43:48,348 - data_loader - INFO - Loading data from C:\Users\cletesson\Downloads\Hurisah-Erpent-prétest.xlsx
+2026-01-27 13:43:49,503 - data_loader - INFO - Loaded 67874 data points
+2026-01-27 13:43:49,516 - data_loader - INFO - Loaded segmentation sheet
+2026-01-27 13:43:49,516 - __main__ - INFO - Detecting trials...
+2026-01-27 13:43:49,516 - trial_detector - INFO - Detecting 30 trials...
+2026-01-27 13:43:49,520 - trial_detector - INFO - Found 49 candidate boundaries
+2026-01-27 13:43:49,523 - trial_detector - INFO - Successfully detected 30 trials
+2026-01-27 13:43:49,523 - __main__ - INFO - Analyzing trials...
+2026-01-27 13:43:49,579 - trial_analyzer - WARNING - Trial 3 has no pressure data
+2026-01-27 13:43:49,620 - trial_analyzer - WARNING - Trial 17 has no pressure data
+2026-01-27 13:43:49,664 - trial_analyzer - INFO - Analyzed 30 trials
+2026-01-27 13:43:58,468 - __main__ - INFO - Segmenting words for trial 1
+2026-01-27 13:45:48,924 - __main__ - INFO - Segmenting letters for trial 4
+2026-01-27 13:46:11,974 - __main__ - INFO - Segmenting letters for trial 5
+2026-01-27 13:46:28,093 - __main__ - INFO - Saving results...
+2026-01-27 13:46:28,266 - __main__ - INFO - Generating PDF report...
+2026-01-27 13:46:28,267 - visualization - INFO - Generating PDF report to C:\Users\cletesson\Downloads\analysis_output\Hurisah-Erpent-prétest_report.pdf
+2026-01-27 13:46:28,905 - visualization - WARNING - Skipping trial 3 - no pressure data
+2026-01-27 13:46:31,977 - visualization - WARNING - Skipping trial 17 - no pressure data
+2026-01-27 13:46:34,667 - visualization - INFO - Report saved successfully: C:\Users\cletesson\Downloads\analysis_output\Hurisah-Erpent-prétest_report.pdf
+2026-01-27 13:46:34,669 - __main__ - INFO - Analysis completed successfully!

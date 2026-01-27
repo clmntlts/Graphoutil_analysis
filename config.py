@@ -46,11 +46,12 @@ class AnalysisConfig:
         """Initialize derived parameters"""
         self.input_file = Path(self.input_file)
         
+        # ===== Output directory logic =====
         if self.output_dir is None:
-            self.output_dir = self.input_file.parent
-        else:
-            self.output_dir = Path(self.output_dir)
-            self.output_dir.mkdir(parents=True, exist_ok=True)
+            self.output_dir = Path.cwd() / "results"
+
+        # Create directory if needed
+        self.output_dir.mkdir(parents=True, exist_ok=True)
         
         # Derived parameters
         self.expected_interval = 1000 / self.sampling_rate  # ms
