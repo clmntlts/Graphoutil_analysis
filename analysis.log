@@ -537,3 +537,52 @@ TypeError: only list-like objects are allowed to be passed to isin(), you passed
 2026-01-30 12:29:23,200 - visualization - INFO - Generating PDF report to C:\Users\cletesson\OneDrive - UCL\Documents\Graphoutil_analysis\results\Enregistrement sophia lmf_report.pdf
 2026-01-30 12:29:30,369 - visualization - INFO - Report saved successfully: C:\Users\cletesson\OneDrive - UCL\Documents\Graphoutil_analysis\results\Enregistrement sophia lmf_report.pdf
 2026-01-30 12:29:30,370 - __main__ - INFO - Analysis completed successfully!
+2026-01-30 12:35:26,387 - __main__ - INFO - Starting handwriting analysis pipeline
+2026-01-30 12:35:26,387 - __main__ - INFO - Configuration: {'input_file': 'C:\\Users\\cletesson\\Downloads\\Enregistrement OKOK.xlsx', 'output_dir': 'C:\\Users\\cletesson\\OneDrive - UCL\\Documents\\Graphoutil_analysis\\results', 'n_trials': 32, 'sampling_rate': 200, 'min_pause_duration_ms': 20, 'speed_threshold_px_per_s': 50, 'min_letter_duration_ms': 100}
+2026-01-30 12:35:26,387 - __main__ - INFO - Loading data...
+2026-01-30 12:35:26,387 - data_loader - INFO - Loading data from C:\Users\cletesson\Downloads\Enregistrement OKOK.xlsx
+2026-01-30 12:35:26,883 - data_loader - INFO - Loaded 29601 data points
+2026-01-30 12:35:26,893 - data_loader - INFO - Loaded segmentation sheet
+2026-01-30 12:35:26,893 - __main__ - INFO - Detecting trials...
+2026-01-30 12:35:26,893 - trial_detector - INFO - Detecting 32 trials...
+2026-01-30 12:35:26,899 - trial_detector - INFO - Found 33 candidate boundaries (gap > 500.0ms)
+2026-01-30 12:35:26,900 - trial_detector - INFO - ADAPTIVE TRIAL SIZE THRESHOLDS:
+2026-01-30 12:35:26,900 - trial_detector - INFO -   Median trial size from candidates: 715 points
+2026-01-30 12:35:26,900 - trial_detector - INFO -   25th percentile: 648 points
+2026-01-30 12:35:26,900 - trial_detector - INFO -   10th percentile: 594 points
+2026-01-30 12:35:26,900 - trial_detector - INFO -   Minimum acceptable (30% of median): 214 points
+2026-01-30 12:35:26,901 - trial_detector - INFO - Skipped 0 candidates due to small trial size constraint
+2026-01-30 12:35:26,901 - trial_detector - INFO - Selected 31 boundaries
+2026-01-30 12:35:26,901 - trial_detector - INFO - Trial sizes with selected boundaries:
+2026-01-30 12:35:26,901 - trial_detector - INFO -   Trial 0: 629 points
+2026-01-30 12:35:26,901 - trial_detector - INFO -   Trial 1: 1913 points
+2026-01-30 12:35:26,901 - trial_detector - INFO -   Trial 2: 792 points
+2026-01-30 12:35:26,901 - trial_detector - INFO -   Trial 3: 881 points
+2026-01-30 12:35:26,902 - trial_detector - INFO -   Trial 4: 590 points
+2026-01-30 12:35:26,902 - trial_detector - INFO -   Trial 5: 640 points
+2026-01-30 12:35:26,902 - trial_detector - INFO -   Trial 6: 673 points
+2026-01-30 12:35:26,902 - trial_detector - INFO -   Trial 7: 714 points
+2026-01-30 12:35:26,902 - trial_detector - INFO -   Trial 8: 3460 points
+2026-01-30 12:35:26,902 - trial_detector - INFO -   Trial 9: 585 points
+2026-01-30 12:35:26,902 - trial_detector - INFO -   Trial 10: 598 points
+2026-01-30 12:35:26,902 - trial_detector - INFO -   Trial 11: 657 points
+2026-01-30 12:35:26,902 - trial_detector - INFO -   Trial 12: 726 points
+2026-01-30 12:35:26,902 - trial_detector - INFO -   Trial 13: 842 points
+2026-01-30 12:35:26,902 - trial_detector - INFO -   Trial 14: 661 points
+2026-01-30 12:35:26,902 - trial_detector - INFO -   Trial 15: 1478 points
+2026-01-30 12:35:26,902 - trial_detector - INFO -   Trial 16: 672 points
+2026-01-30 12:35:26,902 - trial_detector - INFO -   Trial 17: 911 points
+2026-01-30 12:35:26,902 - trial_detector - INFO -   Trial 18: 993 points
+2026-01-30 12:35:26,902 - trial_detector - INFO -   Trial 19: 594 points
+2026-01-30 12:35:26,902 - trial_detector - INFO -   Trial 20: 819 points
+2026-01-30 12:35:26,902 - trial_detector - INFO -   Trial 21: 754 points
+2026-01-30 12:35:26,902 - trial_detector - INFO -   Trial 22: 715 points
+2026-01-30 12:35:26,903 - trial_detector - INFO -   Trial 23: 658 points
+2026-01-30 12:35:26,903 - trial_detector - INFO -   Trial 24: 2570 points
+2026-01-30 12:35:26,903 - trial_detector - INFO -   Trial 25: 893 points
+2026-01-30 12:35:26,903 - trial_detector - INFO -   Trial 26: 670 points
+2026-01-30 12:35:26,903 - trial_detector - INFO -   Trial 27: 593 points
+2026-01-30 12:35:26,903 - trial_detector - INFO -   Trial 28: 888 points
+2026-01-30 12:35:26,903 - trial_detector - INFO -   Trial 29: 695 points
+2026-01-30 12:35:26,903 - trial_detector - INFO -   Trial 30: 627 points
+2026-01-30 12:35:26,903 - trial_detector - INFO -   Trial 31: 741 points
