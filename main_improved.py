@@ -202,7 +202,7 @@ def main():
         config = AnalysisConfig(
             input_file=Path(r"C:\Users\cletesson\Downloads\Enregistrement OKOK.xlsx"),
 
-            n_trials=32,
+            n_trials=40,
 
             # Trial detection
             min_separation_ms=250,

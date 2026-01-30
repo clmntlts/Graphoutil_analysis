@@ -120,84 +120,43 @@ class InteractiveSegmenter:
         self.btn_reset = Button(ax_reset, 'Reset (r)')
         self.btn_reset.on_clicked(lambda e: self.on_key(type('obj', (), {'key': 'r'})))
     
-def plot_trajectory(self):
-    """Affiche la trajectoire spatiale"""
-    self.ax_traj.clear()
+    def plot_trajectory(self):
+        """Affiche la trajectoire spatiale"""
+        self.ax_traj.clear()
 
-    colors = plt.cm.tab10.colors
+        colors = plt.cm.tab10.colors
 
-    # ========= MAIN TRAJECTORY =========
-    if self.seg is not None:
-        for _, row in self.seg.iterrows():
-            start_idx, end_idx = int(row["Start"]), int(row["End"])
-            word_id = int(row["WordIndex"])
+        # ========= MAIN TRAJECTORY =========
+        if self.seg is not None:
+            for _, row in self.seg.iterrows():
+                start_idx, end_idx = int(row["Start"]), int(row["End"])
+                word_id = int(row["WordIndex"])
 
-            if start_idx >= len(self.trial) or end_idx > len(self.trial):
-                continue
+                if start_idx >= len(self.trial) or end_idx > len(self.trial):
+                    continue
 
-            subset = self.trial.iloc[start_idx:end_idx]
+                subset = self.trial.iloc[start_idx:end_idx]
 
-            if row["Type"] == "Writing":
-                pressure = (subset["NormalPressure"].to_numpy() > 0).astype(int)
-                changes = np.diff(pressure, prepend=0)
+                if row["Type"] == "Writing":
+                    pressure = (subset["NormalPressure"].to_numpy() > 0).astype(int)
+                    changes = np.diff(pressure, prepend=0)
 
-                seg_starts = np.where(changes == 1)[0]
-                seg_ends = np.where(changes == -1)[0] - 1
+                    seg_starts = np.where(changes == 1)[0]
+                    seg_ends = np.where(changes == -1)[0] - 1
 
-                if pressure.size and pressure[-1]:
-                    seg_ends = np.append(seg_ends, len(pressure) - 1)
+                    if pressure.size and pressure[-1]:
+                        seg_ends = np.append(seg_ends, len(pressure) - 1)
 
-                for s, e in zip(seg_starts, seg_ends):
-                    segment = subset.iloc[s:e + 1]
-                    self.ax_traj.plot(
-                        segment["X"], segment["Y"],
-                        color=colors[word_id % len(colors)],
-                        linewidth=2, alpha=0.9
-                    )
+                    for s, e in zip(seg_starts, seg_ends):
+                        segment = subset.iloc[s:e + 1]
+                        self.ax_traj.plot(
+                            segment["X"], segment["Y"],
+                            color=colors[word_id % len(colors)],
+                            linewidth=2, alpha=0.9
+                        )
 
-    else:
-        pressure = (self.trial["NormalPressure"].to_numpy() > 0).astype(int)
-        changes = np.diff(pressure, prepend=0)
-
-        seg_starts = np.where(changes == 1)[0]
-        seg_ends = np.where(changes == -1)[0] - 1
-
-        if pressure.size and pressure[-1]:
-            seg_ends = np.append(seg_ends, len(pressure) - 1)
-
-        for s, e in zip(seg_starts, seg_ends):
-            segment = self.trial.iloc[s:e + 1]
-            self.ax_traj.plot(segment["X"], segment["Y"], color="black", linewidth=2)
-
-    # ========= MARKERS =========
-    for i, marker in enumerate(self.markers):
-        idx = marker["idx"]
-        if idx < len(self.trial):
-            self.ax_traj.plot(
-                self.trial["X"].iloc[idx],
-                self.trial["Y"].iloc[idx],
-                "ro", markersize=10, zorder=10, label=f"Point {i+1}"
-            )
-            self.ax_traj.text(
-                self.trial["X"].iloc[idx],
-                self.trial["Y"].iloc[idx],
-                f"  {i+1}", fontsize=12, weight="bold"
-            )
-
-    # ========= USER-DEFINED SEGMENTS =========
-    for seg_data in self.segments:
-        idx1, idx2 = seg_data["idx1"], seg_data["idx2"]
-
-        if idx1 < len(self.trial) and idx2 < len(self.trial):
-            # Endpoint line
-            self.ax_traj.plot(
-                [self.trial["X"].iloc[idx1], self.trial["X"].iloc[idx2]],
-                [self.trial["Y"].iloc[idx1], self.trial["Y"].iloc[idx2]],
-                "g-", linewidth=3, alpha=0.5, zorder=5
-            )
-
-            seg_subset = self.trial.iloc[idx1:idx2 + 1]
-            pressure = (seg_subset["NormalPressure"].to_numpy() > 0).astype(int)
+        else:
+            pressure = (self.trial["NormalPressure"].to_numpy() > 0).astype(int)
             changes = np.diff(pressure, prepend=0)
 
             seg_starts = np.where(changes == 1)[0]
@@ -207,59 +166,100 @@ def plot_trajectory(self):
                 seg_ends = np.append(seg_ends, len(pressure) - 1)
 
             for s, e in zip(seg_starts, seg_ends):
-                segment = seg_subset.iloc[s:e + 1]
+                segment = self.trial.iloc[s:e + 1]
+                self.ax_traj.plot(segment["X"], segment["Y"], color="black", linewidth=2)
+
+        # ========= MARKERS =========
+        for i, marker in enumerate(self.markers):
+            idx = marker["idx"]
+            if idx < len(self.trial):
                 self.ax_traj.plot(
-                    segment["X"], segment["Y"],
-                    "lime", linewidth=3, alpha=0.7, zorder=4
+                    self.trial["X"].iloc[idx],
+                    self.trial["Y"].iloc[idx],
+                    "ro", markersize=10, zorder=10, label=f"Point {i+1}"
+                )
+                self.ax_traj.text(
+                    self.trial["X"].iloc[idx],
+                    self.trial["Y"].iloc[idx],
+                    f"  {i+1}", fontsize=12, weight="bold"
                 )
 
-            # Duration label
-            mid_x = (self.trial["X"].iloc[idx1] + self.trial["X"].iloc[idx2]) / 2
-            mid_y = (self.trial["Y"].iloc[idx1] + self.trial["Y"].iloc[idx2]) / 2
-            self.ax_traj.text(
-                mid_x, mid_y,
-                f"{seg_data['duration_ms']:.0f}ms",
-                fontsize=10, weight="bold",
-                bbox=dict(boxstyle="round", facecolor="yellow", alpha=0.8)
-            )
+        # ========= USER-DEFINED SEGMENTS =========
+        for seg_data in self.segments:
+            idx1, idx2 = seg_data["idx1"], seg_data["idx2"]
 
-    # ========= AXIS / STYLE =========
-    self.ax_traj.set_aspect(self.aspect_ratio)
-    self.ax_traj.set_title(
-        "Trajectoire spatiale (cliquez pour placer des marqueurs | molette pour zoom)"
-    )
-    self.ax_traj.set_xlabel("X (px)")
-    self.ax_traj.set_ylabel("Y (px)")
-    self.ax_traj.grid(True, alpha=0.3)
+            if idx1 < len(self.trial) and idx2 < len(self.trial):
+                # Endpoint line
+                self.ax_traj.plot(
+                    [self.trial["X"].iloc[idx1], self.trial["X"].iloc[idx2]],
+                    [self.trial["Y"].iloc[idx1], self.trial["Y"].iloc[idx2]],
+                    "g-", linewidth=3, alpha=0.5, zorder=5
+                )
 
-    if self.markers:
-        self.ax_traj.legend(loc="upper right", fontsize=8)
+                seg_subset = self.trial.iloc[idx1:idx2 + 1]
+                pressure = (seg_subset["NormalPressure"].to_numpy() > 0).astype(int)
+                changes = np.diff(pressure, prepend=0)
 
-    
-    def plot_xy_temporal(self):
-        """Affiche X et Y temporels"""
-        self.ax_xy.clear()
-        self.ax_xy.plot(self.t, self.trial["X"], color="steelblue", lw=1.5, label="X")
-        self.ax_xy.set_ylabel("X (px)", color="steelblue")
-        self.ax_xy.tick_params(axis='y', labelcolor="steelblue")
+                seg_starts = np.where(changes == 1)[0]
+                seg_ends = np.where(changes == -1)[0] - 1
+
+                if pressure.size and pressure[-1]:
+                    seg_ends = np.append(seg_ends, len(pressure) - 1)
+
+                for s, e in zip(seg_starts, seg_ends):
+                    segment = seg_subset.iloc[s:e + 1]
+                    self.ax_traj.plot(
+                        segment["X"], segment["Y"],
+                        "lime", linewidth=3, alpha=0.7, zorder=4
+                    )
+
+                # Duration label
+                mid_x = (self.trial["X"].iloc[idx1] + self.trial["X"].iloc[idx2]) / 2
+                mid_y = (self.trial["Y"].iloc[idx1] + self.trial["Y"].iloc[idx2]) / 2
+                self.ax_traj.text(
+                    mid_x, mid_y,
+                    f"{seg_data['duration_ms']:.0f}ms",
+                    fontsize=10, weight="bold",
+                    bbox=dict(boxstyle="round", facecolor="yellow", alpha=0.8)
+                )
+
+        # ========= AXIS / STYLE =========
+        self.ax_traj.set_aspect(self.aspect_ratio)
+        self.ax_traj.set_title(
+            "Trajectoire spatiale (cliquez pour placer des marqueurs | molette pour zoom)"
+        )
+        self.ax_traj.set_xlabel("X (px)")
+        self.ax_traj.set_ylabel("Y (px)")
+        self.ax_traj.grid(True, alpha=0.3)
+
+        if self.markers:
+            self.ax_traj.legend(loc="upper right", fontsize=8)
+
         
-        ax_y = self.ax_xy.twinx()
-        ax_y.plot(self.t, self.trial["Y"], color="darkorange", lw=1.5, label="Y")
-        ax_y.set_ylabel("Y (px)", color="darkorange")
-        ax_y.tick_params(axis='y', labelcolor="darkorange")
-        
-        # Marquer les points sélectionnés
-        for i, marker in enumerate(self.markers):
-            if marker['idx'] < len(self.t):
-                t_val = self.t.iloc[marker['idx']]
-                self.ax_xy.axvline(t_val, color='red', linestyle='--', alpha=0.7, linewidth=1.5)
-                self.ax_xy.text(t_val, self.ax_xy.get_ylim()[1]*0.95, f"{i+1}",
-                               fontsize=10, ha='center', weight='bold',
-                               bbox=dict(boxstyle='round', facecolor='white', alpha=0.7))
-        
-        self.ax_xy.set_xlabel("Time (s)")
-        self.ax_xy.set_title("X & Y temporels")
-        self.ax_xy.grid(True, alpha=0.3)
+        def plot_xy_temporal(self):
+            """Affiche X et Y temporels"""
+            self.ax_xy.clear()
+            self.ax_xy.plot(self.t, self.trial["X"], color="steelblue", lw=1.5, label="X")
+            self.ax_xy.set_ylabel("X (px)", color="steelblue")
+            self.ax_xy.tick_params(axis='y', labelcolor="steelblue")
+            
+            ax_y = self.ax_xy.twinx()
+            ax_y.plot(self.t, self.trial["Y"], color="darkorange", lw=1.5, label="Y")
+            ax_y.set_ylabel("Y (px)", color="darkorange")
+            ax_y.tick_params(axis='y', labelcolor="darkorange")
+            
+            # Marquer les points sélectionnés
+            for i, marker in enumerate(self.markers):
+                if marker['idx'] < len(self.t):
+                    t_val = self.t.iloc[marker['idx']]
+                    self.ax_xy.axvline(t_val, color='red', linestyle='--', alpha=0.7, linewidth=1.5)
+                    self.ax_xy.text(t_val, self.ax_xy.get_ylim()[1]*0.95, f"{i+1}",
+                                fontsize=10, ha='center', weight='bold',
+                                bbox=dict(boxstyle='round', facecolor='white', alpha=0.7))
+            
+            self.ax_xy.set_xlabel("Time (s)")
+            self.ax_xy.set_title("X & Y temporels")
+            self.ax_xy.grid(True, alpha=0.3)
     
     def plot_speed_pressure(self):
         """Affiche vitesse et pression"""
