@@ -116,3 +116,424 @@ TypeError: only list-like objects are allowed to be passed to isin(), you passed
 2026-01-27 15:29:31,774 - visualization - WARNING - Skipping trial 15 - no pressure data
 2026-01-27 15:29:37,538 - visualization - INFO - Report saved successfully: C:\Users\cletesson\OneDrive - UCL\Documents\Graphoutil_analysis\results\Enregistrement sophia lmf_report.pdf
 2026-01-27 15:29:37,543 - __main__ - INFO - Analysis completed successfully!
+2026-01-29 11:38:43,279 - __main__ - INFO - Starting handwriting analysis pipeline
+2026-01-29 11:38:43,279 - __main__ - INFO - Configuration: {'input_file': 'C:\\Users\\cletesson\\Downloads\\Enregistrement sophia lmf.xlsx', 'output_dir': 'C:\\Users\\cletesson\\OneDrive - UCL\\Documents\\Graphoutil_analysis\\results', 'n_trials': 32, 'sampling_rate': 200, 'min_pause_duration_ms': 20, 'speed_threshold_px_per_s': 50, 'min_letter_duration_ms': 100}
+2026-01-29 11:38:43,279 - __main__ - INFO - Loading data...
+2026-01-29 11:38:43,280 - data_loader - INFO - Loading data from C:\Users\cletesson\Downloads\Enregistrement sophia lmf.xlsx
+2026-01-29 11:38:44,144 - data_loader - INFO - Loaded 52150 data points
+2026-01-29 11:38:44,156 - data_loader - INFO - Loaded segmentation sheet
+2026-01-29 11:38:44,156 - __main__ - INFO - Detecting trials...
+2026-01-29 11:38:44,156 - trial_detector - INFO - Detecting 32 trials...
+2026-01-29 11:38:44,164 - trial_detector - INFO - Found 40 candidate boundaries (gap > 25.0ms)
+2026-01-29 11:42:56,964 - trial_detector - INFO - Successfully detected 35 trials
+2026-01-29 11:42:56,964 - trial_detector - WARNING - Expected 32 trials but found 35
+2026-01-29 11:42:56,994 - __main__ - INFO - Analyzing trials...
+2026-01-29 11:42:57,058 - trial_analyzer - WARNING - Trial 2 has no pressure data
+2026-01-29 11:42:57,117 - trial_analyzer - WARNING - Trial 15 has no pressure data
+2026-01-29 11:42:57,141 - trial_analyzer - WARNING - Trial 20 has no pressure data
+2026-01-29 11:42:57,238 - trial_analyzer - INFO - Analyzed 35 trials
+2026-01-29 11:43:09,936 - __main__ - INFO - Saving results...
+2026-01-29 11:43:09,977 - __main__ - INFO - Generating PDF report...
+2026-01-29 11:43:09,977 - visualization - INFO - Generating PDF report to C:\Users\cletesson\OneDrive - UCL\Documents\Graphoutil_analysis\results\Enregistrement sophia lmf_report.pdf
+2026-01-29 11:43:10,406 - visualization - WARNING - Skipping trial 2 - no pressure data
+2026-01-29 11:43:12,968 - visualization - WARNING - Skipping trial 15 - no pressure data
+2026-01-29 11:43:13,935 - visualization - WARNING - Skipping trial 20 - no pressure data
+2026-01-29 11:43:17,045 - visualization - INFO - Report saved successfully: C:\Users\cletesson\OneDrive - UCL\Documents\Graphoutil_analysis\results\Enregistrement sophia lmf_report.pdf
+2026-01-29 11:43:17,047 - __main__ - INFO - Analysis completed successfully!
+2026-01-29 11:57:01,698 - __main__ - INFO - Starting handwriting analysis pipeline
+2026-01-29 11:57:01,698 - __main__ - INFO - Configuration: {'input_file': 'C:\\Users\\cletesson\\Downloads\\Enregistrement sophia lmf.xlsx', 'output_dir': 'C:\\Users\\cletesson\\OneDrive - UCL\\Documents\\Graphoutil_analysis\\results', 'n_trials': 32, 'sampling_rate': 200, 'min_pause_duration_ms': 20, 'speed_threshold_px_per_s': 50, 'min_letter_duration_ms': 100}
+2026-01-29 11:57:01,699 - __main__ - INFO - Loading data...
+2026-01-29 11:57:01,699 - data_loader - INFO - Loading data from C:\Users\cletesson\Downloads\Enregistrement sophia lmf.xlsx
+2026-01-29 11:57:02,533 - data_loader - INFO - Loaded 52150 data points
+2026-01-29 11:57:02,545 - data_loader - INFO - Loaded segmentation sheet
+2026-01-29 11:57:02,545 - __main__ - INFO - Detecting trials...
+2026-01-29 11:57:02,545 - trial_detector - INFO - Detecting 32 trials...
+2026-01-29 11:57:02,551 - trial_detector - INFO - Found 40 candidate boundaries (gap > 25.0ms)
+2026-01-29 11:59:34,824 - trial_detector - INFO - Successfully detected 34 trials (Trial IDs: [np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4), np.int64(5), np.int64(6), np.int64(7), np.int64(8), np.int64(9), np.int64(10), np.int64(11), np.int64(12), np.int64(13), np.int64(14), np.int64(15), np.int64(16), np.int64(17), np.int64(18), np.int64(19), np.int64(20), np.int64(21), np.int64(22), np.int64(23), np.int64(24), np.int64(25), np.int64(26), np.int64(27), np.int64(28), np.int64(29), np.int64(30), np.int64(31), np.int64(32), np.int64(33)])
+2026-01-29 11:59:34,824 - trial_detector - WARNING - Expected 32 trials but found 34
+2026-01-29 11:59:34,837 - __main__ - INFO - Analyzing trials...
+2026-01-29 11:59:34,901 - trial_analyzer - WARNING - Trial 2 has no pressure data
+2026-01-29 11:59:34,929 - trial_analyzer - WARNING - Trial 14 has no pressure data
+2026-01-29 11:59:34,939 - trial_analyzer - WARNING - Trial 19 has no pressure data
+2026-01-29 11:59:34,973 - trial_analyzer - INFO - Analyzed 34 trials
+2026-01-29 12:58:10,570 - __main__ - INFO - Starting handwriting analysis pipeline
+2026-01-29 12:58:10,570 - __main__ - INFO - Configuration: {'input_file': 'C:\\Users\\cletesson\\Downloads\\Enregistrement sophia lmf.xlsx', 'output_dir': 'C:\\Users\\cletesson\\OneDrive - UCL\\Documents\\Graphoutil_analysis\\results', 'n_trials': 32, 'sampling_rate': 200, 'min_pause_duration_ms': 20, 'speed_threshold_px_per_s': 50, 'min_letter_duration_ms': 100}
+2026-01-29 12:58:10,570 - __main__ - INFO - Loading data...
+2026-01-29 12:58:10,570 - data_loader - INFO - Loading data from C:\Users\cletesson\Downloads\Enregistrement sophia lmf.xlsx
+2026-01-29 12:58:11,409 - data_loader - INFO - Loaded 52150 data points
+2026-01-29 12:58:11,420 - data_loader - INFO - Loaded segmentation sheet
+2026-01-29 12:58:11,420 - __main__ - INFO - Detecting trials...
+2026-01-29 12:58:11,420 - trial_detector - INFO - Detecting 32 trials...
+2026-01-29 12:58:11,427 - trial_detector - INFO - Found 40 candidate boundaries (gap > 25.0ms)
+2026-01-29 13:01:29,723 - trial_detector - INFO - Successfully detected 32 trials (Trial IDs: [np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4), np.int64(5), np.int64(6), np.int64(7), np.int64(8), np.int64(9), np.int64(10), np.int64(11), np.int64(12), np.int64(13), np.int64(14), np.int64(15), np.int64(16), np.int64(17), np.int64(18), np.int64(19), np.int64(20), np.int64(21), np.int64(22), np.int64(23), np.int64(24), np.int64(25), np.int64(26), np.int64(27), np.int64(28), np.int64(29), np.int64(30), np.int64(31)])
+2026-01-29 13:01:29,733 - __main__ - INFO - Analyzing trials...
+2026-01-29 13:01:29,860 - trial_analyzer - INFO - Analyzed 32 trials
+2026-01-29 13:01:40,445 - __main__ - INFO - Saving results...
+2026-01-29 13:01:40,482 - __main__ - INFO - Generating PDF report...
+2026-01-29 13:01:40,482 - visualization - INFO - Generating PDF report to C:\Users\cletesson\OneDrive - UCL\Documents\Graphoutil_analysis\results\Enregistrement sophia lmf_report.pdf
+2026-01-29 13:01:53,715 - visualization - INFO - Report saved successfully: C:\Users\cletesson\OneDrive - UCL\Documents\Graphoutil_analysis\results\Enregistrement sophia lmf_report.pdf
+2026-01-29 13:01:53,720 - __main__ - INFO - Analysis completed successfully!
+2026-01-29 13:40:01,895 - __main__ - INFO - Starting handwriting analysis pipeline
+2026-01-29 13:40:01,896 - __main__ - INFO - Configuration: {'input_file': 'C:\\Users\\cletesson\\Downloads\\Enregistrement sophia lmf.xlsx', 'output_dir': 'C:\\Users\\cletesson\\OneDrive - UCL\\Documents\\Graphoutil_analysis\\results', 'n_trials': 32, 'sampling_rate': 200, 'min_pause_duration_ms': 20, 'speed_threshold_px_per_s': 50, 'min_letter_duration_ms': 100}
+2026-01-29 13:40:01,896 - __main__ - INFO - Loading data...
+2026-01-29 13:40:01,896 - data_loader - INFO - Loading data from C:\Users\cletesson\Downloads\Enregistrement sophia lmf.xlsx
+2026-01-29 13:40:02,737 - data_loader - INFO - Loaded 52150 data points
+2026-01-29 13:40:02,749 - data_loader - INFO - Loaded segmentation sheet
+2026-01-29 13:40:02,749 - __main__ - INFO - Detecting trials...
+2026-01-29 13:40:02,749 - trial_detector - INFO - Detecting 32 trials...
+2026-01-29 13:40:02,756 - trial_detector - INFO - Found 40 candidate boundaries (gap > 25.0ms)
+2026-01-29 13:51:34,656 - __main__ - INFO - Starting handwriting analysis pipeline
+2026-01-29 13:51:34,657 - __main__ - INFO - Configuration: {'input_file': 'C:\\Users\\cletesson\\Downloads\\Enregistrement sophia lmf.xlsx', 'output_dir': 'C:\\Users\\cletesson\\OneDrive - UCL\\Documents\\Graphoutil_analysis\\results', 'n_trials': 32, 'sampling_rate': 200, 'min_pause_duration_ms': 20, 'speed_threshold_px_per_s': 50, 'min_letter_duration_ms': 100}
+2026-01-29 13:51:34,657 - __main__ - INFO - Loading data...
+2026-01-29 13:51:34,657 - data_loader - INFO - Loading data from C:\Users\cletesson\Downloads\Enregistrement sophia lmf.xlsx
+2026-01-29 13:51:35,475 - data_loader - INFO - Loaded 52150 data points
+2026-01-29 13:51:35,487 - data_loader - INFO - Loaded segmentation sheet
+2026-01-29 13:51:35,487 - __main__ - INFO - Detecting trials...
+2026-01-29 13:51:35,488 - trial_detector - INFO - Detecting 32 trials...
+2026-01-29 13:51:35,495 - trial_detector - INFO - Found 40 candidate boundaries (gap > 25.0ms)
+2026-01-29 13:54:09,277 - trial_detector - INFO - Successfully detected 35 trials (Trial IDs: [np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4), np.int64(5), np.int64(6), np.int64(7), np.int64(8), np.int64(9), np.int64(10), np.int64(11), np.int64(12), np.int64(13), np.int64(14), np.int64(15), np.int64(16), np.int64(17), np.int64(18), np.int64(19), np.int64(20), np.int64(21), np.int64(22), np.int64(23), np.int64(24), np.int64(25), np.int64(26), np.int64(27), np.int64(28), np.int64(29), np.int64(30), np.int64(31), np.int64(32), np.int64(33), np.int64(34)])
+2026-01-29 13:54:09,277 - trial_detector - WARNING - Expected 32 trials but found 35
+2026-01-29 13:54:09,286 - __main__ - INFO - Analyzing trials...
+2026-01-29 13:54:09,342 - trial_analyzer - WARNING - Trial 2 has no pressure data
+2026-01-29 13:54:09,374 - trial_analyzer - WARNING - Trial 15 has no pressure data
+2026-01-29 13:54:09,383 - trial_analyzer - WARNING - Trial 20 has no pressure data
+2026-01-29 13:54:09,418 - trial_analyzer - INFO - Analyzed 35 trials
+2026-01-29 13:57:51,105 - __main__ - INFO - Starting handwriting analysis pipeline
+2026-01-29 13:57:51,106 - __main__ - INFO - Configuration: {'input_file': 'C:\\Users\\cletesson\\Downloads\\Enregistrement sophia lmf.xlsx', 'output_dir': 'C:\\Users\\cletesson\\OneDrive - UCL\\Documents\\Graphoutil_analysis\\results', 'n_trials': 32, 'sampling_rate': 200, 'min_pause_duration_ms': 20, 'speed_threshold_px_per_s': 50, 'min_letter_duration_ms': 100}
+2026-01-29 13:57:51,106 - __main__ - INFO - Loading data...
+2026-01-29 13:57:51,106 - data_loader - INFO - Loading data from C:\Users\cletesson\Downloads\Enregistrement sophia lmf.xlsx
+2026-01-29 13:57:51,865 - data_loader - INFO - Loaded 52150 data points
+2026-01-29 13:57:51,877 - data_loader - INFO - Loaded segmentation sheet
+2026-01-29 13:57:51,878 - __main__ - INFO - Detecting trials...
+2026-01-29 13:57:51,878 - trial_detector - INFO - Detecting 32 trials...
+2026-01-29 13:57:51,884 - trial_detector - INFO - Found 40 candidate boundaries (gap > 25.0ms)
+2026-01-29 14:15:26,982 - __main__ - INFO - Starting handwriting analysis pipeline
+2026-01-29 14:15:26,983 - __main__ - INFO - Configuration: {'input_file': 'C:\\Users\\cletesson\\Downloads\\Enregistrement sophia lmf.xlsx', 'output_dir': 'C:\\Users\\cletesson\\OneDrive - UCL\\Documents\\Graphoutil_analysis\\results', 'n_trials': 32, 'sampling_rate': 200, 'min_pause_duration_ms': 20, 'speed_threshold_px_per_s': 50, 'min_letter_duration_ms': 100}
+2026-01-29 14:15:26,983 - __main__ - INFO - Loading data...
+2026-01-29 14:15:26,983 - data_loader - INFO - Loading data from C:\Users\cletesson\Downloads\Enregistrement sophia lmf.xlsx
+2026-01-29 14:15:27,743 - data_loader - INFO - Loaded 52150 data points
+2026-01-29 14:15:27,754 - data_loader - INFO - Loaded segmentation sheet
+2026-01-29 14:15:27,754 - __main__ - INFO - Detecting trials...
+2026-01-29 14:15:27,754 - trial_detector - INFO - Detecting 32 trials...
+2026-01-29 14:15:27,762 - trial_detector - INFO - Found 40 candidate boundaries (gap > 25.0ms)
+2026-01-29 14:17:07,891 - trial_detector - INFO - Successfully detected 32 trials (Trial IDs: [np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4), np.int64(5), np.int64(6), np.int64(7), np.int64(8), np.int64(9), np.int64(10), np.int64(11), np.int64(12), np.int64(13), np.int64(14), np.int64(15), np.int64(16), np.int64(17), np.int64(18), np.int64(19), np.int64(20), np.int64(21), np.int64(22), np.int64(23), np.int64(24), np.int64(25), np.int64(26), np.int64(27), np.int64(28), np.int64(29), np.int64(30), np.int64(31)])
+2026-01-29 14:17:07,903 - __main__ - INFO - Analyzing trials...
+2026-01-29 14:17:07,951 - trial_analyzer - WARNING - Trial 2 has no pressure data
+2026-01-29 14:17:07,979 - trial_analyzer - WARNING - Trial 14 has no pressure data
+2026-01-29 14:17:08,024 - trial_analyzer - INFO - Analyzed 32 trials
+2026-01-29 14:17:25,906 - __main__ - INFO - Starting handwriting analysis pipeline
+2026-01-29 14:17:25,907 - __main__ - INFO - Configuration: {'input_file': 'C:\\Users\\cletesson\\Downloads\\Enregistrement sophia lmf.xlsx', 'output_dir': 'C:\\Users\\cletesson\\OneDrive - UCL\\Documents\\Graphoutil_analysis\\results', 'n_trials': 32, 'sampling_rate': 200, 'min_pause_duration_ms': 20, 'speed_threshold_px_per_s': 50, 'min_letter_duration_ms': 100}
+2026-01-29 14:17:25,907 - __main__ - INFO - Loading data...
+2026-01-29 14:17:25,907 - data_loader - INFO - Loading data from C:\Users\cletesson\Downloads\Enregistrement sophia lmf.xlsx
+2026-01-29 14:17:26,740 - data_loader - INFO - Loaded 52150 data points
+2026-01-29 14:17:26,751 - data_loader - INFO - Loaded segmentation sheet
+2026-01-29 14:17:26,751 - __main__ - INFO - Detecting trials...
+2026-01-29 14:17:26,751 - trial_detector - INFO - Detecting 32 trials...
+2026-01-29 14:17:26,758 - trial_detector - INFO - Found 33 candidate boundaries (gap > 500.0ms)
+2026-01-29 14:22:28,468 - trial_detector - INFO - Successfully detected 34 trials (Trial IDs: [np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4), np.int64(5), np.int64(6), np.int64(7), np.int64(8), np.int64(9), np.int64(10), np.int64(11), np.int64(12), np.int64(13), np.int64(14), np.int64(15), np.int64(16), np.int64(17), np.int64(18), np.int64(19), np.int64(20), np.int64(21), np.int64(22), np.int64(23), np.int64(24), np.int64(25), np.int64(26), np.int64(27), np.int64(28), np.int64(29), np.int64(30), np.int64(31), np.int64(32), np.int64(33)])
+2026-01-29 14:22:28,469 - trial_detector - WARNING - Expected 32 trials but found 34
+2026-01-29 14:22:28,481 - __main__ - INFO - Analyzing trials...
+2026-01-29 14:22:28,491 - trial_analyzer - WARNING - Trial 2 has no pressure data
+2026-01-29 14:22:28,532 - trial_analyzer - WARNING - Trial 19 has no pressure data
+2026-01-29 14:22:28,567 - trial_analyzer - INFO - Analyzed 34 trials
+2026-01-30 11:00:57,335 - __main__ - INFO - Starting handwriting analysis pipeline
+2026-01-30 11:00:57,335 - __main__ - INFO - Configuration: {'input_file': 'C:\\Users\\cletesson\\Downloads\\Enregistrement sophia lmf.xlsx', 'output_dir': 'C:\\Users\\cletesson\\OneDrive - UCL\\Documents\\Graphoutil_analysis\\results', 'n_trials': 32, 'sampling_rate': 200, 'min_pause_duration_ms': 20, 'speed_threshold_px_per_s': 50, 'min_letter_duration_ms': 100}
+2026-01-30 11:00:57,335 - __main__ - INFO - Loading data...
+2026-01-30 11:00:57,335 - data_loader - INFO - Loading data from C:\Users\cletesson\Downloads\Enregistrement sophia lmf.xlsx
+2026-01-30 11:00:58,152 - data_loader - INFO - Loaded 52150 data points
+2026-01-30 11:00:58,163 - data_loader - INFO - Loaded segmentation sheet
+2026-01-30 11:00:58,163 - __main__ - INFO - Detecting trials...
+2026-01-30 11:00:58,163 - trial_detector - INFO - Detecting 32 trials...
+2026-01-30 11:00:58,169 - trial_detector - INFO - Found 33 candidate boundaries (gap > 500.0ms)
+2026-01-30 11:00:58,185 - trial_detector - INFO - ADAPTIVE TRIAL SIZE THRESHOLDS:
+2026-01-30 11:00:58,185 - trial_detector - INFO -   Median trial size from candidates: 1582 points
+2026-01-30 11:00:58,185 - trial_detector - INFO -   25th percentile: 1290 points
+2026-01-30 11:00:58,185 - trial_detector - INFO -   10th percentile: 1105 points
+2026-01-30 11:00:58,185 - trial_detector - INFO -   Minimum acceptable (30% of median): 475 points
+2026-01-30 11:00:58,186 - trial_detector - INFO - Skipped 1 candidates due to small trial size constraint
+2026-01-30 11:00:58,186 - trial_detector - INFO - Selected 31 boundaries
+2026-01-30 11:00:58,186 - trial_detector - INFO - Trial sizes with selected boundaries:
+2026-01-30 11:00:58,186 - trial_detector - INFO -   Trial 0: 2031 points
+2026-01-30 11:00:58,186 - trial_detector - INFO -   Trial 1: 1582 points
+2026-01-30 11:00:58,186 - trial_detector - INFO -   Trial 2: 1513 points
+2026-01-30 11:00:58,186 - trial_detector - INFO -   Trial 3: 1429 points
+2026-01-30 11:00:58,187 - trial_detector - INFO -   Trial 4: 1703 points
+2026-01-30 11:00:58,187 - trial_detector - INFO -   Trial 5: 2267 points
+2026-01-30 11:00:58,187 - trial_detector - INFO -   Trial 6: 1786 points
+2026-01-30 11:00:58,187 - trial_detector - INFO -   Trial 7: 1862 points
+2026-01-30 11:00:58,187 - trial_detector - INFO -   Trial 8: 1067 points
+2026-01-30 11:00:58,187 - trial_detector - INFO -   Trial 9: 1915 points
+2026-01-30 11:00:58,187 - trial_detector - INFO -   Trial 10: 1463 points
+2026-01-30 11:00:58,187 - trial_detector - INFO -   Trial 11: 1567 points
+2026-01-30 11:00:58,187 - trial_detector - INFO -   Trial 12: 1584 points
+2026-01-30 11:00:58,187 - trial_detector - INFO -   Trial 13: 1725 points
+2026-01-30 11:00:58,187 - trial_detector - INFO -   Trial 14: 1685 points
+2026-01-30 11:00:58,187 - trial_detector - INFO -   Trial 15: 2107 points
+2026-01-30 11:00:58,187 - trial_detector - INFO -   Trial 16: 979 points
+2026-01-30 11:00:58,187 - trial_detector - INFO -   Trial 17: 1446 points
+2026-01-30 11:00:58,187 - trial_detector - INFO -   Trial 18: 2667 points
+2026-01-30 11:00:58,187 - trial_detector - INFO -   Trial 19: 1683 points
+2026-01-30 11:00:58,187 - trial_detector - INFO -   Trial 20: 1356 points
+2026-01-30 11:00:58,188 - trial_detector - INFO -   Trial 21: 1225 points
+2026-01-30 11:00:58,188 - trial_detector - INFO -   Trial 22: 1198 points
+2026-01-30 11:00:58,188 - trial_detector - INFO -   Trial 23: 1362 points
+2026-01-30 11:00:58,188 - trial_detector - INFO -   Trial 24: 2164 points
+2026-01-30 11:00:58,188 - trial_detector - INFO -   Trial 25: 1130 points
+2026-01-30 11:00:58,188 - trial_detector - INFO -   Trial 26: 1211 points
+2026-01-30 11:00:58,188 - trial_detector - INFO -   Trial 27: 1138 points
+2026-01-30 11:00:58,188 - trial_detector - INFO -   Trial 28: 1604 points
+2026-01-30 11:00:58,188 - trial_detector - INFO -   Trial 29: 2233 points
+2026-01-30 11:00:58,188 - trial_detector - INFO -   Trial 30: 2027 points
+2026-01-30 11:00:58,188 - trial_detector - INFO -   Trial 31: 1472 points
+2026-01-30 11:06:34,959 - trial_detector - INFO - Successfully detected 32 trials (Trial IDs: [np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4), np.int64(5), np.int64(6), np.int64(7), np.int64(8), np.int64(9), np.int64(10), np.int64(11), np.int64(12), np.int64(13), np.int64(14), np.int64(15), np.int64(16), np.int64(17), np.int64(18), np.int64(19), np.int64(20), np.int64(21), np.int64(22), np.int64(23), np.int64(24), np.int64(25), np.int64(26), np.int64(27), np.int64(28), np.int64(29), np.int64(30), np.int64(31)])
+2026-01-30 11:06:34,970 - __main__ - INFO - Analyzing trials...
+2026-01-30 11:06:35,209 - trial_analyzer - INFO - Analyzed 32 trials
+2026-01-30 11:06:44,507 - __main__ - INFO - Segmenting words for trial 2
+2026-01-30 11:07:07,741 - __main__ - INFO - Segmenting words for trial 3
+2026-01-30 11:07:38,754 - __main__ - INFO - Segmenting letters for trial 1
+2026-01-30 11:22:16,287 - __main__ - INFO - Starting handwriting analysis pipeline
+2026-01-30 11:22:16,288 - __main__ - INFO - Configuration: {'input_file': 'C:\\Users\\cletesson\\Downloads\\Enregistrement sophia lmf.xlsx', 'output_dir': 'C:\\Users\\cletesson\\OneDrive - UCL\\Documents\\Graphoutil_analysis\\results', 'n_trials': 32, 'sampling_rate': 200, 'min_pause_duration_ms': 20, 'speed_threshold_px_per_s': 50, 'min_letter_duration_ms': 100}
+2026-01-30 11:22:16,288 - __main__ - INFO - Loading data...
+2026-01-30 11:22:16,288 - data_loader - INFO - Loading data from C:\Users\cletesson\Downloads\Enregistrement sophia lmf.xlsx
+2026-01-30 11:22:17,051 - data_loader - INFO - Loaded 52150 data points
+2026-01-30 11:22:17,062 - data_loader - INFO - Loaded segmentation sheet
+2026-01-30 11:22:17,062 - __main__ - INFO - Detecting trials...
+2026-01-30 11:22:17,063 - trial_detector - INFO - Detecting 32 trials...
+2026-01-30 11:22:17,070 - trial_detector - INFO - Found 33 candidate boundaries (gap > 500.0ms)
+2026-01-30 11:22:17,071 - trial_detector - INFO - ADAPTIVE TRIAL SIZE THRESHOLDS:
+2026-01-30 11:22:17,071 - trial_detector - INFO -   Median trial size from candidates: 1582 points
+2026-01-30 11:22:17,071 - trial_detector - INFO -   25th percentile: 1290 points
+2026-01-30 11:22:17,071 - trial_detector - INFO -   10th percentile: 1105 points
+2026-01-30 11:22:17,071 - trial_detector - INFO -   Minimum acceptable (30% of median): 475 points
+2026-01-30 11:22:17,072 - trial_detector - INFO - Skipped 1 candidates due to small trial size constraint
+2026-01-30 11:22:17,072 - trial_detector - INFO - Selected 31 boundaries
+2026-01-30 11:22:17,072 - trial_detector - INFO - Trial sizes with selected boundaries:
+2026-01-30 11:22:17,072 - trial_detector - INFO -   Trial 0: 2031 points
+2026-01-30 11:22:17,073 - trial_detector - INFO -   Trial 1: 1582 points
+2026-01-30 11:22:17,073 - trial_detector - INFO -   Trial 2: 1513 points
+2026-01-30 11:22:17,073 - trial_detector - INFO -   Trial 3: 1429 points
+2026-01-30 11:22:17,073 - trial_detector - INFO -   Trial 4: 1703 points
+2026-01-30 11:22:17,073 - trial_detector - INFO -   Trial 5: 2267 points
+2026-01-30 11:22:17,073 - trial_detector - INFO -   Trial 6: 1786 points
+2026-01-30 11:22:17,073 - trial_detector - INFO -   Trial 7: 1862 points
+2026-01-30 11:22:17,073 - trial_detector - INFO -   Trial 8: 1067 points
+2026-01-30 11:22:17,073 - trial_detector - INFO -   Trial 9: 1915 points
+2026-01-30 11:22:17,073 - trial_detector - INFO -   Trial 10: 1463 points
+2026-01-30 11:22:17,073 - trial_detector - INFO -   Trial 11: 1567 points
+2026-01-30 11:22:17,074 - trial_detector - INFO -   Trial 12: 1584 points
+2026-01-30 11:22:17,074 - trial_detector - INFO -   Trial 13: 1725 points
+2026-01-30 11:22:17,074 - trial_detector - INFO -   Trial 14: 1685 points
+2026-01-30 11:22:17,074 - trial_detector - INFO -   Trial 15: 2107 points
+2026-01-30 11:22:17,074 - trial_detector - INFO -   Trial 16: 979 points
+2026-01-30 11:22:17,074 - trial_detector - INFO -   Trial 17: 1446 points
+2026-01-30 11:22:17,074 - trial_detector - INFO -   Trial 18: 2667 points
+2026-01-30 11:22:17,074 - trial_detector - INFO -   Trial 19: 1683 points
+2026-01-30 11:22:17,074 - trial_detector - INFO -   Trial 20: 1356 points
+2026-01-30 11:22:17,074 - trial_detector - INFO -   Trial 21: 1225 points
+2026-01-30 11:22:17,074 - trial_detector - INFO -   Trial 22: 1198 points
+2026-01-30 11:22:17,074 - trial_detector - INFO -   Trial 23: 1362 points
+2026-01-30 11:22:17,074 - trial_detector - INFO -   Trial 24: 2164 points
+2026-01-30 11:22:17,074 - trial_detector - INFO -   Trial 25: 1130 points
+2026-01-30 11:22:17,074 - trial_detector - INFO -   Trial 26: 1211 points
+2026-01-30 11:22:17,074 - trial_detector - INFO -   Trial 27: 1138 points
+2026-01-30 11:22:17,074 - trial_detector - INFO -   Trial 28: 1604 points
+2026-01-30 11:22:17,074 - trial_detector - INFO -   Trial 29: 2233 points
+2026-01-30 11:22:17,074 - trial_detector - INFO -   Trial 30: 2027 points
+2026-01-30 11:22:17,074 - trial_detector - INFO -   Trial 31: 1472 points
+2026-01-30 11:22:21,505 - trial_detector - INFO - Successfully detected 32 trials (Trial IDs: [np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4), np.int64(5), np.int64(6), np.int64(7), np.int64(8), np.int64(9), np.int64(10), np.int64(11), np.int64(12), np.int64(13), np.int64(14), np.int64(15), np.int64(16), np.int64(17), np.int64(18), np.int64(19), np.int64(20), np.int64(21), np.int64(22), np.int64(23), np.int64(24), np.int64(25), np.int64(26), np.int64(27), np.int64(28), np.int64(29), np.int64(30), np.int64(31)])
+2026-01-30 11:22:21,514 - __main__ - INFO - Analyzing trials...
+2026-01-30 11:22:21,606 - trial_analyzer - INFO - Analyzed 32 trials
+2026-01-30 11:22:27,316 - __main__ - INFO - Segmenting words for trial 0
+2026-01-30 11:23:43,677 - __main__ - INFO - Starting handwriting analysis pipeline
+2026-01-30 11:23:43,677 - __main__ - INFO - Configuration: {'input_file': 'C:\\Users\\cletesson\\Downloads\\Enregistrement sophia lmf.xlsx', 'output_dir': 'C:\\Users\\cletesson\\OneDrive - UCL\\Documents\\Graphoutil_analysis\\results', 'n_trials': 32, 'sampling_rate': 200, 'min_pause_duration_ms': 20, 'speed_threshold_px_per_s': 50, 'min_letter_duration_ms': 100}
+2026-01-30 11:23:43,677 - __main__ - INFO - Loading data...
+2026-01-30 11:23:43,678 - data_loader - INFO - Loading data from C:\Users\cletesson\Downloads\Enregistrement sophia lmf.xlsx
+2026-01-30 11:23:44,506 - data_loader - INFO - Loaded 52150 data points
+2026-01-30 11:23:44,517 - data_loader - INFO - Loaded segmentation sheet
+2026-01-30 11:23:44,517 - __main__ - INFO - Detecting trials...
+2026-01-30 11:23:44,518 - trial_detector - INFO - Detecting 32 trials...
+2026-01-30 11:23:44,525 - trial_detector - INFO - Found 33 candidate boundaries (gap > 500.0ms)
+2026-01-30 11:23:44,526 - trial_detector - INFO - ADAPTIVE TRIAL SIZE THRESHOLDS:
+2026-01-30 11:23:44,526 - trial_detector - INFO -   Median trial size from candidates: 1582 points
+2026-01-30 11:23:44,527 - trial_detector - INFO -   25th percentile: 1290 points
+2026-01-30 11:23:44,527 - trial_detector - INFO -   10th percentile: 1105 points
+2026-01-30 11:23:44,527 - trial_detector - INFO -   Minimum acceptable (30% of median): 475 points
+2026-01-30 11:23:44,527 - trial_detector - INFO - Skipped 1 candidates due to small trial size constraint
+2026-01-30 11:23:44,528 - trial_detector - INFO - Selected 31 boundaries
+2026-01-30 11:23:44,528 - trial_detector - INFO - Trial sizes with selected boundaries:
+2026-01-30 11:23:44,528 - trial_detector - INFO -   Trial 0: 2031 points
+2026-01-30 11:23:44,528 - trial_detector - INFO -   Trial 1: 1582 points
+2026-01-30 11:23:44,528 - trial_detector - INFO -   Trial 2: 1513 points
+2026-01-30 11:23:44,528 - trial_detector - INFO -   Trial 3: 1429 points
+2026-01-30 11:23:44,528 - trial_detector - INFO -   Trial 4: 1703 points
+2026-01-30 11:23:44,528 - trial_detector - INFO -   Trial 5: 2267 points
+2026-01-30 11:23:44,528 - trial_detector - INFO -   Trial 6: 1786 points
+2026-01-30 11:23:44,528 - trial_detector - INFO -   Trial 7: 1862 points
+2026-01-30 11:23:44,528 - trial_detector - INFO -   Trial 8: 1067 points
+2026-01-30 11:23:44,528 - trial_detector - INFO -   Trial 9: 1915 points
+2026-01-30 11:23:44,528 - trial_detector - INFO -   Trial 10: 1463 points
+2026-01-30 11:23:44,528 - trial_detector - INFO -   Trial 11: 1567 points
+2026-01-30 11:23:44,528 - trial_detector - INFO -   Trial 12: 1584 points
+2026-01-30 11:23:44,529 - trial_detector - INFO -   Trial 13: 1725 points
+2026-01-30 11:23:44,529 - trial_detector - INFO -   Trial 14: 1685 points
+2026-01-30 11:23:44,529 - trial_detector - INFO -   Trial 15: 2107 points
+2026-01-30 11:23:44,529 - trial_detector - INFO -   Trial 16: 979 points
+2026-01-30 11:23:44,529 - trial_detector - INFO -   Trial 17: 1446 points
+2026-01-30 11:23:44,529 - trial_detector - INFO -   Trial 18: 2667 points
+2026-01-30 11:23:44,529 - trial_detector - INFO -   Trial 19: 1683 points
+2026-01-30 11:23:44,529 - trial_detector - INFO -   Trial 20: 1356 points
+2026-01-30 11:23:44,529 - trial_detector - INFO -   Trial 21: 1225 points
+2026-01-30 11:23:44,529 - trial_detector - INFO -   Trial 22: 1198 points
+2026-01-30 11:23:44,529 - trial_detector - INFO -   Trial 23: 1362 points
+2026-01-30 11:23:44,529 - trial_detector - INFO -   Trial 24: 2164 points
+2026-01-30 11:23:44,529 - trial_detector - INFO -   Trial 25: 1130 points
+2026-01-30 11:23:44,529 - trial_detector - INFO -   Trial 26: 1211 points
+2026-01-30 11:23:44,529 - trial_detector - INFO -   Trial 27: 1138 points
+2026-01-30 11:23:44,529 - trial_detector - INFO -   Trial 28: 1604 points
+2026-01-30 11:23:44,529 - trial_detector - INFO -   Trial 29: 2233 points
+2026-01-30 11:23:44,530 - trial_detector - INFO -   Trial 30: 2027 points
+2026-01-30 11:23:44,530 - trial_detector - INFO -   Trial 31: 1472 points
+2026-01-30 11:23:48,029 - trial_detector - INFO - Successfully detected 32 trials (Trial IDs: [np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4), np.int64(5), np.int64(6), np.int64(7), np.int64(8), np.int64(9), np.int64(10), np.int64(11), np.int64(12), np.int64(13), np.int64(14), np.int64(15), np.int64(16), np.int64(17), np.int64(18), np.int64(19), np.int64(20), np.int64(21), np.int64(22), np.int64(23), np.int64(24), np.int64(25), np.int64(26), np.int64(27), np.int64(28), np.int64(29), np.int64(30), np.int64(31)])
+2026-01-30 11:23:48,042 - __main__ - INFO - Analyzing trials...
+2026-01-30 11:23:48,163 - trial_analyzer - INFO - Analyzed 32 trials
+2026-01-30 11:23:55,396 - __main__ - INFO - Segmenting words for trial 0
+2026-01-30 11:24:28,682 - __main__ - INFO - Segmenting words for trial 1
+2026-01-30 11:24:34,628 - __main__ - INFO - Segmenting words for trial 2
+2026-01-30 11:24:36,141 - __main__ - INFO - Segmenting words for trial 3
+2026-01-30 11:24:41,431 - __main__ - INFO - Segmenting words for trial 4
+2026-01-30 11:24:44,008 - __main__ - INFO - Segmenting words for trial 5
+2026-01-30 11:24:45,012 - __main__ - INFO - Segmenting words for trial 6
+2026-01-30 11:24:45,739 - __main__ - INFO - Segmenting words for trial 7
+2026-01-30 11:24:52,243 - __main__ - INFO - Segmenting words for trial 8
+2026-01-30 11:24:55,416 - __main__ - INFO - Segmenting words for trial 9
+2026-01-30 11:24:56,266 - __main__ - INFO - Segmenting words for trial 10
+2026-01-30 11:24:57,204 - __main__ - INFO - Segmenting words for trial 11
+2026-01-30 11:24:57,803 - __main__ - INFO - Segmenting words for trial 12
+2026-01-30 11:24:58,075 - __main__ - INFO - Segmenting words for trial 13
+2026-01-30 11:36:28,857 - __main__ - INFO - Starting handwriting analysis pipeline
+2026-01-30 11:36:28,857 - __main__ - INFO - Configuration: {'input_file': 'C:\\Users\\cletesson\\Downloads\\Enregistrement sophia lmf.xlsx', 'output_dir': 'C:\\Users\\cletesson\\OneDrive - UCL\\Documents\\Graphoutil_analysis\\results', 'n_trials': 32, 'sampling_rate': 200, 'min_pause_duration_ms': 20, 'speed_threshold_px_per_s': 50, 'min_letter_duration_ms': 100}
+2026-01-30 11:36:28,857 - __main__ - INFO - Loading data...
+2026-01-30 11:36:28,857 - data_loader - INFO - Loading data from C:\Users\cletesson\Downloads\Enregistrement sophia lmf.xlsx
+2026-01-30 11:36:29,648 - data_loader - INFO - Loaded 52150 data points
+2026-01-30 11:36:29,659 - data_loader - INFO - Loaded segmentation sheet
+2026-01-30 11:36:29,659 - __main__ - INFO - Detecting trials...
+2026-01-30 11:36:29,659 - trial_detector - INFO - Detecting 32 trials...
+2026-01-30 11:36:29,666 - trial_detector - INFO - Found 33 candidate boundaries (gap > 500.0ms)
+2026-01-30 11:36:29,667 - trial_detector - INFO - ADAPTIVE TRIAL SIZE THRESHOLDS:
+2026-01-30 11:36:29,667 - trial_detector - INFO -   Median trial size from candidates: 1582 points
+2026-01-30 11:36:29,667 - trial_detector - INFO -   25th percentile: 1290 points
+2026-01-30 11:36:29,667 - trial_detector - INFO -   10th percentile: 1105 points
+2026-01-30 11:36:29,667 - trial_detector - INFO -   Minimum acceptable (30% of median): 475 points
+2026-01-30 11:36:29,668 - trial_detector - INFO - Skipped 1 candidates due to small trial size constraint
+2026-01-30 11:36:29,668 - trial_detector - INFO - Selected 31 boundaries
+2026-01-30 11:36:29,668 - trial_detector - INFO - Trial sizes with selected boundaries:
+2026-01-30 11:36:29,668 - trial_detector - INFO -   Trial 0: 2031 points
+2026-01-30 11:36:29,669 - trial_detector - INFO -   Trial 1: 1582 points
+2026-01-30 11:36:29,669 - trial_detector - INFO -   Trial 2: 1513 points
+2026-01-30 11:36:29,669 - trial_detector - INFO -   Trial 3: 1429 points
+2026-01-30 11:36:29,669 - trial_detector - INFO -   Trial 4: 1703 points
+2026-01-30 11:36:29,669 - trial_detector - INFO -   Trial 5: 2267 points
+2026-01-30 11:36:29,669 - trial_detector - INFO -   Trial 6: 1786 points
+2026-01-30 11:36:29,669 - trial_detector - INFO -   Trial 7: 1862 points
+2026-01-30 11:36:29,669 - trial_detector - INFO -   Trial 8: 1067 points
+2026-01-30 11:36:29,669 - trial_detector - INFO -   Trial 9: 1915 points
+2026-01-30 11:36:29,669 - trial_detector - INFO -   Trial 10: 1463 points
+2026-01-30 11:36:29,669 - trial_detector - INFO -   Trial 11: 1567 points
+2026-01-30 11:36:29,669 - trial_detector - INFO -   Trial 12: 1584 points
+2026-01-30 11:36:29,669 - trial_detector - INFO -   Trial 13: 1725 points
+2026-01-30 11:36:29,669 - trial_detector - INFO -   Trial 14: 1685 points
+2026-01-30 11:36:29,669 - trial_detector - INFO -   Trial 15: 2107 points
+2026-01-30 11:36:29,670 - trial_detector - INFO -   Trial 16: 979 points
+2026-01-30 11:36:29,670 - trial_detector - INFO -   Trial 17: 1446 points
+2026-01-30 11:36:29,670 - trial_detector - INFO -   Trial 18: 2667 points
+2026-01-30 11:36:29,670 - trial_detector - INFO -   Trial 19: 1683 points
+2026-01-30 11:36:29,670 - trial_detector - INFO -   Trial 20: 1356 points
+2026-01-30 11:36:29,670 - trial_detector - INFO -   Trial 21: 1225 points
+2026-01-30 11:36:29,670 - trial_detector - INFO -   Trial 22: 1198 points
+2026-01-30 11:36:29,670 - trial_detector - INFO -   Trial 23: 1362 points
+2026-01-30 11:36:29,670 - trial_detector - INFO -   Trial 24: 2164 points
+2026-01-30 11:36:29,670 - trial_detector - INFO -   Trial 25: 1130 points
+2026-01-30 11:36:29,670 - trial_detector - INFO -   Trial 26: 1211 points
+2026-01-30 11:36:29,670 - trial_detector - INFO -   Trial 27: 1138 points
+2026-01-30 11:36:29,670 - trial_detector - INFO -   Trial 28: 1604 points
+2026-01-30 11:36:29,670 - trial_detector - INFO -   Trial 29: 2233 points
+2026-01-30 11:36:29,670 - trial_detector - INFO -   Trial 30: 2027 points
+2026-01-30 11:36:29,670 - trial_detector - INFO -   Trial 31: 1472 points
+2026-01-30 11:36:32,026 - trial_detector - INFO - Successfully detected 32 trials (Trial IDs: [np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4), np.int64(5), np.int64(6), np.int64(7), np.int64(8), np.int64(9), np.int64(10), np.int64(11), np.int64(12), np.int64(13), np.int64(14), np.int64(15), np.int64(16), np.int64(17), np.int64(18), np.int64(19), np.int64(20), np.int64(21), np.int64(22), np.int64(23), np.int64(24), np.int64(25), np.int64(26), np.int64(27), np.int64(28), np.int64(29), np.int64(30), np.int64(31)])
+2026-01-30 11:36:32,034 - __main__ - INFO - Analyzing trials...
+2026-01-30 11:36:32,119 - trial_analyzer - INFO - Analyzed 32 trials
+2026-01-30 11:36:36,799 - __main__ - INFO - Segmenting words for trial 0
+2026-01-30 11:36:40,742 - __main__ - INFO - Segmenting words for trial 1
+2026-01-30 11:36:43,887 - __main__ - INFO - Segmenting words for trial 2
+2026-01-30 11:36:44,725 - __main__ - INFO - Segmenting words for trial 3
+2026-01-30 11:36:45,434 - __main__ - INFO - Segmenting words for trial 4
+2026-01-30 11:36:46,212 - __main__ - INFO - Segmenting words for trial 5
+2026-01-30 11:36:46,918 - __main__ - INFO - Segmenting words for trial 6
+2026-01-30 11:36:53,118 - __main__ - INFO - Segmenting words for trial 7
+2026-01-30 11:36:53,810 - __main__ - INFO - Segmenting words for trial 8
+2026-01-30 11:36:54,478 - __main__ - INFO - Segmenting words for trial 9
+2026-01-30 11:36:54,843 - __main__ - INFO - Segmenting words for trial 10
+2026-01-30 11:36:55,090 - __main__ - INFO - Segmenting words for trial 11
+2026-01-30 12:27:36,538 - __main__ - INFO - Starting handwriting analysis pipeline
+2026-01-30 12:27:36,538 - __main__ - INFO - Configuration: {'input_file': 'C:\\Users\\cletesson\\Downloads\\Enregistrement sophia lmf.xlsx', 'output_dir': 'C:\\Users\\cletesson\\OneDrive - UCL\\Documents\\Graphoutil_analysis\\results', 'n_trials': 32, 'sampling_rate': 200, 'min_pause_duration_ms': 20, 'speed_threshold_px_per_s': 50, 'min_letter_duration_ms': 100}
+2026-01-30 12:27:36,538 - __main__ - INFO - Loading data...
+2026-01-30 12:27:36,538 - data_loader - INFO - Loading data from C:\Users\cletesson\Downloads\Enregistrement sophia lmf.xlsx
+2026-01-30 12:27:37,361 - data_loader - INFO - Loaded 52150 data points
+2026-01-30 12:27:37,372 - data_loader - INFO - Loaded segmentation sheet
+2026-01-30 12:27:37,372 - __main__ - INFO - Detecting trials...
+2026-01-30 12:27:37,372 - trial_detector - INFO - Detecting 32 trials...
+2026-01-30 12:27:37,379 - trial_detector - INFO - Found 33 candidate boundaries (gap > 500.0ms)
+2026-01-30 12:27:37,380 - trial_detector - INFO - ADAPTIVE TRIAL SIZE THRESHOLDS:
+2026-01-30 12:27:37,380 - trial_detector - INFO -   Median trial size from candidates: 1582 points
+2026-01-30 12:27:37,380 - trial_detector - INFO -   25th percentile: 1290 points
+2026-01-30 12:27:37,380 - trial_detector - INFO -   10th percentile: 1105 points
+2026-01-30 12:27:37,381 - trial_detector - INFO -   Minimum acceptable (30% of median): 475 points
+2026-01-30 12:27:37,381 - trial_detector - INFO - Skipped 1 candidates due to small trial size constraint
+2026-01-30 12:27:37,381 - trial_detector - INFO - Selected 31 boundaries
+2026-01-30 12:27:37,381 - trial_detector - INFO - Trial sizes with selected boundaries:
+2026-01-30 12:27:37,382 - trial_detector - INFO -   Trial 0: 2031 points
+2026-01-30 12:27:37,382 - trial_detector - INFO -   Trial 1: 1582 points
+2026-01-30 12:27:37,382 - trial_detector - INFO -   Trial 2: 1513 points
+2026-01-30 12:27:37,382 - trial_detector - INFO -   Trial 3: 1429 points
+2026-01-30 12:27:37,382 - trial_detector - INFO -   Trial 4: 1703 points
+2026-01-30 12:27:37,382 - trial_detector - INFO -   Trial 5: 2267 points
+2026-01-30 12:27:37,382 - trial_detector - INFO -   Trial 6: 1786 points
+2026-01-30 12:27:37,382 - trial_detector - INFO -   Trial 7: 1862 points
+2026-01-30 12:27:37,382 - trial_detector - INFO -   Trial 8: 1067 points
+2026-01-30 12:27:37,382 - trial_detector - INFO -   Trial 9: 1915 points
+2026-01-30 12:27:37,382 - trial_detector - INFO -   Trial 10: 1463 points
+2026-01-30 12:27:37,382 - trial_detector - INFO -   Trial 11: 1567 points
+2026-01-30 12:27:37,382 - trial_detector - INFO -   Trial 12: 1584 points
+2026-01-30 12:27:37,382 - trial_detector - INFO -   Trial 13: 1725 points
+2026-01-30 12:27:37,382 - trial_detector - INFO -   Trial 14: 1685 points
+2026-01-30 12:27:37,382 - trial_detector - INFO -   Trial 15: 2107 points
+2026-01-30 12:27:37,382 - trial_detector - INFO -   Trial 16: 979 points
+2026-01-30 12:27:37,382 - trial_detector - INFO -   Trial 17: 1446 points
+2026-01-30 12:27:37,382 - trial_detector - INFO -   Trial 18: 2667 points
+2026-01-30 12:27:37,383 - trial_detector - INFO -   Trial 19: 1683 points
+2026-01-30 12:27:37,383 - trial_detector - INFO -   Trial 20: 1356 points
+2026-01-30 12:27:37,383 - trial_detector - INFO -   Trial 21: 1225 points
+2026-01-30 12:27:37,383 - trial_detector - INFO -   Trial 22: 1198 points
+2026-01-30 12:27:37,383 - trial_detector - INFO -   Trial 23: 1362 points
+2026-01-30 12:27:37,383 - trial_detector - INFO -   Trial 24: 2164 points
+2026-01-30 12:27:37,383 - trial_detector - INFO -   Trial 25: 1130 points
+2026-01-30 12:27:37,383 - trial_detector - INFO -   Trial 26: 1211 points
+2026-01-30 12:27:37,383 - trial_detector - INFO -   Trial 27: 1138 points
+2026-01-30 12:27:37,384 - trial_detector - INFO -   Trial 28: 1604 points
+2026-01-30 12:27:37,384 - trial_detector - INFO -   Trial 29: 2233 points
+2026-01-30 12:27:37,384 - trial_detector - INFO -   Trial 30: 2027 points
+2026-01-30 12:27:37,384 - trial_detector - INFO -   Trial 31: 1472 points
+2026-01-30 12:27:39,883 - trial_detector - INFO - Successfully detected 32 trials (Trial IDs: [np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4), np.int64(5), np.int64(6), np.int64(7), np.int64(8), np.int64(9), np.int64(10), np.int64(11), np.int64(12), np.int64(13), np.int64(14), np.int64(15), np.int64(16), np.int64(17), np.int64(18), np.int64(19), np.int64(20), np.int64(21), np.int64(22), np.int64(23), np.int64(24), np.int64(25), np.int64(26), np.int64(27), np.int64(28), np.int64(29), np.int64(30), np.int64(31)])
+2026-01-30 12:27:39,894 - __main__ - INFO - Analyzing trials...
+2026-01-30 12:27:40,023 - trial_analyzer - INFO - Analyzed 32 trials
+2026-01-30 12:27:46,460 - __main__ - INFO - Segmenting words for trial 1
+2026-01-30 12:27:46,474 - __main__ - ERROR - Error in word segmentation for trial 1: 'InteractiveSegmenter' object has no attribute 'plot_trajectory'
+2026-01-30 12:27:46,474 - __main__ - INFO - Segmenting words for trial 2
+2026-01-30 12:27:46,482 - __main__ - ERROR - Error in word segmentation for trial 2: 'InteractiveSegmenter' object has no attribute 'plot_trajectory'
+2026-01-30 12:27:54,090 - __main__ - INFO - Segmenting letters for trial 1
+2026-01-30 12:28:26,990 - __main__ - INFO - Segmenting letters for trial 2
+2026-01-30 12:29:23,025 - __main__ - INFO - Saving results...
+2026-01-30 12:29:23,200 - __main__ - INFO - Generating PDF report...
+2026-01-30 12:29:23,200 - visualization - INFO - Generating PDF report to C:\Users\cletesson\OneDrive - UCL\Documents\Graphoutil_analysis\results\Enregistrement sophia lmf_report.pdf
+2026-01-30 12:29:30,369 - visualization - INFO - Report saved successfully: C:\Users\cletesson\OneDrive - UCL\Documents\Graphoutil_analysis\results\Enregistrement sophia lmf_report.pdf
+2026-01-30 12:29:30,370 - __main__ - INFO - Analysis completed successfully!

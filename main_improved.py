@@ -200,13 +200,13 @@ def main():
         logger.info("Starting handwriting analysis pipeline")
         
         config = AnalysisConfig(
-            input_file=Path(r"C:\Users\cletesson\Downloads\Enregistrement sophia lmf.xlsx"),
+            input_file=Path(r"C:\Users\cletesson\Downloads\Enregistrement OKOK.xlsx"),
 
             n_trials=32,
 
             # Trial detection
-            min_separation_ms=500,
-            min_gap_ms=20,
+            min_separation_ms=250,
+            min_gap_ms=250,
 
             # Sampling
             sampling_rate=200,

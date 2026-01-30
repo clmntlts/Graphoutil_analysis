@@ -23,6 +23,9 @@ class InteractiveSegmenter:
         self.segments = []
         self.seg = seg  # Segmentation sheet data (optional)
         
+        # Filter data to only include points with pressure
+        self.pressure_mask = self.trial["NormalPressure"] > 0
+        
         # Paramètres de détection des pauses
         self.speed_threshold = speed_threshold_px_per_s
         self.min_pause_samples = min_pause_samples
@@ -38,16 +41,29 @@ class InteractiveSegmenter:
             self.speed_threshold, self.min_pause_samples
         )
         
+        # Calculate aspect ratio based on actual writing area
+        writing_data = self.trial[self.pressure_mask]
+        if len(writing_data) > 0:
+            x_range = writing_data["X"].max() - writing_data["X"].min()
+            y_range = writing_data["Y"].max() - writing_data["Y"].min()
+            self.aspect_ratio = x_range / y_range if y_range > 0 else 1.0
+        else:
+            self.aspect_ratio = 224 / 140
+        
     def find_nearest_point(self, x_click, y_click):
-        """Trouve le point le plus proche du clic"""
-        distances = np.sqrt((self.trial["X"] - x_click)**2 + (self.trial["Y"] - y_click)**2)
-        idx = np.argmin(distances)
+        """Trouve le point le plus proche du clic (parmi les points avec pression)"""
+        writing_data = self.trial[self.pressure_mask]
+        if len(writing_data) == 0:
+            return 0
+        distances = np.sqrt((writing_data["X"] - x_click)**2 + (writing_data["Y"] - y_click)**2)
+        idx_in_writing = np.argmin(distances)
+        idx = writing_data.index[idx_in_writing]
         return idx
     
     def start_interactive(self):
         """Lance l'interface interactive de segmentation"""
-        self.fig = plt.figure(figsize=(12, 10))
-        gs = self.fig.add_gridspec(4, 1, height_ratios=[4, 2, 2, 1], hspace=0.3)
+        self.fig = plt.figure(figsize=(14, 10))
+        gs = self.fig.add_gridspec(5, 1, height_ratios=[5, 2, 2, 1.5, 0.6], hspace=0.35)
         
         # Plot 1: Trajectoire spatiale (ZOOMABLE)
         self.ax_traj = self.fig.add_subplot(gs[0])
@@ -66,6 +82,11 @@ class InteractiveSegmenter:
         self.ax_info.axis('off')
         self.update_instructions()
         
+        # Plot 5: Buttons
+        self.ax_buttons = self.fig.add_subplot(gs[4])
+        self.ax_buttons.axis('off')
+        self._create_buttons()
+        
         # Connexion des événements
         self.cid_click = self.fig.canvas.mpl_connect('button_press_event', self.on_click)
         self.cid_key = self.fig.canvas.mpl_connect('key_press_event', self.on_key)
@@ -82,75 +103,159 @@ class InteractiveSegmenter:
         
         return self.segments
     
-    def plot_trajectory(self):
-        """Affiche la trajectoire spatiale"""
-        self.ax_traj.clear()
+    def _create_buttons(self):
+        """Crée les boutons d'action"""
+        # Bouton "Undo Last Marker"
+        ax_undo = plt.axes([0.15, 0.015, 0.15, 0.035])
+        self.btn_undo = Button(ax_undo, 'Undo (u)')
+        self.btn_undo.on_clicked(lambda e: self.on_key(type('obj', (), {'key': 'u'})))
         
-        # Tracer la trajectoire
-        colors = plt.cm.tab10.colors
-        if self.seg is not None:
-            for _, row in self.seg.iterrows():
-                start_idx, end_idx = int(row["Start"]), int(row["End"])
-                word_id = int(row["WordIndex"])
-                if start_idx >= len(self.trial) or end_idx > len(self.trial):
-                    continue
-                subset = self.trial.iloc[start_idx:end_idx]
-                if len(subset) < 2:
-                    continue
-                
-                if row["Type"] == "Writing":
-                    self.ax_traj.plot(subset["X"], subset["Y"],
-                                     color=colors[word_id % len(colors)],
-                                     linewidth=1.5, alpha=0.9)
-        else:
-            self.ax_traj.plot(self.trial["X"], self.trial["Y"], 
-                             color="black", linewidth=1.5)
+        # Bouton "Create Segment"
+        ax_segment = plt.axes([0.4, 0.015, 0.15, 0.035])
+        self.btn_segment = Button(ax_segment, 'Make Segment (m)')
+        self.btn_segment.on_clicked(lambda e: self.on_key(type('obj', (), {'key': 'm'})))
         
-        # Afficher les marqueurs
-        for i, marker in enumerate(self.markers):
-            idx = marker['idx']
-            self.ax_traj.plot(self.trial["X"].iloc[idx], self.trial["Y"].iloc[idx],
-                             'ro', markersize=10, label=f"Point {i+1}")
-            self.ax_traj.text(self.trial["X"].iloc[idx], self.trial["Y"].iloc[idx],
-                             f"  {i+1}", fontsize=12, weight="bold")
-        
-        # Afficher les segments
-        for seg_data in self.segments:
-            idx1, idx2 = seg_data['idx1'], seg_data['idx2']
-            self.ax_traj.plot([self.trial["X"].iloc[idx1], self.trial["X"].iloc[idx2]],
-                             [self.trial["Y"].iloc[idx1], self.trial["Y"].iloc[idx2]],
-                             'g-', linewidth=2, alpha=0.5)
-            # Afficher la durée
+        # Bouton "Reset All"
+        ax_reset = plt.axes([0.65, 0.015, 0.15, 0.035])
+        self.btn_reset = Button(ax_reset, 'Reset (r)')
+        self.btn_reset.on_clicked(lambda e: self.on_key(type('obj', (), {'key': 'r'})))
+    
+def plot_trajectory(self):
+    """Affiche la trajectoire spatiale"""
+    self.ax_traj.clear()
+
+    colors = plt.cm.tab10.colors
+
+    # ========= MAIN TRAJECTORY =========
+    if self.seg is not None:
+        for _, row in self.seg.iterrows():
+            start_idx, end_idx = int(row["Start"]), int(row["End"])
+            word_id = int(row["WordIndex"])
+
+            if start_idx >= len(self.trial) or end_idx > len(self.trial):
+                continue
+
+            subset = self.trial.iloc[start_idx:end_idx]
+
+            if row["Type"] == "Writing":
+                pressure = (subset["NormalPressure"].to_numpy() > 0).astype(int)
+                changes = np.diff(pressure, prepend=0)
+
+                seg_starts = np.where(changes == 1)[0]
+                seg_ends = np.where(changes == -1)[0] - 1
+
+                if pressure.size and pressure[-1]:
+                    seg_ends = np.append(seg_ends, len(pressure) - 1)
+
+                for s, e in zip(seg_starts, seg_ends):
+                    segment = subset.iloc[s:e + 1]
+                    self.ax_traj.plot(
+                        segment["X"], segment["Y"],
+                        color=colors[word_id % len(colors)],
+                        linewidth=2, alpha=0.9
+                    )
+
+    else:
+        pressure = (self.trial["NormalPressure"].to_numpy() > 0).astype(int)
+        changes = np.diff(pressure, prepend=0)
+
+        seg_starts = np.where(changes == 1)[0]
+        seg_ends = np.where(changes == -1)[0] - 1
+
+        if pressure.size and pressure[-1]:
+            seg_ends = np.append(seg_ends, len(pressure) - 1)
+
+        for s, e in zip(seg_starts, seg_ends):
+            segment = self.trial.iloc[s:e + 1]
+            self.ax_traj.plot(segment["X"], segment["Y"], color="black", linewidth=2)
+
+    # ========= MARKERS =========
+    for i, marker in enumerate(self.markers):
+        idx = marker["idx"]
+        if idx < len(self.trial):
+            self.ax_traj.plot(
+                self.trial["X"].iloc[idx],
+                self.trial["Y"].iloc[idx],
+                "ro", markersize=10, zorder=10, label=f"Point {i+1}"
+            )
+            self.ax_traj.text(
+                self.trial["X"].iloc[idx],
+                self.trial["Y"].iloc[idx],
+                f"  {i+1}", fontsize=12, weight="bold"
+            )
+
+    # ========= USER-DEFINED SEGMENTS =========
+    for seg_data in self.segments:
+        idx1, idx2 = seg_data["idx1"], seg_data["idx2"]
+
+        if idx1 < len(self.trial) and idx2 < len(self.trial):
+            # Endpoint line
+            self.ax_traj.plot(
+                [self.trial["X"].iloc[idx1], self.trial["X"].iloc[idx2]],
+                [self.trial["Y"].iloc[idx1], self.trial["Y"].iloc[idx2]],
+                "g-", linewidth=3, alpha=0.5, zorder=5
+            )
+
+            seg_subset = self.trial.iloc[idx1:idx2 + 1]
+            pressure = (seg_subset["NormalPressure"].to_numpy() > 0).astype(int)
+            changes = np.diff(pressure, prepend=0)
+
+            seg_starts = np.where(changes == 1)[0]
+            seg_ends = np.where(changes == -1)[0] - 1
+
+            if pressure.size and pressure[-1]:
+                seg_ends = np.append(seg_ends, len(pressure) - 1)
+
+            for s, e in zip(seg_starts, seg_ends):
+                segment = seg_subset.iloc[s:e + 1]
+                self.ax_traj.plot(
+                    segment["X"], segment["Y"],
+                    "lime", linewidth=3, alpha=0.7, zorder=4
+                )
+
+            # Duration label
             mid_x = (self.trial["X"].iloc[idx1] + self.trial["X"].iloc[idx2]) / 2
             mid_y = (self.trial["Y"].iloc[idx1] + self.trial["Y"].iloc[idx2]) / 2
-            self.ax_traj.text(mid_x, mid_y, f"{seg_data['duration_ms']:.1f}ms",
-                             fontsize=10, bbox=dict(boxstyle='round', facecolor='yellow', alpha=0.7))
-        
-        self.ax_traj.set_aspect(224 / 140)
-        self.ax_traj.set_title("Trajectoire spatiale (cliquez pour placer des marqueurs | molette pour zoom)")
-        self.ax_traj.set_xlabel("X (px)")
-        self.ax_traj.set_ylabel("Y (px)")
-        self.ax_traj.grid(True, alpha=0.3)
-        
-        if self.markers:
-            self.ax_traj.legend(loc='upper right')
+            self.ax_traj.text(
+                mid_x, mid_y,
+                f"{seg_data['duration_ms']:.0f}ms",
+                fontsize=10, weight="bold",
+                bbox=dict(boxstyle="round", facecolor="yellow", alpha=0.8)
+            )
+
+    # ========= AXIS / STYLE =========
+    self.ax_traj.set_aspect(self.aspect_ratio)
+    self.ax_traj.set_title(
+        "Trajectoire spatiale (cliquez pour placer des marqueurs | molette pour zoom)"
+    )
+    self.ax_traj.set_xlabel("X (px)")
+    self.ax_traj.set_ylabel("Y (px)")
+    self.ax_traj.grid(True, alpha=0.3)
+
+    if self.markers:
+        self.ax_traj.legend(loc="upper right", fontsize=8)
+
     
     def plot_xy_temporal(self):
         """Affiche X et Y temporels"""
         self.ax_xy.clear()
-        self.ax_xy.plot(self.t, self.trial["X"], color="steelblue", lw=1, label="X")
+        self.ax_xy.plot(self.t, self.trial["X"], color="steelblue", lw=1.5, label="X")
         self.ax_xy.set_ylabel("X (px)", color="steelblue")
+        self.ax_xy.tick_params(axis='y', labelcolor="steelblue")
         
         ax_y = self.ax_xy.twinx()
-        ax_y.plot(self.t, self.trial["Y"], color="darkorange", lw=1, label="Y")
+        ax_y.plot(self.t, self.trial["Y"], color="darkorange", lw=1.5, label="Y")
         ax_y.set_ylabel("Y (px)", color="darkorange")
+        ax_y.tick_params(axis='y', labelcolor="darkorange")
         
         # Marquer les points sélectionnés
         for i, marker in enumerate(self.markers):
-            t_val = self.t.iloc[marker['idx']]
-            self.ax_xy.axvline(t_val, color='red', linestyle='--', alpha=0.7)
-            self.ax_xy.text(t_val, self.ax_xy.get_ylim()[1], f"{i+1}",
-                           fontsize=10, ha='center', weight='bold')
+            if marker['idx'] < len(self.t):
+                t_val = self.t.iloc[marker['idx']]
+                self.ax_xy.axvline(t_val, color='red', linestyle='--', alpha=0.7, linewidth=1.5)
+                self.ax_xy.text(t_val, self.ax_xy.get_ylim()[1]*0.95, f"{i+1}",
+                               fontsize=10, ha='center', weight='bold',
+                               bbox=dict(boxstyle='round', facecolor='white', alpha=0.7))
         
         self.ax_xy.set_xlabel("Time (s)")
         self.ax_xy.set_title("X & Y temporels")
@@ -159,29 +264,34 @@ class InteractiveSegmenter:
     def plot_speed_pressure(self):
         """Affiche vitesse et pression"""
         self.ax_speed.clear()
-        self.ax_speed.plot(self.t, self.speed, color="purple", lw=1)
+        self.ax_speed.plot(self.t, self.speed, color="purple", lw=1.5, label='Speed')
         self.ax_speed.axhline(self.speed_threshold, color='purple',
-                             linestyle='--', alpha=0.5)
+                             linestyle='--', alpha=0.5, label=f'Threshold ({self.speed_threshold} px/s)')
         self.ax_speed.set_ylabel("Speed (px/s)", color="purple")
+        self.ax_speed.tick_params(axis='y', labelcolor="purple")
         
         ax_p = self.ax_speed.twinx()
-        ax_p.plot(self.t, self.trial["NormalPressure"], color="gray", lw=1)
+        ax_p.plot(self.t, self.trial["NormalPressure"], color="gray", lw=1.5, label='Pressure')
         ax_p.set_ylabel("Pressure", color="gray")
+        ax_p.tick_params(axis='y', labelcolor="gray")
         
         # Marquer les pauses
+        pause_colors = {'pen_lift': 'red', 'low_speed': 'blue', 'mixed': 'purple'}
         for pause in self.pauses:
-            color = {'pen_lift': 'red', 'low_speed': 'blue', 'mixed': 'purple'}[pause['type']]
+            color = pause_colors.get(pause['type'], 'purple')
             self.ax_speed.axvspan(pause['start_time'], pause['end_time'],
                                  color=color, alpha=0.2)
         
         # Marquer les points sélectionnés
         for i, marker in enumerate(self.markers):
-            t_val = self.t.iloc[marker['idx']]
-            self.ax_speed.axvline(t_val, color='red', linestyle='--', alpha=0.7)
+            if marker['idx'] < len(self.t):
+                t_val = self.t.iloc[marker['idx']]
+                self.ax_speed.axvline(t_val, color='red', linestyle='--', alpha=0.7, linewidth=1.5)
         
         self.ax_speed.set_xlabel("Time (s)")
         self.ax_speed.set_title("Speed & Pressure")
         self.ax_speed.grid(True, alpha=0.3)
+        self.ax_speed.legend(loc='upper left', fontsize=8)
     
     def update_instructions(self):
         """Met à jour les instructions"""
@@ -191,9 +301,9 @@ class InteractiveSegmenter:
         text = "INSTRUCTIONS:\n"
         text += "• Cliquez sur la trajectoire pour placer des marqueurs\n"
         text += "• Utilisez la MOLETTE ou le ZOOM de Matplotlib pour zoomer sur la trajectoire\n"
-        text += "• Appuyez sur 'm' pour créer un segment entre les 2 derniers points\n"
-        text += "• Appuyez sur 'u' pour annuler le dernier marqueur\n"
-        text += "• Appuyez sur 'r' pour recommencer (supprimer tout)\n"
+        text += "• Appuyez sur 'm' (ou bouton) pour créer un segment entre les 2 derniers points\n"
+        text += "• Appuyez sur 'u' (ou bouton) pour annuler le dernier marqueur\n"
+        text += "• Appuyez sur 'r' (ou bouton) pour recommencer (supprimer tout)\n"
         text += "• Fermez la fenêtre pour terminer\n\n"
         
         if self.markers:
@@ -203,8 +313,8 @@ class InteractiveSegmenter:
             for i, seg in enumerate(self.segments):
                 text += f"  Segment {i+1}: {seg['duration_ms']:.1f}ms (avec {seg['num_pauses']} pauses)\n"
         
-        self.ax_info.text(0.05, 0.95, text, transform=self.ax_info.transAxes,
-                         fontsize=10, verticalalignment='top',
+        self.ax_info.text(0.05, 0.5, text, transform=self.ax_info.transAxes,
+                         fontsize=10, verticalalignment='center',
                          bbox=dict(boxstyle='round', facecolor='lightblue', alpha=0.5))
     
     def on_click(self, event):
@@ -212,8 +322,11 @@ class InteractiveSegmenter:
         if event.inaxes != self.ax_traj:
             return
         
-        # Trouver le point le plus proche
+        # Trouver le point le plus proche (among writing points only)
         idx = self.find_nearest_point(event.xdata, event.ydata)
+        
+        if idx >= len(self.trial):
+            return
         
         self.markers.append({
             'idx': idx,
@@ -222,7 +335,7 @@ class InteractiveSegmenter:
             't': self.t.iloc[idx]
         })
         
-        print(f"✓ Marqueur {len(self.markers)} placé à t={self.t.iloc[idx]:.3f}s")
+        print(f"✓ Marqueur {len(self.markers)} placé à t={self.t.iloc[idx]:.3f}s, idx={idx}")
         
         self.refresh_plots()
     
@@ -238,6 +351,11 @@ class InteractiveSegmenter:
             m2 = self.markers[-1]
             
             idx1, idx2 = min(m1['idx'], m2['idx']), max(m1['idx'], m2['idx'])
+            
+            if idx1 >= len(self.trial) or idx2 >= len(self.trial):
+                print("❌ Indices invalides")
+                return
+                
             duration = (self.t.iloc[idx2] - self.t.iloc[idx1]) * 1000  # ms
             
             # Calculer les statistiques du segment
@@ -274,14 +392,16 @@ class InteractiveSegmenter:
         elif event.key == 'u':
             # Annuler le dernier marqueur
             if self.markers:
-                self.markers.pop()
-                print("↶ Dernier marqueur annulé")
+                removed = self.markers.pop()
+                print(f"↶ Dernier marqueur annulé (était à idx={removed['idx']})")
+            else:
+                print("❌ Aucun marqueur à annuler")
             
         elif event.key == 'r':
             # Recommencer
             self.markers = []
             self.segments = []
-            print("⟳ Remise à zéro")
+            print("⟳ Remise à zéro complète")
         
         self.refresh_plots()
     

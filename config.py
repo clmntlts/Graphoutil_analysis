@@ -19,7 +19,7 @@ class AnalysisConfig:
     # Trial detection parameters
     n_trials: Optional[int] = None
     min_separation_ms: float = 500
-    min_gap_ms: float = 20
+    min_gap_ms: float = 500
     
     # Sampling and timing
     sampling_rate: float = 200  # Hz

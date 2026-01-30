@@ -22,6 +22,9 @@ class InteractiveLetterSegmenter:
         self.trial_id = trial_id
         self.t = (self.trial["PacketTime"] - self.trial["PacketTime"].iloc[0]) / 1000
         
+        # Filter data to only include points with pressure
+        self.pressure_mask = self.trial["NormalPressure"] > 0
+        
         # Segmentation automatique
         self.segmenter = LetterSegmenter(trial_data)
         self.boundaries = list(self.segmenter.detect_letter_boundaries())
@@ -30,11 +33,20 @@ class InteractiveLetterSegmenter:
         # État de l'interface
         self.selected_boundary = None
         
+        # Calculate aspect ratio based on actual writing area
+        writing_data = self.trial[self.pressure_mask]
+        if len(writing_data) > 0:
+            x_range = writing_data["X"].max() - writing_data["X"].min()
+            y_range = writing_data["Y"].max() - writing_data["Y"].min()
+            self.aspect_ratio = x_range / y_range if y_range > 0 else 1.0
+        else:
+            self.aspect_ratio = 224 / 140
+        
     def start_interactive(self):
         """Lance l'interface interactive"""
-        self.fig = plt.figure(figsize=(14, 10))
-        gs = self.fig.add_gridspec(5, 2, height_ratios=[4, 2, 2, 1, 0.5], 
-                                   width_ratios=[3, 1], hspace=0.3, wspace=0.3)
+        self.fig = plt.figure(figsize=(16, 10))
+        gs = self.fig.add_gridspec(5, 2, height_ratios=[5, 2, 2, 1.2, 0.6], 
+                                   width_ratios=[7, 3], hspace=0.35, wspace=0.4)
         
         # Plot principal : Trajectoire (ZOOMABLE)
         self.ax_traj = self.fig.add_subplot(gs[0, 0])
@@ -82,17 +94,17 @@ class InteractiveLetterSegmenter:
     def _create_buttons(self):
         """Crée les boutons d'action"""
         # Bouton "Auto Segment"
-        ax_auto = plt.axes([0.1, 0.02, 0.15, 0.04])
+        ax_auto = plt.axes([0.15, 0.015, 0.15, 0.035])
         self.btn_auto = Button(ax_auto, 'Auto Segment')
         self.btn_auto.on_clicked(self.auto_segment)
         
         # Bouton "Validate"
-        ax_validate = plt.axes([0.3, 0.02, 0.15, 0.04])
+        ax_validate = plt.axes([0.4, 0.015, 0.15, 0.035])
         self.btn_validate = Button(ax_validate, 'Validate & Label')
         self.btn_validate.on_clicked(self.validate_and_label)
         
         # Bouton "Clear All"
-        ax_clear = plt.axes([0.5, 0.02, 0.15, 0.04])
+        ax_clear = plt.axes([0.65, 0.015, 0.15, 0.035])
         self.btn_clear = Button(ax_clear, 'Clear All')
         self.btn_clear.on_clicked(self.clear_all)
     
@@ -124,39 +136,62 @@ class InteractiveLetterSegmenter:
     def _plot_trajectory(self):
         """Affiche la trajectoire avec les frontières"""
         self.ax_traj.clear()
-        
-        # Tracer la trajectoire complète
-        self.ax_traj.plot(self.trial["X"], self.trial["Y"], 
-                         color="black", linewidth=1.5, alpha=0.3)
-        
-        # Colorier chaque lettre
+
         colors = plt.cm.tab20.colors
-        all_bounds = [0] + sorted(self.boundaries) + [len(self.trial)-1]
-        
-        for i in range(len(all_bounds)-1):
-            idx1, idx2 = all_bounds[i], all_bounds[i+1]
-            subset = self.trial.iloc[idx1:idx2+1]
-            self.ax_traj.plot(subset["X"], subset["Y"],
-                             color=colors[i % len(colors)],
-                             linewidth=2.5, alpha=0.9)
-            
-            # Numéro de lettre
-            mid_x = subset["X"].mean()
-            mid_y = subset["Y"].mean()
-            self.ax_traj.text(mid_x, mid_y, str(i+1),
-                             fontsize=12, weight='bold',
-                             bbox=dict(boxstyle='circle', facecolor='white', alpha=0.8))
-        
-        # Marquer les frontières
+        all_bounds = [0] + sorted(self.boundaries) + [len(self.trial) - 1]
+
+        for i in range(len(all_bounds) - 1):
+            idx1, idx2 = all_bounds[i], all_bounds[i + 1]
+            subset = self.trial.iloc[idx1:idx2 + 1]
+
+            # --- Pressure-based segmentation (PURELY POSITIONAL) ---
+            pressure = (subset["NormalPressure"].to_numpy() > 0).astype(int)
+            changes = np.diff(pressure, prepend=0)
+
+            seg_starts = np.where(changes == 1)[0]
+            seg_ends = np.where(changes == -1)[0] - 1
+
+            # Handle pen-down until the end
+            if pressure[-1]:
+                seg_ends = np.append(seg_ends, len(pressure) - 1)
+
+            # Plot each continuous pressure segment
+            for s, e in zip(seg_starts, seg_ends):
+                segment = subset.iloc[s:e + 1]
+                self.ax_traj.plot(
+                    segment["X"], segment["Y"],
+                    color=colors[i % len(colors)],
+                    linewidth=2.5, alpha=0.9
+                )
+
+            # --- Letter number (based only on pressure > 0 points) ---
+            writing = subset[subset["NormalPressure"] > 0]
+            if not writing.empty:
+                self.ax_traj.text(
+                    writing["X"].mean(),
+                    writing["Y"].mean(),
+                    str(i + 1),
+                    fontsize=12, weight="bold",
+                    bbox=dict(boxstyle="circle", facecolor="white", alpha=0.8)
+                )
+
+        # --- Mark boundaries ---
         for b in self.boundaries:
-            self.ax_traj.plot(self.trial["X"].iloc[b], self.trial["Y"].iloc[b],
-                             'ro', markersize=10, zorder=10)
-        
-        self.ax_traj.set_aspect(224 / 140)
-        self.ax_traj.set_title(f"Trajectoire ({len(all_bounds)-1} lettres) - Molette pour zoom")
+            if b < len(self.trial):
+                self.ax_traj.plot(
+                    self.trial["X"].iloc[b],
+                    self.trial["Y"].iloc[b],
+                    "ro", markersize=10, zorder=10
+                )
+
+        self.ax_traj.set_aspect(self.aspect_ratio)
+        self.ax_traj.set_title(
+            f"Trajectoire ({len(all_bounds) - 1} lettres) - Molette pour zoom"
+        )
         self.ax_traj.set_xlabel("X (px)")
         self.ax_traj.set_ylabel("Y (px)")
         self.ax_traj.grid(True, alpha=0.3)
+
     
     def _plot_speed_pressure(self):
         """Affiche vitesse et pression avec frontières"""
@@ -164,19 +199,22 @@ class InteractiveLetterSegmenter:
         
         # Vitesse
         self.ax_speed.plot(self.t, self.segmenter.speed_smooth, 
-                          color='purple', linewidth=1.5)
+                          color='purple', linewidth=1.5, label='Speed')
         self.ax_speed.set_ylabel('Speed (px/s)', color='purple')
+        self.ax_speed.tick_params(axis='y', labelcolor='purple')
         
         # Pression
         ax_p = self.ax_speed.twinx()
         ax_p.plot(self.t, self.segmenter.pressure, 
-                 color='gray', linewidth=1.5, alpha=0.6)
+                 color='gray', linewidth=1.5, alpha=0.6, label='Pressure')
         ax_p.set_ylabel('Pressure', color='gray')
+        ax_p.tick_params(axis='y', labelcolor='gray')
         
         # Marquer les frontières
         for b in self.boundaries:
-            t_val = self.t.iloc[b]
-            self.ax_speed.axvline(t_val, color='red', linestyle='--', alpha=0.7)
+            if b < len(self.t):
+                t_val = self.t.iloc[b]
+                self.ax_speed.axvline(t_val, color='red', linestyle='--', alpha=0.7, linewidth=1.5)
         
         self.ax_speed.set_xlabel('Time (s)')
         self.ax_speed.set_title('Speed & Pressure')
@@ -188,11 +226,13 @@ class InteractiveLetterSegmenter:
         self.ax_curv.plot(self.t, self.segmenter.curvature_smooth,
                          color='green', linewidth=1.5)
         self.ax_curv.set_ylabel('Curvature', color='green')
+        self.ax_curv.tick_params(axis='y', labelcolor='green')
         
         # Marquer les frontières
         for b in self.boundaries:
-            t_val = self.t.iloc[b]
-            self.ax_curv.axvline(t_val, color='red', linestyle='--', alpha=0.7)
+            if b < len(self.t):
+                t_val = self.t.iloc[b]
+                self.ax_curv.axvline(t_val, color='red', linestyle='--', alpha=0.7, linewidth=1.5)
         
         self.ax_curv.set_xlabel('Time (s)')
         self.ax_curv.set_title('Curvature')
@@ -211,8 +251,8 @@ class InteractiveLetterSegmenter:
         text += "• 'Validate & Label': Passer à la labellisation\n"
         text += f"\nFrontières actuelles: {len(self.boundaries)} → {len(self.boundaries)+1} lettres"
         
-        self.ax_info.text(0.05, 0.95, text, transform=self.ax_info.transAxes,
-                         fontsize=10, verticalalignment='top',
+        self.ax_info.text(0.05, 0.5, text, transform=self.ax_info.transAxes,
+                         fontsize=10, verticalalignment='center',
                          bbox=dict(boxstyle='round', facecolor='lightblue', alpha=0.5))
     
     def _update_letter_list(self):
@@ -226,13 +266,17 @@ class InteractiveLetterSegmenter:
         text = "LETTRES DÉTECTÉES\n" + "="*30 + "\n\n"
         for i in range(len(all_bounds)-1):
             idx1, idx2 = all_bounds[i], all_bounds[i+1]
-            duration = (self.t.iloc[idx2] - self.t.iloc[idx1]) * 1000
-            width = self.trial["X"].iloc[idx1:idx2+1].max() - self.trial["X"].iloc[idx1:idx2+1].min()
-            height = self.trial["Y"].iloc[idx1:idx2+1].max() - self.trial["Y"].iloc[idx1:idx2+1].min()
+            subset = self.trial.iloc[idx1:idx2+1]
+            subset_writing = subset[subset["NormalPressure"] > 0]
             
-            text += f"Lettre {i+1}:\n"
-            text += f"  Durée: {duration:.0f}ms\n"
-            text += f"  Taille: {width:.0f}×{height:.0f}px\n\n"
+            if len(subset_writing) > 0:
+                duration = (self.t.iloc[idx2] - self.t.iloc[idx1]) * 1000
+                width = subset_writing["X"].max() - subset_writing["X"].min()
+                height = subset_writing["Y"].max() - subset_writing["Y"].min()
+                
+                text += f"Lettre {i+1}:\n"
+                text += f"  Durée: {duration:.0f}ms\n"
+                text += f"  Taille: {width:.0f}×{height:.0f}px\n\n"
         
         self.ax_letters.text(0.05, 0.95, text, transform=self.ax_letters.transAxes,
                             fontsize=9, verticalalignment='top', family='monospace',
@@ -243,19 +287,25 @@ class InteractiveLetterSegmenter:
         if event.inaxes != self.ax_traj:
             return
         
-        # Trouver le point le plus proche
-        distances = np.sqrt((self.trial["X"] - event.xdata)**2 + 
-                           (self.trial["Y"] - event.ydata)**2)
-        idx = np.argmin(distances)
+        # Trouver le point le plus proche (only among writing points)
+        writing_data = self.trial[self.pressure_mask]
+        if len(writing_data) == 0:
+            return
+            
+        distances = np.sqrt((writing_data["X"] - event.xdata)**2 + 
+                           (writing_data["Y"] - event.ydata)**2)
+        idx_in_writing = np.argmin(distances)
+        idx = writing_data.index[idx_in_writing]
         
         # Vérifier si on a cliqué près d'une frontière existante
         clicked_boundary = None
         for b in self.boundaries:
-            dist_to_boundary = np.sqrt((self.trial["X"].iloc[b] - event.xdata)**2 +
-                                      (self.trial["Y"].iloc[b] - event.ydata)**2)
-            if dist_to_boundary < 20:  # Tolérance en pixels
-                clicked_boundary = b
-                break
+            if b < len(self.trial):
+                dist_to_boundary = np.sqrt((self.trial["X"].iloc[b] - event.xdata)**2 +
+                                          (self.trial["Y"].iloc[b] - event.ydata)**2)
+                if dist_to_boundary < 20:  # Tolérance en pixels
+                    clicked_boundary = b
+                    break
         
         if clicked_boundary is not None:
             # Sélectionner cette frontière
