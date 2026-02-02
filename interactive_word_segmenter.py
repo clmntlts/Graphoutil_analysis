@@ -235,31 +235,30 @@ class InteractiveSegmenter:
         if self.markers:
             self.ax_traj.legend(loc="upper right", fontsize=8)
 
+    def plot_xy_temporal(self):
+        """Affiche X et Y temporels"""
+        self.ax_xy.clear()
+        self.ax_xy.plot(self.t, self.trial["X"], color="steelblue", lw=1.5, label="X")
+        self.ax_xy.set_ylabel("X (px)", color="steelblue")
+        self.ax_xy.tick_params(axis='y', labelcolor="steelblue")
         
-        def plot_xy_temporal(self):
-            """Affiche X et Y temporels"""
-            self.ax_xy.clear()
-            self.ax_xy.plot(self.t, self.trial["X"], color="steelblue", lw=1.5, label="X")
-            self.ax_xy.set_ylabel("X (px)", color="steelblue")
-            self.ax_xy.tick_params(axis='y', labelcolor="steelblue")
-            
-            ax_y = self.ax_xy.twinx()
-            ax_y.plot(self.t, self.trial["Y"], color="darkorange", lw=1.5, label="Y")
-            ax_y.set_ylabel("Y (px)", color="darkorange")
-            ax_y.tick_params(axis='y', labelcolor="darkorange")
-            
-            # Marquer les points sélectionnés
-            for i, marker in enumerate(self.markers):
-                if marker['idx'] < len(self.t):
-                    t_val = self.t.iloc[marker['idx']]
-                    self.ax_xy.axvline(t_val, color='red', linestyle='--', alpha=0.7, linewidth=1.5)
-                    self.ax_xy.text(t_val, self.ax_xy.get_ylim()[1]*0.95, f"{i+1}",
-                                fontsize=10, ha='center', weight='bold',
-                                bbox=dict(boxstyle='round', facecolor='white', alpha=0.7))
-            
-            self.ax_xy.set_xlabel("Time (s)")
-            self.ax_xy.set_title("X & Y temporels")
-            self.ax_xy.grid(True, alpha=0.3)
+        ax_y = self.ax_xy.twinx()
+        ax_y.plot(self.t, self.trial["Y"], color="darkorange", lw=1.5, label="Y")
+        ax_y.set_ylabel("Y (px)", color="darkorange")
+        ax_y.tick_params(axis='y', labelcolor="darkorange")
+        
+        # Marquer les points sélectionnés
+        for i, marker in enumerate(self.markers):
+            if marker['idx'] < len(self.t):
+                t_val = self.t.iloc[marker['idx']]
+                self.ax_xy.axvline(t_val, color='red', linestyle='--', alpha=0.7, linewidth=1.5)
+                self.ax_xy.text(t_val, self.ax_xy.get_ylim()[1]*0.95, f"{i+1}",
+                            fontsize=10, ha='center', weight='bold',
+                            bbox=dict(boxstyle='round', facecolor='white', alpha=0.7))
+        
+        self.ax_xy.set_xlabel("Time (s)")
+        self.ax_xy.set_title("X & Y temporels")
+        self.ax_xy.grid(True, alpha=0.3)
     
     def plot_speed_pressure(self):
         """Affiche vitesse et pression"""

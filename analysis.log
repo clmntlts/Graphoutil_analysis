@@ -713,3 +713,199 @@ TypeError: only list-like objects are allowed to be passed to isin(), you passed
 2026-01-30 12:42:17,329 - visualization - INFO - Generating PDF report to C:\Users\cletesson\OneDrive - UCL\Documents\Graphoutil_analysis\results\Enregistrement OKOK_report.pdf
 2026-01-30 12:42:26,178 - visualization - INFO - Report saved successfully: C:\Users\cletesson\OneDrive - UCL\Documents\Graphoutil_analysis\results\Enregistrement OKOK_report.pdf
 2026-01-30 12:42:26,180 - __main__ - INFO - Analysis completed successfully!
+2026-02-02 13:49:40,291 - __main__ - INFO - Starting handwriting analysis pipeline
+2026-02-02 13:49:40,292 - __main__ - INFO - Configuration: {'input_file': 'C:\\Users\\cletesson\\Downloads\\Enregistrement OKOK.xlsx', 'output_dir': 'C:\\Users\\cletesson\\OneDrive - UCL\\Documents\\Graphoutil_analysis\\results', 'n_trials': 40, 'sampling_rate': 200, 'min_pause_duration_ms': 20, 'speed_threshold_px_per_s': 50, 'min_letter_duration_ms': 100}
+2026-02-02 13:49:40,292 - __main__ - INFO - Loading data...
+2026-02-02 13:49:40,292 - data_loader - INFO - Loading data from C:\Users\cletesson\Downloads\Enregistrement OKOK.xlsx
+2026-02-02 13:49:40,847 - data_loader - INFO - Loaded 29601 data points
+2026-02-02 13:49:40,858 - data_loader - INFO - Loaded segmentation sheet
+2026-02-02 13:49:40,858 - __main__ - INFO - Detecting trials...
+2026-02-02 13:49:40,858 - trial_detector - INFO - Detecting 40 trials...
+2026-02-02 13:49:40,870 - trial_detector - INFO - Found 41 candidate boundaries (gap > 250.0ms)
+2026-02-02 13:49:40,876 - trial_detector - INFO - ADAPTIVE TRIAL SIZE THRESHOLDS:
+2026-02-02 13:49:40,877 - trial_detector - INFO -   Median trial size from candidates: 688 points
+2026-02-02 13:49:40,877 - trial_detector - INFO -   25th percentile: 629 points
+2026-02-02 13:49:40,878 - trial_detector - INFO -   10th percentile: 593 points
+2026-02-02 13:49:40,878 - trial_detector - INFO -   Minimum acceptable (30% of median): 206 points
+2026-02-02 13:49:40,879 - trial_detector - INFO - Skipped 0 candidates due to small trial size constraint
+2026-02-02 13:49:40,880 - trial_detector - INFO - Selected 39 boundaries
+2026-02-02 13:49:40,880 - trial_detector - INFO - Trial sizes with selected boundaries:
+2026-02-02 13:49:40,880 - trial_detector - INFO -   Trial 0: 629 points
+2026-02-02 13:49:40,880 - trial_detector - INFO -   Trial 1: 685 points
+2026-02-02 13:49:40,880 - trial_detector - INFO -   Trial 2: 624 points
+2026-02-02 13:49:40,881 - trial_detector - INFO -   Trial 3: 606 points
+2026-02-02 13:49:40,881 - trial_detector - INFO -   Trial 4: 792 points
+2026-02-02 13:49:40,881 - trial_detector - INFO -   Trial 5: 881 points
+2026-02-02 13:49:40,881 - trial_detector - INFO -   Trial 6: 590 points
+2026-02-02 13:49:40,881 - trial_detector - INFO -   Trial 7: 640 points
+2026-02-02 13:49:40,881 - trial_detector - INFO -   Trial 8: 673 points
+2026-02-02 13:49:40,881 - trial_detector - INFO -   Trial 9: 714 points
+2026-02-02 13:49:40,882 - trial_detector - INFO -   Trial 10: 1086 points
+2026-02-02 13:49:40,882 - trial_detector - INFO -   Trial 11: 831 points
+2026-02-02 13:49:40,882 - trial_detector - INFO -   Trial 12: 688 points
+2026-02-02 13:49:40,882 - trial_detector - INFO -   Trial 13: 858 points
+2026-02-02 13:49:40,882 - trial_detector - INFO -   Trial 14: 585 points
+2026-02-02 13:49:40,882 - trial_detector - INFO -   Trial 15: 598 points
+2026-02-02 13:49:40,882 - trial_detector - INFO -   Trial 16: 657 points
+2026-02-02 13:49:40,882 - trial_detector - INFO -   Trial 17: 726 points
+2026-02-02 13:49:40,882 - trial_detector - INFO -   Trial 18: 842 points
+2026-02-02 13:49:40,882 - trial_detector - INFO -   Trial 19: 661 points
+2026-02-02 13:49:40,883 - trial_detector - INFO -   Trial 20: 798 points
+2026-02-02 13:49:40,883 - trial_detector - INFO -   Trial 21: 681 points
+2026-02-02 13:49:40,883 - trial_detector - INFO -   Trial 22: 672 points
+2026-02-02 13:49:40,883 - trial_detector - INFO -   Trial 23: 911 points
+2026-02-02 13:49:40,883 - trial_detector - INFO -   Trial 24: 993 points
+2026-02-02 13:49:40,883 - trial_detector - INFO -   Trial 25: 594 points
+2026-02-02 13:49:40,883 - trial_detector - INFO -   Trial 26: 819 points
+2026-02-02 13:49:40,883 - trial_detector - INFO -   Trial 27: 754 points
+2026-02-02 13:49:40,883 - trial_detector - INFO -   Trial 28: 715 points
+2026-02-02 13:49:40,883 - trial_detector - INFO -   Trial 29: 658 points
+2026-02-02 13:49:40,883 - trial_detector - INFO -   Trial 30: 1038 points
+2026-02-02 13:49:40,883 - trial_detector - INFO -   Trial 31: 747 points
+2026-02-02 13:49:40,884 - trial_detector - INFO -   Trial 32: 787 points
+2026-02-02 13:49:40,884 - trial_detector - INFO -   Trial 33: 893 points
+2026-02-02 13:49:40,884 - trial_detector - INFO -   Trial 34: 670 points
+2026-02-02 13:49:40,884 - trial_detector - INFO -   Trial 35: 593 points
+2026-02-02 13:49:40,884 - trial_detector - INFO -   Trial 36: 888 points
+2026-02-02 13:49:40,884 - trial_detector - INFO -   Trial 37: 695 points
+2026-02-02 13:49:40,884 - trial_detector - INFO -   Trial 38: 627 points
+2026-02-02 13:49:40,885 - trial_detector - INFO -   Trial 39: 741 points
+2026-02-02 13:50:01,897 - trial_detector - INFO - Successfully detected 40 trials (Trial IDs: [np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4), np.int64(5), np.int64(6), np.int64(7), np.int64(8), np.int64(9), np.int64(10), np.int64(11), np.int64(12), np.int64(13), np.int64(14), np.int64(15), np.int64(16), np.int64(17), np.int64(18), np.int64(19), np.int64(20), np.int64(21), np.int64(22), np.int64(23), np.int64(24), np.int64(25), np.int64(26), np.int64(27), np.int64(28), np.int64(29), np.int64(30), np.int64(31), np.int64(32), np.int64(33), np.int64(34), np.int64(35), np.int64(36), np.int64(37), np.int64(38), np.int64(39)])
+2026-02-02 13:50:01,910 - __main__ - INFO - Analyzing trials...
+2026-02-02 13:50:02,000 - trial_analyzer - INFO - Analyzed 40 trials
+2026-02-02 13:50:08,481 - __main__ - INFO - Segmenting words for trial 1
+2026-02-02 13:50:08,514 - __main__ - ERROR - Error in word segmentation for trial 1: 'InteractiveSegmenter' object has no attribute 'plot_xy_temporal'
+2026-02-02 13:50:08,514 - __main__ - INFO - Segmenting words for trial 2
+2026-02-02 13:50:08,531 - __main__ - ERROR - Error in word segmentation for trial 2: 'InteractiveSegmenter' object has no attribute 'plot_xy_temporal'
+2026-02-02 13:50:08,531 - __main__ - INFO - Segmenting words for trial 3
+2026-02-02 13:50:08,546 - __main__ - ERROR - Error in word segmentation for trial 3: 'InteractiveSegmenter' object has no attribute 'plot_xy_temporal'
+2026-02-02 13:50:55,508 - __main__ - INFO - Starting handwriting analysis pipeline
+2026-02-02 13:50:55,509 - __main__ - INFO - Configuration: {'input_file': 'C:\\Users\\cletesson\\Downloads\\Enregistrement OKOK.xlsx', 'output_dir': 'C:\\Users\\cletesson\\OneDrive - UCL\\Documents\\Graphoutil_analysis\\results', 'n_trials': 40, 'sampling_rate': 200, 'min_pause_duration_ms': 20, 'speed_threshold_px_per_s': 50, 'min_letter_duration_ms': 100}
+2026-02-02 13:50:55,509 - __main__ - INFO - Loading data...
+2026-02-02 13:50:55,509 - data_loader - INFO - Loading data from C:\Users\cletesson\Downloads\Enregistrement OKOK.xlsx
+2026-02-02 13:50:55,984 - data_loader - INFO - Loaded 29601 data points
+2026-02-02 13:50:55,993 - data_loader - INFO - Loaded segmentation sheet
+2026-02-02 13:50:55,993 - __main__ - INFO - Detecting trials...
+2026-02-02 13:50:55,993 - trial_detector - INFO - Detecting 40 trials...
+2026-02-02 13:50:55,999 - trial_detector - INFO - Found 41 candidate boundaries (gap > 250.0ms)
+2026-02-02 13:50:56,000 - trial_detector - INFO - ADAPTIVE TRIAL SIZE THRESHOLDS:
+2026-02-02 13:50:56,001 - trial_detector - INFO -   Median trial size from candidates: 688 points
+2026-02-02 13:50:56,001 - trial_detector - INFO -   25th percentile: 629 points
+2026-02-02 13:50:56,001 - trial_detector - INFO -   10th percentile: 593 points
+2026-02-02 13:50:56,001 - trial_detector - INFO -   Minimum acceptable (30% of median): 206 points
+2026-02-02 13:50:56,002 - trial_detector - INFO - Skipped 0 candidates due to small trial size constraint
+2026-02-02 13:50:56,002 - trial_detector - INFO - Selected 39 boundaries
+2026-02-02 13:50:56,002 - trial_detector - INFO - Trial sizes with selected boundaries:
+2026-02-02 13:50:56,002 - trial_detector - INFO -   Trial 0: 629 points
+2026-02-02 13:50:56,002 - trial_detector - INFO -   Trial 1: 685 points
+2026-02-02 13:50:56,002 - trial_detector - INFO -   Trial 2: 624 points
+2026-02-02 13:50:56,002 - trial_detector - INFO -   Trial 3: 606 points
+2026-02-02 13:50:56,002 - trial_detector - INFO -   Trial 4: 792 points
+2026-02-02 13:50:56,003 - trial_detector - INFO -   Trial 5: 881 points
+2026-02-02 13:50:56,003 - trial_detector - INFO -   Trial 6: 590 points
+2026-02-02 13:50:56,003 - trial_detector - INFO -   Trial 7: 640 points
+2026-02-02 13:50:56,003 - trial_detector - INFO -   Trial 8: 673 points
+2026-02-02 13:50:56,003 - trial_detector - INFO -   Trial 9: 714 points
+2026-02-02 13:50:56,003 - trial_detector - INFO -   Trial 10: 1086 points
+2026-02-02 13:50:56,003 - trial_detector - INFO -   Trial 11: 831 points
+2026-02-02 13:50:56,003 - trial_detector - INFO -   Trial 12: 688 points
+2026-02-02 13:50:56,003 - trial_detector - INFO -   Trial 13: 858 points
+2026-02-02 13:50:56,003 - trial_detector - INFO -   Trial 14: 585 points
+2026-02-02 13:50:56,003 - trial_detector - INFO -   Trial 15: 598 points
+2026-02-02 13:50:56,003 - trial_detector - INFO -   Trial 16: 657 points
+2026-02-02 13:50:56,003 - trial_detector - INFO -   Trial 17: 726 points
+2026-02-02 13:50:56,003 - trial_detector - INFO -   Trial 18: 842 points
+2026-02-02 13:50:56,003 - trial_detector - INFO -   Trial 19: 661 points
+2026-02-02 13:50:56,003 - trial_detector - INFO -   Trial 20: 798 points
+2026-02-02 13:50:56,003 - trial_detector - INFO -   Trial 21: 681 points
+2026-02-02 13:50:56,004 - trial_detector - INFO -   Trial 22: 672 points
+2026-02-02 13:50:56,004 - trial_detector - INFO -   Trial 23: 911 points
+2026-02-02 13:50:56,004 - trial_detector - INFO -   Trial 24: 993 points
+2026-02-02 13:50:56,004 - trial_detector - INFO -   Trial 25: 594 points
+2026-02-02 13:50:56,004 - trial_detector - INFO -   Trial 26: 819 points
+2026-02-02 13:50:56,004 - trial_detector - INFO -   Trial 27: 754 points
+2026-02-02 13:50:56,004 - trial_detector - INFO -   Trial 28: 715 points
+2026-02-02 13:50:56,004 - trial_detector - INFO -   Trial 29: 658 points
+2026-02-02 13:50:56,004 - trial_detector - INFO -   Trial 30: 1038 points
+2026-02-02 13:50:56,004 - trial_detector - INFO -   Trial 31: 747 points
+2026-02-02 13:50:56,004 - trial_detector - INFO -   Trial 32: 787 points
+2026-02-02 13:50:56,004 - trial_detector - INFO -   Trial 33: 893 points
+2026-02-02 13:50:56,004 - trial_detector - INFO -   Trial 34: 670 points
+2026-02-02 13:50:56,004 - trial_detector - INFO -   Trial 35: 593 points
+2026-02-02 13:50:56,004 - trial_detector - INFO -   Trial 36: 888 points
+2026-02-02 13:50:56,004 - trial_detector - INFO -   Trial 37: 695 points
+2026-02-02 13:50:56,004 - trial_detector - INFO -   Trial 38: 627 points
+2026-02-02 13:50:56,005 - trial_detector - INFO -   Trial 39: 741 points
+2026-02-02 13:51:00,582 - trial_detector - INFO - Successfully detected 40 trials (Trial IDs: [np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4), np.int64(5), np.int64(6), np.int64(7), np.int64(8), np.int64(9), np.int64(10), np.int64(11), np.int64(12), np.int64(13), np.int64(14), np.int64(15), np.int64(16), np.int64(17), np.int64(18), np.int64(19), np.int64(20), np.int64(21), np.int64(22), np.int64(23), np.int64(24), np.int64(25), np.int64(26), np.int64(27), np.int64(28), np.int64(29), np.int64(30), np.int64(31), np.int64(32), np.int64(33), np.int64(34), np.int64(35), np.int64(36), np.int64(37), np.int64(38), np.int64(39)])
+2026-02-02 13:51:00,593 - __main__ - INFO - Analyzing trials...
+2026-02-02 13:51:00,674 - trial_analyzer - INFO - Analyzed 40 trials
+2026-02-02 13:51:18,688 - __main__ - INFO - Segmenting letters for trial 1
+2026-02-02 13:53:52,322 - __main__ - INFO - Starting handwriting analysis pipeline
+2026-02-02 13:53:52,323 - __main__ - INFO - Configuration: {'input_file': 'C:\\Users\\cletesson\\Downloads\\Enregistrement OKOK.xlsx', 'output_dir': 'C:\\Users\\cletesson\\OneDrive - UCL\\Documents\\Graphoutil_analysis\\results', 'n_trials': 40, 'sampling_rate': 200, 'min_pause_duration_ms': 20, 'speed_threshold_px_per_s': 50, 'min_letter_duration_ms': 100}
+2026-02-02 13:53:52,323 - __main__ - INFO - Loading data...
+2026-02-02 13:53:52,323 - data_loader - INFO - Loading data from C:\Users\cletesson\Downloads\Enregistrement OKOK.xlsx
+2026-02-02 13:53:52,789 - data_loader - INFO - Loaded 29601 data points
+2026-02-02 13:53:52,799 - data_loader - INFO - Loaded segmentation sheet
+2026-02-02 13:53:52,799 - __main__ - INFO - Detecting trials...
+2026-02-02 13:53:52,799 - trial_detector - INFO - Detecting 40 trials...
+2026-02-02 13:53:52,807 - trial_detector - INFO - Found 41 candidate boundaries (gap > 250.0ms)
+2026-02-02 13:53:52,808 - trial_detector - INFO - ADAPTIVE TRIAL SIZE THRESHOLDS:
+2026-02-02 13:53:52,808 - trial_detector - INFO -   Median trial size from candidates: 688 points
+2026-02-02 13:53:52,808 - trial_detector - INFO -   25th percentile: 629 points
+2026-02-02 13:53:52,808 - trial_detector - INFO -   10th percentile: 593 points
+2026-02-02 13:53:52,808 - trial_detector - INFO -   Minimum acceptable (30% of median): 206 points
+2026-02-02 13:53:52,809 - trial_detector - INFO - Skipped 0 candidates due to small trial size constraint
+2026-02-02 13:53:52,809 - trial_detector - INFO - Selected 39 boundaries
+2026-02-02 13:53:52,810 - trial_detector - INFO - Trial sizes with selected boundaries:
+2026-02-02 13:53:52,810 - trial_detector - INFO -   Trial 0: 629 points
+2026-02-02 13:53:52,810 - trial_detector - INFO -   Trial 1: 685 points
+2026-02-02 13:53:52,810 - trial_detector - INFO -   Trial 2: 624 points
+2026-02-02 13:53:52,810 - trial_detector - INFO -   Trial 3: 606 points
+2026-02-02 13:53:52,810 - trial_detector - INFO -   Trial 4: 792 points
+2026-02-02 13:53:52,810 - trial_detector - INFO -   Trial 5: 881 points
+2026-02-02 13:53:52,810 - trial_detector - INFO -   Trial 6: 590 points
+2026-02-02 13:53:52,810 - trial_detector - INFO -   Trial 7: 640 points
+2026-02-02 13:53:52,810 - trial_detector - INFO -   Trial 8: 673 points
+2026-02-02 13:53:52,810 - trial_detector - INFO -   Trial 9: 714 points
+2026-02-02 13:53:52,810 - trial_detector - INFO -   Trial 10: 1086 points
+2026-02-02 13:53:52,810 - trial_detector - INFO -   Trial 11: 831 points
+2026-02-02 13:53:52,810 - trial_detector - INFO -   Trial 12: 688 points
+2026-02-02 13:53:52,810 - trial_detector - INFO -   Trial 13: 858 points
+2026-02-02 13:53:52,810 - trial_detector - INFO -   Trial 14: 585 points
+2026-02-02 13:53:52,811 - trial_detector - INFO -   Trial 15: 598 points
+2026-02-02 13:53:52,811 - trial_detector - INFO -   Trial 16: 657 points
+2026-02-02 13:53:52,811 - trial_detector - INFO -   Trial 17: 726 points
+2026-02-02 13:53:52,811 - trial_detector - INFO -   Trial 18: 842 points
+2026-02-02 13:53:52,811 - trial_detector - INFO -   Trial 19: 661 points
+2026-02-02 13:53:52,811 - trial_detector - INFO -   Trial 20: 798 points
+2026-02-02 13:53:52,811 - trial_detector - INFO -   Trial 21: 681 points
+2026-02-02 13:53:52,811 - trial_detector - INFO -   Trial 22: 672 points
+2026-02-02 13:53:52,812 - trial_detector - INFO -   Trial 23: 911 points
+2026-02-02 13:53:52,812 - trial_detector - INFO -   Trial 24: 993 points
+2026-02-02 13:53:52,812 - trial_detector - INFO -   Trial 25: 594 points
+2026-02-02 13:53:52,812 - trial_detector - INFO -   Trial 26: 819 points
+2026-02-02 13:53:52,812 - trial_detector - INFO -   Trial 27: 754 points
+2026-02-02 13:53:52,812 - trial_detector - INFO -   Trial 28: 715 points
+2026-02-02 13:53:52,812 - trial_detector - INFO -   Trial 29: 658 points
+2026-02-02 13:53:52,812 - trial_detector - INFO -   Trial 30: 1038 points
+2026-02-02 13:53:52,812 - trial_detector - INFO -   Trial 31: 747 points
+2026-02-02 13:53:52,812 - trial_detector - INFO -   Trial 32: 787 points
+2026-02-02 13:53:52,813 - trial_detector - INFO -   Trial 33: 893 points
+2026-02-02 13:53:52,813 - trial_detector - INFO -   Trial 34: 670 points
+2026-02-02 13:53:52,813 - trial_detector - INFO -   Trial 35: 593 points
+2026-02-02 13:53:52,813 - trial_detector - INFO -   Trial 36: 888 points
+2026-02-02 13:53:52,813 - trial_detector - INFO -   Trial 37: 695 points
+2026-02-02 13:53:52,813 - trial_detector - INFO -   Trial 38: 627 points
+2026-02-02 13:53:52,813 - trial_detector - INFO -   Trial 39: 741 points
+2026-02-02 13:53:56,741 - trial_detector - INFO - Successfully detected 40 trials (Trial IDs: [np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4), np.int64(5), np.int64(6), np.int64(7), np.int64(8), np.int64(9), np.int64(10), np.int64(11), np.int64(12), np.int64(13), np.int64(14), np.int64(15), np.int64(16), np.int64(17), np.int64(18), np.int64(19), np.int64(20), np.int64(21), np.int64(22), np.int64(23), np.int64(24), np.int64(25), np.int64(26), np.int64(27), np.int64(28), np.int64(29), np.int64(30), np.int64(31), np.int64(32), np.int64(33), np.int64(34), np.int64(35), np.int64(36), np.int64(37), np.int64(38), np.int64(39)])
+2026-02-02 13:53:56,751 - __main__ - INFO - Analyzing trials...
+2026-02-02 13:53:56,818 - trial_analyzer - INFO - Analyzed 40 trials
+2026-02-02 13:54:04,369 - __main__ - INFO - Segmenting words for trial 1
+2026-02-02 13:54:52,982 - __main__ - INFO - Segmenting words for trial 2
+2026-02-02 13:55:06,941 - __main__ - INFO - Segmenting words for trial 3
+2026-02-02 13:55:30,594 - __main__ - INFO - Segmenting letters for trial 8
+2026-02-02 13:56:20,365 - __main__ - INFO - Saving results...
+2026-02-02 13:56:20,490 - __main__ - INFO - Generating PDF report...
+2026-02-02 13:56:20,490 - visualization - INFO - Generating PDF report to C:\Users\cletesson\OneDrive - UCL\Documents\Graphoutil_analysis\results\Enregistrement OKOK_report.pdf
+2026-02-02 13:56:29,628 - visualization - INFO - Report saved successfully: C:\Users\cletesson\OneDrive - UCL\Documents\Graphoutil_analysis\results\Enregistrement OKOK_report.pdf
+2026-02-02 13:56:29,630 - __main__ - INFO - Analysis completed successfully!
