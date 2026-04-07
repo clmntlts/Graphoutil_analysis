@@ -909,3 +909,497 @@ TypeError: only list-like objects are allowed to be passed to isin(), you passed
 2026-02-02 13:56:20,490 - visualization - INFO - Generating PDF report to C:\Users\cletesson\OneDrive - UCL\Documents\Graphoutil_analysis\results\Enregistrement OKOK_report.pdf
 2026-02-02 13:56:29,628 - visualization - INFO - Report saved successfully: C:\Users\cletesson\OneDrive - UCL\Documents\Graphoutil_analysis\results\Enregistrement OKOK_report.pdf
 2026-02-02 13:56:29,630 - __main__ - INFO - Analysis completed successfully!
+2026-04-07 14:25:59,434 - __main__ - INFO - Starting handwriting analysis pipeline
+2026-04-07 14:25:59,434 - __main__ - INFO - Configuration: {'input_file': 'C:\\Users\\cletesson\\Downloads\\108Nathanmorph.xlsx', 'output_dir': 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results', 'n_trials': 40, 'sampling_rate': 200, 'min_pause_duration_ms': 20, 'speed_threshold_px_per_s': 50, 'min_letter_duration_ms': 100}
+2026-04-07 14:25:59,436 - __main__ - INFO - Loading data...
+2026-04-07 14:25:59,436 - data_loader - INFO - Loading data from C:\Users\cletesson\Downloads\108Nathanmorph.xlsx
+2026-04-07 14:26:01,281 - data_loader - INFO - Loaded 45726 data points
+2026-04-07 14:26:01,312 - data_loader - INFO - Loaded segmentation sheet
+2026-04-07 14:26:01,312 - __main__ - INFO - Detecting trials...
+2026-04-07 14:26:01,312 - trial_detector - INFO - Detecting 40 trials...
+2026-04-07 14:26:01,318 - trial_detector - INFO - Found 44 candidate boundaries (gap > 250.0ms)
+2026-04-07 14:26:01,332 - trial_detector - INFO - ADAPTIVE TRIAL SIZE THRESHOLDS:
+2026-04-07 14:26:01,332 - trial_detector - INFO -   Median trial size from candidates: 1077 points
+2026-04-07 14:26:01,332 - trial_detector - INFO -   25th percentile: 890 points
+2026-04-07 14:26:01,333 - trial_detector - INFO -   10th percentile: 709 points
+2026-04-07 14:26:01,333 - trial_detector - INFO -   Minimum acceptable (30% of median): 323 points
+2026-04-07 14:26:01,334 - trial_detector - INFO - Skipped 1 candidates due to small trial size constraint
+2026-04-07 14:26:01,335 - trial_detector - INFO - Selected 39 boundaries
+2026-04-07 14:26:01,335 - trial_detector - INFO - Trial sizes with selected boundaries:
+2026-04-07 14:26:01,335 - trial_detector - INFO -   Trial 0: 975 points
+2026-04-07 14:26:01,336 - trial_detector - INFO -   Trial 1: 1131 points
+2026-04-07 14:26:01,337 - trial_detector - INFO -   Trial 2: 1054 points
+2026-04-07 14:26:01,337 - trial_detector - INFO -   Trial 3: 1428 points
+2026-04-07 14:26:01,337 - trial_detector - INFO -   Trial 4: 1020 points
+2026-04-07 14:26:01,337 - trial_detector - INFO -   Trial 5: 1569 points
+2026-04-07 14:26:01,337 - trial_detector - INFO -   Trial 6: 1698 points
+2026-04-07 14:26:01,337 - trial_detector - INFO -   Trial 7: 1413 points
+2026-04-07 14:26:01,337 - trial_detector - INFO -   Trial 8: 959 points
+2026-04-07 14:26:01,337 - trial_detector - INFO -   Trial 9: 1341 points
+2026-04-07 14:26:01,339 - trial_detector - INFO -   Trial 10: 924 points
+2026-04-07 14:26:01,339 - trial_detector - INFO -   Trial 11: 1077 points
+2026-04-07 14:26:01,339 - trial_detector - INFO -   Trial 12: 1680 points
+2026-04-07 14:26:01,339 - trial_detector - INFO -   Trial 13: 1665 points
+2026-04-07 14:26:01,339 - trial_detector - INFO -   Trial 14: 1258 points
+2026-04-07 14:26:01,340 - trial_detector - INFO -   Trial 15: 1049 points
+2026-04-07 14:26:01,340 - trial_detector - INFO -   Trial 16: 709 points
+2026-04-07 14:26:01,340 - trial_detector - INFO -   Trial 17: 948 points
+2026-04-07 14:26:01,340 - trial_detector - INFO -   Trial 18: 984 points
+2026-04-07 14:26:01,340 - trial_detector - INFO -   Trial 19: 1104 points
+2026-04-07 14:26:01,340 - trial_detector - INFO -   Trial 20: 712 points
+2026-04-07 14:26:01,341 - trial_detector - INFO -   Trial 21: 1199 points
+2026-04-07 14:26:01,341 - trial_detector - INFO -   Trial 22: 996 points
+2026-04-07 14:26:01,341 - trial_detector - INFO -   Trial 23: 1238 points
+2026-04-07 14:26:01,341 - trial_detector - INFO -   Trial 24: 785 points
+2026-04-07 14:26:01,342 - trial_detector - INFO -   Trial 25: 774 points
+2026-04-07 14:26:01,342 - trial_detector - INFO -   Trial 26: 1757 points
+2026-04-07 14:26:01,342 - trial_detector - INFO -   Trial 27: 1335 points
+2026-04-07 14:26:01,342 - trial_detector - INFO -   Trial 28: 886 points
+2026-04-07 14:26:01,343 - trial_detector - INFO -   Trial 29: 1008 points
+2026-04-07 14:26:01,343 - trial_detector - INFO -   Trial 30: 683 points
+2026-04-07 14:26:01,344 - trial_detector - INFO -   Trial 31: 1539 points
+2026-04-07 14:26:01,344 - trial_detector - INFO -   Trial 32: 1113 points
+2026-04-07 14:26:01,344 - trial_detector - INFO -   Trial 33: 1175 points
+2026-04-07 14:26:01,344 - trial_detector - INFO -   Trial 34: 1260 points
+2026-04-07 14:26:01,344 - trial_detector - INFO -   Trial 35: 959 points
+2026-04-07 14:26:01,344 - trial_detector - INFO -   Trial 36: 1094 points
+2026-04-07 14:26:01,344 - trial_detector - INFO -   Trial 37: 864 points
+2026-04-07 14:26:01,345 - trial_detector - INFO -   Trial 38: 1091 points
+2026-04-07 14:26:01,345 - trial_detector - INFO -   Trial 39: 1311 points
+2026-04-07 14:26:42,516 - trial_detector - INFO - Successfully detected 40 trials (Trial IDs: [np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4), np.int64(5), np.int64(6), np.int64(7), np.int64(8), np.int64(9), np.int64(10), np.int64(11), np.int64(12), np.int64(13), np.int64(14), np.int64(15), np.int64(16), np.int64(17), np.int64(18), np.int64(19), np.int64(20), np.int64(21), np.int64(22), np.int64(23), np.int64(24), np.int64(25), np.int64(26), np.int64(27), np.int64(28), np.int64(29), np.int64(30), np.int64(31), np.int64(32), np.int64(33), np.int64(34), np.int64(35), np.int64(36), np.int64(37), np.int64(38), np.int64(39)])
+2026-04-07 14:26:42,543 - __main__ - INFO - Analyzing trials...
+2026-04-07 14:26:42,879 - trial_analyzer - INFO - Analyzed 40 trials
+2026-04-07 14:26:51,321 - __main__ - INFO - Segmenting words for trial 0
+2026-04-07 14:27:13,620 - __main__ - INFO - Segmenting words for trial 1
+2026-04-07 14:27:28,318 - __main__ - INFO - Segmenting words for trial 2
+2026-04-07 14:27:29,528 - __main__ - INFO - Segmenting words for trial 3
+2026-04-07 14:27:30,555 - __main__ - INFO - Segmenting words for trial 4
+2026-04-07 14:27:31,469 - __main__ - INFO - Segmenting words for trial 5
+2026-04-07 14:27:32,679 - __main__ - INFO - Segmenting words for trial 6
+2026-04-07 14:27:33,536 - __main__ - INFO - Segmenting words for trial 7
+2026-04-07 14:28:18,526 - __main__ - INFO - Segmenting words for trial 8
+2026-04-07 14:28:19,665 - __main__ - INFO - Segmenting words for trial 9
+2026-04-07 14:28:20,721 - __main__ - INFO - Segmenting words for trial 10
+2026-04-07 14:28:21,637 - __main__ - INFO - Segmenting words for trial 11
+2026-04-07 14:28:22,539 - __main__ - INFO - Segmenting words for trial 12
+2026-04-07 14:28:23,606 - __main__ - INFO - Segmenting words for trial 13
+2026-04-07 14:28:24,571 - __main__ - INFO - Segmenting words for trial 14
+2026-04-07 14:28:25,556 - __main__ - INFO - Segmenting words for trial 15
+2026-04-07 14:28:26,446 - __main__ - INFO - Segmenting words for trial 16
+2026-04-07 14:28:27,241 - __main__ - INFO - Segmenting words for trial 17
+2026-04-07 14:28:28,131 - __main__ - INFO - Segmenting words for trial 18
+2026-04-07 14:28:29,773 - __main__ - INFO - Segmenting words for trial 19
+2026-04-07 14:28:31,699 - __main__ - INFO - Segmenting words for trial 20
+2026-04-07 14:28:38,888 - __main__ - INFO - Segmenting words for trial 21
+2026-04-07 14:28:39,932 - __main__ - INFO - Segmenting words for trial 22
+2026-04-07 14:28:40,815 - __main__ - INFO - Segmenting words for trial 23
+2026-04-07 14:28:41,732 - __main__ - INFO - Segmenting words for trial 24
+2026-04-07 14:28:42,600 - __main__ - INFO - Segmenting words for trial 25
+2026-04-07 14:28:43,418 - __main__ - INFO - Segmenting words for trial 26
+2026-04-07 14:28:47,976 - __main__ - INFO - Segmenting words for trial 27
+2026-04-07 14:28:48,930 - __main__ - INFO - Segmenting words for trial 28
+2026-04-07 14:28:49,816 - __main__ - INFO - Segmenting words for trial 29
+2026-04-07 14:28:50,683 - __main__ - INFO - Segmenting words for trial 30
+2026-04-07 14:28:51,430 - __main__ - INFO - Segmenting words for trial 31
+2026-04-07 14:28:52,263 - __main__ - INFO - Segmenting words for trial 32
+2026-04-07 14:28:52,917 - __main__ - INFO - Segmenting words for trial 33
+2026-04-07 14:28:53,649 - __main__ - INFO - Segmenting words for trial 34
+2026-04-07 14:28:54,364 - __main__ - INFO - Segmenting words for trial 35
+2026-04-07 14:28:55,050 - __main__ - INFO - Segmenting words for trial 36
+2026-04-07 14:28:55,732 - __main__ - INFO - Segmenting words for trial 37
+2026-04-07 14:28:56,450 - __main__ - INFO - Segmenting words for trial 38
+2026-04-07 14:28:57,117 - __main__ - INFO - Segmenting words for trial 39
+2026-04-07 14:29:01,051 - __main__ - INFO - Saving results...
+2026-04-07 14:29:01,294 - __main__ - INFO - Generating PDF report...
+2026-04-07 14:29:01,294 - visualization - INFO - Generating PDF report to C:\Users\cletesson\Documents\Graphoutil analysis\results\108Nathanmorph_report.pdf
+2026-04-07 14:29:14,436 - visualization - INFO - Report saved successfully: C:\Users\cletesson\Documents\Graphoutil analysis\results\108Nathanmorph_report.pdf
+2026-04-07 14:29:14,438 - __main__ - INFO - Analysis completed successfully!
+2026-04-07 14:32:36,307 - __main__ - INFO - Starting handwriting analysis pipeline
+2026-04-07 14:32:36,307 - __main__ - INFO - Configuration: {'input_file': 'C:\\Users\\cletesson\\Downloads\\108Nathanmorph.xlsx', 'output_dir': 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results', 'n_trials': 40, 'sampling_rate': 200, 'min_pause_duration_ms': 20, 'speed_threshold_px_per_s': 50, 'min_letter_duration_ms': 100}
+2026-04-07 14:32:36,313 - __main__ - INFO - Loading data...
+2026-04-07 14:32:36,313 - data_loader - INFO - Loading data from C:\Users\cletesson\Downloads\108Nathanmorph.xlsx
+2026-04-07 14:32:38,094 - data_loader - INFO - Loaded 45726 data points
+2026-04-07 14:32:38,122 - data_loader - INFO - Loaded segmentation sheet
+2026-04-07 14:32:38,122 - __main__ - INFO - Detecting trials...
+2026-04-07 14:32:38,123 - trial_detector - INFO - Detecting 40 trials...
+2026-04-07 14:32:38,127 - trial_detector - INFO - Found 44 candidate boundaries (gap > 250.0ms)
+2026-04-07 14:32:38,137 - trial_detector - INFO - ADAPTIVE TRIAL SIZE THRESHOLDS:
+2026-04-07 14:32:38,137 - trial_detector - INFO -   Median trial size from candidates: 1077 points
+2026-04-07 14:32:38,137 - trial_detector - INFO -   25th percentile: 890 points
+2026-04-07 14:32:38,138 - trial_detector - INFO -   10th percentile: 709 points
+2026-04-07 14:32:38,138 - trial_detector - INFO -   Minimum acceptable (30% of median): 323 points
+2026-04-07 14:32:38,139 - trial_detector - INFO - Skipped 1 candidates due to small trial size constraint
+2026-04-07 14:32:38,140 - trial_detector - INFO - Selected 39 boundaries
+2026-04-07 14:32:38,140 - trial_detector - INFO - Trial sizes with selected boundaries:
+2026-04-07 14:32:38,140 - trial_detector - INFO -   Trial 0: 975 points
+2026-04-07 14:32:38,140 - trial_detector - INFO -   Trial 1: 1131 points
+2026-04-07 14:32:38,140 - trial_detector - INFO -   Trial 2: 1054 points
+2026-04-07 14:32:38,141 - trial_detector - INFO -   Trial 3: 1428 points
+2026-04-07 14:32:38,141 - trial_detector - INFO -   Trial 4: 1020 points
+2026-04-07 14:32:38,141 - trial_detector - INFO -   Trial 5: 1569 points
+2026-04-07 14:32:38,141 - trial_detector - INFO -   Trial 6: 1698 points
+2026-04-07 14:32:38,141 - trial_detector - INFO -   Trial 7: 1413 points
+2026-04-07 14:32:38,143 - trial_detector - INFO -   Trial 8: 959 points
+2026-04-07 14:32:38,144 - trial_detector - INFO -   Trial 9: 1341 points
+2026-04-07 14:32:38,144 - trial_detector - INFO -   Trial 10: 924 points
+2026-04-07 14:32:38,145 - trial_detector - INFO -   Trial 11: 1077 points
+2026-04-07 14:32:38,146 - trial_detector - INFO -   Trial 12: 1680 points
+2026-04-07 14:32:38,147 - trial_detector - INFO -   Trial 13: 1665 points
+2026-04-07 14:32:38,147 - trial_detector - INFO -   Trial 14: 1258 points
+2026-04-07 14:32:38,147 - trial_detector - INFO -   Trial 15: 1049 points
+2026-04-07 14:32:38,149 - trial_detector - INFO -   Trial 16: 709 points
+2026-04-07 14:32:38,150 - trial_detector - INFO -   Trial 17: 948 points
+2026-04-07 14:32:38,150 - trial_detector - INFO -   Trial 18: 984 points
+2026-04-07 14:32:38,151 - trial_detector - INFO -   Trial 19: 1104 points
+2026-04-07 14:32:38,151 - trial_detector - INFO -   Trial 20: 712 points
+2026-04-07 14:32:38,151 - trial_detector - INFO -   Trial 21: 1199 points
+2026-04-07 14:32:38,151 - trial_detector - INFO -   Trial 22: 996 points
+2026-04-07 14:32:38,151 - trial_detector - INFO -   Trial 23: 1238 points
+2026-04-07 14:32:38,152 - trial_detector - INFO -   Trial 24: 785 points
+2026-04-07 14:32:38,152 - trial_detector - INFO -   Trial 25: 774 points
+2026-04-07 14:32:38,152 - trial_detector - INFO -   Trial 26: 1757 points
+2026-04-07 14:32:38,152 - trial_detector - INFO -   Trial 27: 1335 points
+2026-04-07 14:32:38,152 - trial_detector - INFO -   Trial 28: 886 points
+2026-04-07 14:32:38,154 - trial_detector - INFO -   Trial 29: 1008 points
+2026-04-07 14:32:38,154 - trial_detector - INFO -   Trial 30: 683 points
+2026-04-07 14:32:38,154 - trial_detector - INFO -   Trial 31: 1539 points
+2026-04-07 14:32:38,155 - trial_detector - INFO -   Trial 32: 1113 points
+2026-04-07 14:32:38,155 - trial_detector - INFO -   Trial 33: 1175 points
+2026-04-07 14:32:38,155 - trial_detector - INFO -   Trial 34: 1260 points
+2026-04-07 14:32:38,155 - trial_detector - INFO -   Trial 35: 959 points
+2026-04-07 14:32:38,155 - trial_detector - INFO -   Trial 36: 1094 points
+2026-04-07 14:32:38,156 - trial_detector - INFO -   Trial 37: 864 points
+2026-04-07 14:32:38,156 - trial_detector - INFO -   Trial 38: 1091 points
+2026-04-07 14:32:38,156 - trial_detector - INFO -   Trial 39: 1311 points
+2026-04-07 14:32:43,985 - trial_detector - INFO - Successfully detected 40 trials (Trial IDs: [np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4), np.int64(5), np.int64(6), np.int64(7), np.int64(8), np.int64(9), np.int64(10), np.int64(11), np.int64(12), np.int64(13), np.int64(14), np.int64(15), np.int64(16), np.int64(17), np.int64(18), np.int64(19), np.int64(20), np.int64(21), np.int64(22), np.int64(23), np.int64(24), np.int64(25), np.int64(26), np.int64(27), np.int64(28), np.int64(29), np.int64(30), np.int64(31), np.int64(32), np.int64(33), np.int64(34), np.int64(35), np.int64(36), np.int64(37), np.int64(38), np.int64(39)])
+2026-04-07 14:32:44,018 - __main__ - INFO - Analyzing trials...
+2026-04-07 14:32:44,199 - trial_analyzer - INFO - Analyzed 40 trials
+2026-04-07 14:32:52,238 - __main__ - INFO - Segmenting letters for trial 0
+2026-04-07 14:33:01,663 - __main__ - INFO - Segmenting letters for trial 1
+2026-04-07 14:33:11,175 - __main__ - INFO - Segmenting letters for trial 2
+2026-04-07 14:33:26,370 - __main__ - INFO - Segmenting letters for trial 3
+2026-04-07 14:43:02,727 - __main__ - INFO - Starting handwriting analysis pipeline
+2026-04-07 14:43:02,727 - __main__ - INFO - Configuration: {'input_file': 'C:\\Users\\cletesson\\Downloads\\108Nathanmorph.xlsx', 'output_dir': 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results', 'n_trials': 40, 'sampling_rate': 200, 'min_pause_duration_ms': 20, 'speed_threshold_px_per_s': 50, 'min_letter_duration_ms': 100}
+2026-04-07 14:43:02,728 - __main__ - INFO - Loading data...
+2026-04-07 14:43:02,728 - data_loader - INFO - Loading data from C:\Users\cletesson\Downloads\108Nathanmorph.xlsx
+2026-04-07 14:43:04,258 - data_loader - INFO - Loaded 45726 data points
+2026-04-07 14:43:04,276 - data_loader - INFO - Loaded segmentation sheet
+2026-04-07 14:43:04,277 - __main__ - INFO - Detecting trials...
+2026-04-07 14:43:04,277 - trial_detector - INFO - Detecting 40 trials...
+2026-04-07 14:43:04,288 - trial_detector - INFO - Found 44 candidate boundaries (gap > 250.0ms)
+2026-04-07 14:43:04,290 - trial_detector - INFO - ADAPTIVE TRIAL SIZE THRESHOLDS:
+2026-04-07 14:43:04,291 - trial_detector - INFO -   Median trial size from candidates: 1077 points
+2026-04-07 14:43:04,291 - trial_detector - INFO -   25th percentile: 890 points
+2026-04-07 14:43:04,291 - trial_detector - INFO -   10th percentile: 709 points
+2026-04-07 14:43:04,291 - trial_detector - INFO -   Minimum acceptable (30% of median): 323 points
+2026-04-07 14:43:04,293 - trial_detector - INFO - Skipped 1 candidates due to small trial size constraint
+2026-04-07 14:43:04,294 - trial_detector - INFO - Selected 39 boundaries
+2026-04-07 14:43:04,294 - trial_detector - INFO - Trial sizes with selected boundaries:
+2026-04-07 14:43:04,294 - trial_detector - INFO -   Trial 0: 975 points
+2026-04-07 14:43:04,294 - trial_detector - INFO -   Trial 1: 1131 points
+2026-04-07 14:43:04,294 - trial_detector - INFO -   Trial 2: 1054 points
+2026-04-07 14:43:04,294 - trial_detector - INFO -   Trial 3: 1428 points
+2026-04-07 14:43:04,294 - trial_detector - INFO -   Trial 4: 1020 points
+2026-04-07 14:43:04,294 - trial_detector - INFO -   Trial 5: 1569 points
+2026-04-07 14:43:04,295 - trial_detector - INFO -   Trial 6: 1698 points
+2026-04-07 14:43:04,295 - trial_detector - INFO -   Trial 7: 1413 points
+2026-04-07 14:43:04,295 - trial_detector - INFO -   Trial 8: 959 points
+2026-04-07 14:43:04,295 - trial_detector - INFO -   Trial 9: 1341 points
+2026-04-07 14:43:04,295 - trial_detector - INFO -   Trial 10: 924 points
+2026-04-07 14:43:04,295 - trial_detector - INFO -   Trial 11: 1077 points
+2026-04-07 14:43:04,296 - trial_detector - INFO -   Trial 12: 1680 points
+2026-04-07 14:43:04,296 - trial_detector - INFO -   Trial 13: 1665 points
+2026-04-07 14:43:04,296 - trial_detector - INFO -   Trial 14: 1258 points
+2026-04-07 14:43:04,297 - trial_detector - INFO -   Trial 15: 1049 points
+2026-04-07 14:43:04,297 - trial_detector - INFO -   Trial 16: 709 points
+2026-04-07 14:43:04,297 - trial_detector - INFO -   Trial 17: 948 points
+2026-04-07 14:43:04,297 - trial_detector - INFO -   Trial 18: 984 points
+2026-04-07 14:43:04,297 - trial_detector - INFO -   Trial 19: 1104 points
+2026-04-07 14:43:04,298 - trial_detector - INFO -   Trial 20: 712 points
+2026-04-07 14:43:04,298 - trial_detector - INFO -   Trial 21: 1199 points
+2026-04-07 14:43:04,298 - trial_detector - INFO -   Trial 22: 996 points
+2026-04-07 14:43:04,299 - trial_detector - INFO -   Trial 23: 1238 points
+2026-04-07 14:43:04,299 - trial_detector - INFO -   Trial 24: 785 points
+2026-04-07 14:43:04,299 - trial_detector - INFO -   Trial 25: 774 points
+2026-04-07 14:43:04,299 - trial_detector - INFO -   Trial 26: 1757 points
+2026-04-07 14:43:04,299 - trial_detector - INFO -   Trial 27: 1335 points
+2026-04-07 14:43:04,299 - trial_detector - INFO -   Trial 28: 886 points
+2026-04-07 14:43:04,299 - trial_detector - INFO -   Trial 29: 1008 points
+2026-04-07 14:43:04,299 - trial_detector - INFO -   Trial 30: 683 points
+2026-04-07 14:43:04,299 - trial_detector - INFO -   Trial 31: 1539 points
+2026-04-07 14:43:04,300 - trial_detector - INFO -   Trial 32: 1113 points
+2026-04-07 14:43:04,300 - trial_detector - INFO -   Trial 33: 1175 points
+2026-04-07 14:43:04,300 - trial_detector - INFO -   Trial 34: 1260 points
+2026-04-07 14:43:04,300 - trial_detector - INFO -   Trial 35: 959 points
+2026-04-07 14:43:04,300 - trial_detector - INFO -   Trial 36: 1094 points
+2026-04-07 14:43:04,302 - trial_detector - INFO -   Trial 37: 864 points
+2026-04-07 14:43:04,302 - trial_detector - INFO -   Trial 38: 1091 points
+2026-04-07 14:43:04,302 - trial_detector - INFO -   Trial 39: 1311 points
+2026-04-07 14:43:08,599 - trial_detector - INFO - Successfully detected 40 trials (Trial IDs: [np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4), np.int64(5), np.int64(6), np.int64(7), np.int64(8), np.int64(9), np.int64(10), np.int64(11), np.int64(12), np.int64(13), np.int64(14), np.int64(15), np.int64(16), np.int64(17), np.int64(18), np.int64(19), np.int64(20), np.int64(21), np.int64(22), np.int64(23), np.int64(24), np.int64(25), np.int64(26), np.int64(27), np.int64(28), np.int64(29), np.int64(30), np.int64(31), np.int64(32), np.int64(33), np.int64(34), np.int64(35), np.int64(36), np.int64(37), np.int64(38), np.int64(39)])
+2026-04-07 14:43:08,621 - __main__ - INFO - Analyzing trials...
+2026-04-07 14:43:08,792 - trial_analyzer - INFO - Analyzed 40 trials
+2026-04-07 14:43:14,617 - __main__ - INFO - Segmenting words for trial 0
+2026-04-07 14:43:18,191 - __main__ - INFO - Segmenting words for trial 1
+2026-04-07 14:43:40,474 - __main__ - INFO - Segmenting words for trial 2
+2026-04-07 14:43:44,778 - __main__ - INFO - Segmenting words for trial 3
+2026-04-07 14:43:45,921 - __main__ - INFO - Segmenting words for trial 4
+2026-04-07 14:43:49,361 - __main__ - INFO - Segmenting words for trial 5
+2026-04-07 14:43:50,744 - __main__ - INFO - Segmenting words for trial 6
+2026-04-07 14:43:51,708 - __main__ - INFO - Segmenting words for trial 7
+2026-04-07 14:43:53,590 - __main__ - INFO - Segmenting words for trial 8
+2026-04-07 14:44:03,463 - __main__ - INFO - Segmenting words for trial 9
+2026-04-07 14:46:21,690 - __main__ - INFO - Segmenting words for trial 10
+2026-04-07 14:46:22,428 - __main__ - INFO - Segmenting words for trial 11
+2026-04-07 14:46:23,003 - __main__ - INFO - Segmenting words for trial 12
+2026-04-07 14:46:23,605 - __main__ - INFO - Segmenting words for trial 13
+2026-04-07 14:46:24,239 - __main__ - INFO - Segmenting words for trial 14
+2026-04-07 14:46:24,845 - __main__ - INFO - Segmenting words for trial 15
+2026-04-07 14:46:25,468 - __main__ - INFO - Segmenting words for trial 16
+2026-04-07 14:46:26,057 - __main__ - INFO - Segmenting words for trial 17
+2026-04-07 14:46:26,593 - __main__ - INFO - Segmenting words for trial 18
+2026-04-07 14:46:27,198 - __main__ - INFO - Segmenting words for trial 19
+2026-04-07 14:46:27,860 - __main__ - INFO - Segmenting words for trial 20
+2026-04-07 14:46:28,491 - __main__ - INFO - Segmenting words for trial 21
+2026-04-07 14:46:29,038 - __main__ - INFO - Segmenting words for trial 22
+2026-04-07 14:46:29,632 - __main__ - INFO - Segmenting words for trial 23
+2026-04-07 14:46:30,259 - __main__ - INFO - Segmenting words for trial 24
+2026-04-07 14:46:30,862 - __main__ - INFO - Segmenting words for trial 25
+2026-04-07 14:46:31,503 - __main__ - INFO - Segmenting words for trial 26
+2026-04-07 14:46:32,162 - __main__ - INFO - Segmenting words for trial 27
+2026-04-07 14:46:32,716 - __main__ - INFO - Segmenting words for trial 28
+2026-04-07 14:46:33,283 - __main__ - INFO - Segmenting words for trial 29
+2026-04-07 14:46:33,810 - __main__ - INFO - Segmenting words for trial 30
+2026-04-07 14:46:34,313 - __main__ - INFO - Segmenting words for trial 31
+2026-04-07 14:46:34,911 - __main__ - INFO - Segmenting words for trial 32
+2026-04-07 14:46:35,481 - __main__ - INFO - Segmenting words for trial 33
+2026-04-07 14:46:36,081 - __main__ - INFO - Segmenting words for trial 34
+2026-04-07 14:46:36,662 - __main__ - INFO - Segmenting words for trial 35
+2026-04-07 14:46:37,143 - __main__ - INFO - Segmenting words for trial 36
+2026-04-07 14:46:37,609 - __main__ - INFO - Segmenting words for trial 37
+2026-04-07 14:46:38,159 - __main__ - INFO - Segmenting words for trial 38
+2026-04-07 14:46:39,337 - __main__ - INFO - Segmenting words for trial 39
+2026-04-07 14:46:40,711 - __main__ - INFO - Saving results...
+2026-04-07 14:46:40,735 - __main__ - INFO - Generating PDF report...
+2026-04-07 14:46:40,735 - visualization - INFO - Generating PDF report to C:\Users\cletesson\Documents\Graphoutil analysis\results\108Nathanmorph_report.pdf
+2026-04-07 14:46:41,210 - visualization - ERROR - Error generating page for trial 0: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:46:41,617 - visualization - ERROR - Error generating page for trial 1: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:46:42,192 - visualization - ERROR - Error generating page for trial 2: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:46:42,764 - visualization - ERROR - Error generating page for trial 3: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:46:43,191 - visualization - ERROR - Error generating page for trial 4: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:46:43,754 - visualization - ERROR - Error generating page for trial 5: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:46:44,234 - visualization - ERROR - Error generating page for trial 6: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:46:44,673 - visualization - ERROR - Error generating page for trial 7: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:46:45,119 - visualization - ERROR - Error generating page for trial 8: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:46:45,578 - visualization - ERROR - Error generating page for trial 9: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:46:45,888 - visualization - ERROR - Error generating page for trial 10: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:46:46,329 - visualization - ERROR - Error generating page for trial 11: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:46:46,774 - visualization - ERROR - Error generating page for trial 12: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:46:47,311 - visualization - ERROR - Error generating page for trial 13: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:46:48,103 - visualization - ERROR - Error generating page for trial 14: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:46:48,697 - visualization - ERROR - Error generating page for trial 15: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:46:49,378 - visualization - ERROR - Error generating page for trial 16: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:46:49,811 - visualization - ERROR - Error generating page for trial 17: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:46:50,196 - visualization - ERROR - Error generating page for trial 18: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:46:50,457 - visualization - ERROR - Error generating page for trial 19: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:46:50,743 - visualization - ERROR - Error generating page for trial 20: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:46:51,081 - visualization - ERROR - Error generating page for trial 21: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:46:51,358 - visualization - ERROR - Error generating page for trial 22: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:46:51,580 - visualization - ERROR - Error generating page for trial 23: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:46:51,833 - visualization - ERROR - Error generating page for trial 24: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:46:52,086 - visualization - ERROR - Error generating page for trial 25: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:46:52,444 - visualization - ERROR - Error generating page for trial 26: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:46:52,709 - visualization - ERROR - Error generating page for trial 27: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:46:52,962 - visualization - ERROR - Error generating page for trial 28: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:46:53,257 - visualization - ERROR - Error generating page for trial 29: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:46:53,527 - visualization - ERROR - Error generating page for trial 30: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:46:53,817 - visualization - ERROR - Error generating page for trial 31: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:46:54,242 - visualization - ERROR - Error generating page for trial 32: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:46:54,552 - visualization - ERROR - Error generating page for trial 33: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:46:54,779 - visualization - ERROR - Error generating page for trial 34: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:46:55,028 - visualization - ERROR - Error generating page for trial 35: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:46:55,303 - visualization - ERROR - Error generating page for trial 36: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:46:55,592 - visualization - ERROR - Error generating page for trial 37: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:46:55,832 - visualization - ERROR - Error generating page for trial 38: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:46:56,084 - visualization - ERROR - Error generating page for trial 39: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:46:56,085 - __main__ - ERROR - Analysis failed: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+Traceback (most recent call last):
+  File "c:\Users\cletesson\Documents\Graphoutil analysis\visualization.py", line 58, in generate_report
+    d = pdf.infodict()
+        ^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\matplotlib\backends\backend_pdf.py", line 2743, in infodict
+    return self._ensure_file().infoDict
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\matplotlib\backends\backend_pdf.py", line 2719, in _ensure_file
+    self._file = PdfFile(self._filename, metadata=self._metadata)  # init.
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\matplotlib\backends\backend_pdf.py", line 688, in __init__
+    fh, opened = cbook.to_filehandle(filename, "wb", return_opened=True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\matplotlib\cbook.py", line 483, in to_filehandle
+    fh = open(fname, flag, encoding=encoding)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\cletesson\Documents\Graphoutil analysis\main_improved.py", line 346, in main
+    report_gen.generate_report(df, all_letters, all_segments)
+  File "c:\Users\cletesson\Documents\Graphoutil analysis\visualization.py", line 45, in generate_report
+    with PdfPages(self.config.pdf_output) as pdf:
+  File "C:\ProgramData\anaconda3\Lib\site-packages\matplotlib\backends\backend_pdf.py", line 2715, in __exit__
+    self.close()
+  File "C:\ProgramData\anaconda3\Lib\site-packages\matplotlib\backends\backend_pdf.py", line 2735, in close
+    PdfFile(self._filename, metadata=self._metadata).close()  # touch the file.
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\matplotlib\backends\backend_pdf.py", line 688, in __init__
+    fh, opened = cbook.to_filehandle(filename, "wb", return_opened=True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\matplotlib\cbook.py", line 483, in to_filehandle
+    fh = open(fname, flag, encoding=encoding)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:48:32,922 - __main__ - INFO - Starting handwriting analysis pipeline
+2026-04-07 14:48:32,922 - __main__ - INFO - Configuration: {'input_file': 'C:\\Users\\cletesson\\Downloads\\108Nathanmorph.xlsx', 'output_dir': 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results', 'n_trials': 40, 'sampling_rate': 200, 'min_pause_duration_ms': 20, 'speed_threshold_px_per_s': 50, 'min_letter_duration_ms': 100}
+2026-04-07 14:48:32,923 - __main__ - INFO - Loading data...
+2026-04-07 14:48:32,923 - data_loader - INFO - Loading data from C:\Users\cletesson\Downloads\108Nathanmorph.xlsx
+2026-04-07 14:48:34,397 - data_loader - INFO - Loaded 45726 data points
+2026-04-07 14:48:34,413 - data_loader - INFO - Loaded segmentation sheet
+2026-04-07 14:48:34,414 - __main__ - INFO - Detecting trials...
+2026-04-07 14:48:34,414 - trial_detector - INFO - Detecting 40 trials...
+2026-04-07 14:48:34,427 - trial_detector - INFO - Found 44 candidate boundaries (gap > 250.0ms)
+2026-04-07 14:48:34,428 - trial_detector - INFO - ADAPTIVE TRIAL SIZE THRESHOLDS:
+2026-04-07 14:48:34,429 - trial_detector - INFO -   Median trial size from candidates: 1077 points
+2026-04-07 14:48:34,429 - trial_detector - INFO -   25th percentile: 890 points
+2026-04-07 14:48:34,429 - trial_detector - INFO -   10th percentile: 709 points
+2026-04-07 14:48:34,429 - trial_detector - INFO -   Minimum acceptable (30% of median): 323 points
+2026-04-07 14:48:34,431 - trial_detector - INFO - Skipped 1 candidates due to small trial size constraint
+2026-04-07 14:48:34,431 - trial_detector - INFO - Selected 39 boundaries
+2026-04-07 14:48:34,431 - trial_detector - INFO - Trial sizes with selected boundaries:
+2026-04-07 14:48:34,431 - trial_detector - INFO -   Trial 0: 975 points
+2026-04-07 14:48:34,431 - trial_detector - INFO -   Trial 1: 1131 points
+2026-04-07 14:48:34,431 - trial_detector - INFO -   Trial 2: 1054 points
+2026-04-07 14:48:34,431 - trial_detector - INFO -   Trial 3: 1428 points
+2026-04-07 14:48:34,431 - trial_detector - INFO -   Trial 4: 1020 points
+2026-04-07 14:48:34,431 - trial_detector - INFO -   Trial 5: 1569 points
+2026-04-07 14:48:34,432 - trial_detector - INFO -   Trial 6: 1698 points
+2026-04-07 14:48:34,432 - trial_detector - INFO -   Trial 7: 1413 points
+2026-04-07 14:48:34,432 - trial_detector - INFO -   Trial 8: 959 points
+2026-04-07 14:48:34,432 - trial_detector - INFO -   Trial 9: 1341 points
+2026-04-07 14:48:34,432 - trial_detector - INFO -   Trial 10: 924 points
+2026-04-07 14:48:34,432 - trial_detector - INFO -   Trial 11: 1077 points
+2026-04-07 14:48:34,432 - trial_detector - INFO -   Trial 12: 1680 points
+2026-04-07 14:48:34,432 - trial_detector - INFO -   Trial 13: 1665 points
+2026-04-07 14:48:34,432 - trial_detector - INFO -   Trial 14: 1258 points
+2026-04-07 14:48:34,432 - trial_detector - INFO -   Trial 15: 1049 points
+2026-04-07 14:48:34,433 - trial_detector - INFO -   Trial 16: 709 points
+2026-04-07 14:48:34,433 - trial_detector - INFO -   Trial 17: 948 points
+2026-04-07 14:48:34,434 - trial_detector - INFO -   Trial 18: 984 points
+2026-04-07 14:48:34,434 - trial_detector - INFO -   Trial 19: 1104 points
+2026-04-07 14:48:34,435 - trial_detector - INFO -   Trial 20: 712 points
+2026-04-07 14:48:34,435 - trial_detector - INFO -   Trial 21: 1199 points
+2026-04-07 14:48:34,435 - trial_detector - INFO -   Trial 22: 996 points
+2026-04-07 14:48:34,435 - trial_detector - INFO -   Trial 23: 1238 points
+2026-04-07 14:48:34,435 - trial_detector - INFO -   Trial 24: 785 points
+2026-04-07 14:48:34,436 - trial_detector - INFO -   Trial 25: 774 points
+2026-04-07 14:48:34,436 - trial_detector - INFO -   Trial 26: 1757 points
+2026-04-07 14:48:34,436 - trial_detector - INFO -   Trial 27: 1335 points
+2026-04-07 14:48:34,437 - trial_detector - INFO -   Trial 28: 886 points
+2026-04-07 14:48:34,437 - trial_detector - INFO -   Trial 29: 1008 points
+2026-04-07 14:48:34,437 - trial_detector - INFO -   Trial 30: 683 points
+2026-04-07 14:48:34,437 - trial_detector - INFO -   Trial 31: 1539 points
+2026-04-07 14:48:34,437 - trial_detector - INFO -   Trial 32: 1113 points
+2026-04-07 14:48:34,437 - trial_detector - INFO -   Trial 33: 1175 points
+2026-04-07 14:48:34,437 - trial_detector - INFO -   Trial 34: 1260 points
+2026-04-07 14:48:34,438 - trial_detector - INFO -   Trial 35: 959 points
+2026-04-07 14:48:34,438 - trial_detector - INFO -   Trial 36: 1094 points
+2026-04-07 14:48:34,438 - trial_detector - INFO -   Trial 37: 864 points
+2026-04-07 14:48:34,438 - trial_detector - INFO -   Trial 38: 1091 points
+2026-04-07 14:48:34,438 - trial_detector - INFO -   Trial 39: 1311 points
+2026-04-07 14:48:37,940 - trial_detector - INFO - Successfully detected 40 trials (Trial IDs: [np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4), np.int64(5), np.int64(6), np.int64(7), np.int64(8), np.int64(9), np.int64(10), np.int64(11), np.int64(12), np.int64(13), np.int64(14), np.int64(15), np.int64(16), np.int64(17), np.int64(18), np.int64(19), np.int64(20), np.int64(21), np.int64(22), np.int64(23), np.int64(24), np.int64(25), np.int64(26), np.int64(27), np.int64(28), np.int64(29), np.int64(30), np.int64(31), np.int64(32), np.int64(33), np.int64(34), np.int64(35), np.int64(36), np.int64(37), np.int64(38), np.int64(39)])
+2026-04-07 14:48:37,958 - __main__ - INFO - Analyzing trials...
+2026-04-07 14:48:38,115 - trial_analyzer - INFO - Analyzed 40 trials
+2026-04-07 14:48:49,092 - __main__ - INFO - Segmenting words for trial 2
+2026-04-07 14:48:53,413 - __main__ - INFO - Segmenting words for trial 3
+2026-04-07 14:48:55,410 - __main__ - INFO - Segmenting words for trial 4
+2026-04-07 14:49:03,663 - __main__ - INFO - Saving results...
+2026-04-07 14:49:03,698 - __main__ - INFO - Generating PDF report...
+2026-04-07 14:49:03,699 - visualization - INFO - Generating PDF report to C:\Users\cletesson\Documents\Graphoutil analysis\results\108Nathanmorph_report.pdf
+2026-04-07 14:49:03,985 - visualization - ERROR - Error generating page for trial 0: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:49:04,230 - visualization - ERROR - Error generating page for trial 1: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:49:04,470 - visualization - ERROR - Error generating page for trial 2: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:49:04,707 - visualization - ERROR - Error generating page for trial 3: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:49:04,974 - visualization - ERROR - Error generating page for trial 4: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:49:05,202 - visualization - ERROR - Error generating page for trial 5: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:49:05,449 - visualization - ERROR - Error generating page for trial 6: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:49:05,678 - visualization - ERROR - Error generating page for trial 7: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:49:05,943 - visualization - ERROR - Error generating page for trial 8: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:49:06,189 - visualization - ERROR - Error generating page for trial 9: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:49:06,423 - visualization - ERROR - Error generating page for trial 10: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:49:06,643 - visualization - ERROR - Error generating page for trial 11: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:49:06,861 - visualization - ERROR - Error generating page for trial 12: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:49:07,091 - visualization - ERROR - Error generating page for trial 13: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:49:07,320 - visualization - ERROR - Error generating page for trial 14: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:49:07,547 - visualization - ERROR - Error generating page for trial 15: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:49:07,767 - visualization - ERROR - Error generating page for trial 16: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:49:07,990 - visualization - ERROR - Error generating page for trial 17: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:49:08,214 - visualization - ERROR - Error generating page for trial 18: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:49:08,441 - visualization - ERROR - Error generating page for trial 19: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:49:08,682 - visualization - ERROR - Error generating page for trial 20: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:49:08,921 - visualization - ERROR - Error generating page for trial 21: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:49:09,159 - visualization - ERROR - Error generating page for trial 22: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:49:09,391 - visualization - ERROR - Error generating page for trial 23: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:49:09,646 - visualization - ERROR - Error generating page for trial 24: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:49:09,878 - visualization - ERROR - Error generating page for trial 25: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:49:10,113 - visualization - ERROR - Error generating page for trial 26: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:49:10,354 - visualization - ERROR - Error generating page for trial 27: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:49:10,578 - visualization - ERROR - Error generating page for trial 28: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:49:10,796 - visualization - ERROR - Error generating page for trial 29: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:49:11,059 - visualization - ERROR - Error generating page for trial 30: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:49:11,376 - visualization - ERROR - Error generating page for trial 31: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:49:11,660 - visualization - ERROR - Error generating page for trial 32: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:49:11,912 - visualization - ERROR - Error generating page for trial 33: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:49:12,174 - visualization - ERROR - Error generating page for trial 34: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:49:12,488 - visualization - ERROR - Error generating page for trial 35: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:49:12,758 - visualization - ERROR - Error generating page for trial 36: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:49:13,005 - visualization - ERROR - Error generating page for trial 37: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:49:13,265 - visualization - ERROR - Error generating page for trial 38: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:49:13,529 - visualization - ERROR - Error generating page for trial 39: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:49:13,530 - __main__ - ERROR - Analysis failed: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+Traceback (most recent call last):
+  File "c:\Users\cletesson\Documents\Graphoutil analysis\visualization.py", line 58, in generate_report
+    d = pdf.infodict()
+        ^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\matplotlib\backends\backend_pdf.py", line 2743, in infodict
+    return self._ensure_file().infoDict
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\matplotlib\backends\backend_pdf.py", line 2719, in _ensure_file
+    self._file = PdfFile(self._filename, metadata=self._metadata)  # init.
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\matplotlib\backends\backend_pdf.py", line 688, in __init__
+    fh, opened = cbook.to_filehandle(filename, "wb", return_opened=True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\matplotlib\cbook.py", line 483, in to_filehandle
+    fh = open(fname, flag, encoding=encoding)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\cletesson\Documents\Graphoutil analysis\main_improved.py", line 346, in main
+    report_gen.generate_report(df, all_letters, all_segments)
+  File "c:\Users\cletesson\Documents\Graphoutil analysis\visualization.py", line 45, in generate_report
+    with PdfPages(self.config.pdf_output) as pdf:
+  File "C:\ProgramData\anaconda3\Lib\site-packages\matplotlib\backends\backend_pdf.py", line 2715, in __exit__
+    self.close()
+  File "C:\ProgramData\anaconda3\Lib\site-packages\matplotlib\backends\backend_pdf.py", line 2735, in close
+    PdfFile(self._filename, metadata=self._metadata).close()  # touch the file.
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\matplotlib\backends\backend_pdf.py", line 688, in __init__
+    fh, opened = cbook.to_filehandle(filename, "wb", return_opened=True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\matplotlib\cbook.py", line 483, in to_filehandle
+    fh = open(fname, flag, encoding=encoding)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'

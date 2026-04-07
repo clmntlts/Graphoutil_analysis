@@ -126,6 +126,17 @@ class InteractiveSegmenter:
 
         colors = plt.cm.tab10.colors
 
+        def plot_with_pen_lifts(ax, subset, color, linewidth=2, alpha=0.9, zorder=None):
+            x = subset["X"].to_numpy(dtype=float)
+            y = subset["Y"].to_numpy(dtype=float)
+            pressure = subset["NormalPressure"].to_numpy()
+            x[pressure == 0] = np.nan
+            y[pressure == 0] = np.nan
+            kwargs = dict(color=color, linewidth=linewidth, alpha=alpha)
+            if zorder is not None:
+                kwargs["zorder"] = zorder
+            ax.plot(x, y, **kwargs)
+
         # ========= MAIN TRAJECTORY =========
         if self.seg is not None:
             for _, row in self.seg.iterrows():
@@ -135,39 +146,16 @@ class InteractiveSegmenter:
                 if start_idx >= len(self.trial) or end_idx > len(self.trial):
                     continue
 
+                if row["Type"] != "Writing":
+                    continue
+
                 subset = self.trial.iloc[start_idx:end_idx]
-
-                if row["Type"] == "Writing":
-                    pressure = (subset["NormalPressure"].to_numpy() > 0).astype(int)
-                    changes = np.diff(pressure, prepend=0)
-
-                    seg_starts = np.where(changes == 1)[0]
-                    seg_ends = np.where(changes == -1)[0] - 1
-
-                    if pressure.size and pressure[-1]:
-                        seg_ends = np.append(seg_ends, len(pressure) - 1)
-
-                    for s, e in zip(seg_starts, seg_ends):
-                        segment = subset.iloc[s:e + 1]
-                        self.ax_traj.plot(
-                            segment["X"], segment["Y"],
-                            color=colors[word_id % len(colors)],
-                            linewidth=2, alpha=0.9
-                        )
+                plot_with_pen_lifts(self.ax_traj, subset,
+                                    color=colors[word_id % len(colors)],
+                                    linewidth=2, alpha=0.9)
 
         else:
-            pressure = (self.trial["NormalPressure"].to_numpy() > 0).astype(int)
-            changes = np.diff(pressure, prepend=0)
-
-            seg_starts = np.where(changes == 1)[0]
-            seg_ends = np.where(changes == -1)[0] - 1
-
-            if pressure.size and pressure[-1]:
-                seg_ends = np.append(seg_ends, len(pressure) - 1)
-
-            for s, e in zip(seg_starts, seg_ends):
-                segment = self.trial.iloc[s:e + 1]
-                self.ax_traj.plot(segment["X"], segment["Y"], color="black", linewidth=2)
+            plot_with_pen_lifts(self.ax_traj, self.trial, color="black", linewidth=2)
 
         # ========= MARKERS =========
         for i, marker in enumerate(self.markers):
@@ -197,21 +185,8 @@ class InteractiveSegmenter:
                 )
 
                 seg_subset = self.trial.iloc[idx1:idx2 + 1]
-                pressure = (seg_subset["NormalPressure"].to_numpy() > 0).astype(int)
-                changes = np.diff(pressure, prepend=0)
-
-                seg_starts = np.where(changes == 1)[0]
-                seg_ends = np.where(changes == -1)[0] - 1
-
-                if pressure.size and pressure[-1]:
-                    seg_ends = np.append(seg_ends, len(pressure) - 1)
-
-                for s, e in zip(seg_starts, seg_ends):
-                    segment = seg_subset.iloc[s:e + 1]
-                    self.ax_traj.plot(
-                        segment["X"], segment["Y"],
-                        "lime", linewidth=3, alpha=0.7, zorder=4
-                    )
+                plot_with_pen_lifts(self.ax_traj, seg_subset,
+                                    color="lime", linewidth=3, alpha=0.7, zorder=4)
 
                 # Duration label
                 mid_x = (self.trial["X"].iloc[idx1] + self.trial["X"].iloc[idx2]) / 2
