@@ -139,23 +139,27 @@ class InteractiveSegmenter:
 
         # ========= MAIN TRAJECTORY =========
         if self.seg is not None:
+            # Base layer: full trajectory in gray so nothing is ever invisible
+            plot_with_pen_lifts(self.ax_traj, self.trial, color="lightgray", linewidth=2, zorder=1)
+
+            # Overlay: color only Writing segments by word
             for _, row in self.seg.iterrows():
+                if row["Type"] != "Writing":
+                    continue
                 start_idx, end_idx = int(row["Start"]), int(row["End"])
                 word_id = int(row["WordIndex"])
 
                 if start_idx >= len(self.trial) or end_idx > len(self.trial):
-                    continue
-
-                if row["Type"] != "Writing":
+                    print(f"⚠️ Skipping out-of-bounds segment: [{start_idx}, {end_idx}] "
+                        f"(trial len={len(self.trial)})")
                     continue
 
                 subset = self.trial.iloc[start_idx:end_idx]
                 plot_with_pen_lifts(self.ax_traj, subset,
                                     color=colors[word_id % len(colors)],
-                                    linewidth=2, alpha=0.9)
-
+                                    linewidth=2.5, alpha=0.9, zorder=2)
         else:
-            plot_with_pen_lifts(self.ax_traj, self.trial, color="black", linewidth=2)
+            plot_with_pen_lifts(self.ax_traj, self.trial, color="black", linewidth=2, zorder=1)
 
         # ========= MARKERS =========
         for i, marker in enumerate(self.markers):
