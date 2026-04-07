@@ -1403,3 +1403,65 @@ Traceback (most recent call last):
     fh = open(fname, flag, encoding=encoding)
          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 PermissionError: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 14:52:59,382 - __main__ - INFO - Starting handwriting analysis pipeline
+2026-04-07 14:52:59,382 - __main__ - INFO - Configuration: {'input_file': 'C:\\Users\\cletesson\\Downloads\\108Nathanmorph.xlsx', 'output_dir': 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results', 'n_trials': 40, 'sampling_rate': 200, 'min_pause_duration_ms': 20, 'speed_threshold_px_per_s': 50, 'min_letter_duration_ms': 100}
+2026-04-07 14:52:59,383 - __main__ - INFO - Loading data...
+2026-04-07 14:52:59,383 - data_loader - INFO - Loading data from C:\Users\cletesson\Downloads\108Nathanmorph.xlsx
+2026-04-07 14:53:00,919 - data_loader - INFO - Loaded 45726 data points
+2026-04-07 14:53:00,936 - data_loader - INFO - Loaded segmentation sheet
+2026-04-07 14:53:00,936 - __main__ - INFO - Detecting trials...
+2026-04-07 14:53:00,937 - trial_detector - INFO - Detecting 40 trials...
+2026-04-07 14:53:00,947 - trial_detector - INFO - Found 44 candidate boundaries (gap > 250.0ms)
+2026-04-07 14:53:00,949 - trial_detector - INFO - ADAPTIVE TRIAL SIZE THRESHOLDS:
+2026-04-07 14:53:00,949 - trial_detector - INFO -   Median trial size from candidates: 1077 points
+2026-04-07 14:53:00,949 - trial_detector - INFO -   25th percentile: 890 points
+2026-04-07 14:53:00,950 - trial_detector - INFO -   10th percentile: 709 points
+2026-04-07 14:53:00,950 - trial_detector - INFO -   Minimum acceptable (30% of median): 323 points
+2026-04-07 14:53:00,952 - trial_detector - INFO - Skipped 1 candidates due to small trial size constraint
+2026-04-07 14:53:00,952 - trial_detector - INFO - Selected 39 boundaries
+2026-04-07 14:53:00,952 - trial_detector - INFO - Trial sizes with selected boundaries:
+2026-04-07 14:53:00,952 - trial_detector - INFO -   Trial 0: 975 points
+2026-04-07 14:53:00,952 - trial_detector - INFO -   Trial 1: 1131 points
+2026-04-07 14:53:00,952 - trial_detector - INFO -   Trial 2: 1054 points
+2026-04-07 14:53:00,952 - trial_detector - INFO -   Trial 3: 1428 points
+2026-04-07 14:53:00,953 - trial_detector - INFO -   Trial 4: 1020 points
+2026-04-07 14:53:00,953 - trial_detector - INFO -   Trial 5: 1569 points
+2026-04-07 14:53:00,953 - trial_detector - INFO -   Trial 6: 1698 points
+2026-04-07 14:53:00,953 - trial_detector - INFO -   Trial 7: 1413 points
+2026-04-07 14:53:00,953 - trial_detector - INFO -   Trial 8: 959 points
+2026-04-07 14:53:00,953 - trial_detector - INFO -   Trial 9: 1341 points
+2026-04-07 14:53:00,953 - trial_detector - INFO -   Trial 10: 924 points
+2026-04-07 14:53:00,953 - trial_detector - INFO -   Trial 11: 1077 points
+2026-04-07 14:53:00,954 - trial_detector - INFO -   Trial 12: 1680 points
+2026-04-07 14:53:00,954 - trial_detector - INFO -   Trial 13: 1665 points
+2026-04-07 14:53:00,954 - trial_detector - INFO -   Trial 14: 1258 points
+2026-04-07 14:53:00,955 - trial_detector - INFO -   Trial 15: 1049 points
+2026-04-07 14:53:00,957 - trial_detector - INFO -   Trial 16: 709 points
+2026-04-07 14:53:00,958 - trial_detector - INFO -   Trial 17: 948 points
+2026-04-07 14:53:00,958 - trial_detector - INFO -   Trial 18: 984 points
+2026-04-07 14:53:00,958 - trial_detector - INFO -   Trial 19: 1104 points
+2026-04-07 14:53:00,958 - trial_detector - INFO -   Trial 20: 712 points
+2026-04-07 14:53:00,958 - trial_detector - INFO -   Trial 21: 1199 points
+2026-04-07 14:53:00,958 - trial_detector - INFO -   Trial 22: 996 points
+2026-04-07 14:53:00,959 - trial_detector - INFO -   Trial 23: 1238 points
+2026-04-07 14:53:00,959 - trial_detector - INFO -   Trial 24: 785 points
+2026-04-07 14:53:00,959 - trial_detector - INFO -   Trial 25: 774 points
+2026-04-07 14:53:00,959 - trial_detector - INFO -   Trial 26: 1757 points
+2026-04-07 14:53:00,960 - trial_detector - INFO -   Trial 27: 1335 points
+2026-04-07 14:53:00,960 - trial_detector - INFO -   Trial 28: 886 points
+2026-04-07 14:53:00,960 - trial_detector - INFO -   Trial 29: 1008 points
+2026-04-07 14:53:00,960 - trial_detector - INFO -   Trial 30: 683 points
+2026-04-07 14:53:00,960 - trial_detector - INFO -   Trial 31: 1539 points
+2026-04-07 14:53:00,961 - trial_detector - INFO -   Trial 32: 1113 points
+2026-04-07 14:53:00,961 - trial_detector - INFO -   Trial 33: 1175 points
+2026-04-07 14:53:00,961 - trial_detector - INFO -   Trial 34: 1260 points
+2026-04-07 14:53:00,961 - trial_detector - INFO -   Trial 35: 959 points
+2026-04-07 14:53:00,961 - trial_detector - INFO -   Trial 36: 1094 points
+2026-04-07 14:53:00,961 - trial_detector - INFO -   Trial 37: 864 points
+2026-04-07 14:53:00,962 - trial_detector - INFO -   Trial 38: 1091 points
+2026-04-07 14:53:00,962 - trial_detector - INFO -   Trial 39: 1311 points
+2026-04-07 14:53:13,944 - trial_detector - INFO - Successfully detected 40 trials (Trial IDs: [np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4), np.int64(5), np.int64(6), np.int64(7), np.int64(8), np.int64(9), np.int64(10), np.int64(11), np.int64(12), np.int64(13), np.int64(14), np.int64(15), np.int64(16), np.int64(17), np.int64(18), np.int64(19), np.int64(20), np.int64(21), np.int64(22), np.int64(23), np.int64(24), np.int64(25), np.int64(26), np.int64(27), np.int64(28), np.int64(29), np.int64(30), np.int64(31), np.int64(32), np.int64(33), np.int64(34), np.int64(35), np.int64(36), np.int64(37), np.int64(38), np.int64(39)])
+2026-04-07 14:53:13,974 - __main__ - INFO - Analyzing trials...
+2026-04-07 14:53:14,142 - trial_analyzer - INFO - Analyzed 40 trials
+2026-04-07 14:53:20,750 - __main__ - INFO - Segmenting words for trial 2
+2026-04-07 14:53:30,138 - __main__ - INFO - Segmenting words for trial 3
