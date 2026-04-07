@@ -16,6 +16,7 @@ class InteractiveSegmenter:
     
     def __init__(self, trial_data, trial_id, seg=None, 
                  speed_threshold_px_per_s=50, min_pause_samples=4):
+        self.trial_offset = trial_data.index[0]  # ← ADD THIS LINE
         self.trial = trial_data.reset_index(drop=True)
         self.trial_id = trial_id
         self.t = (self.trial["PacketTime"] - self.trial["PacketTime"].iloc[0]) / 1000
@@ -142,17 +143,15 @@ class InteractiveSegmenter:
             # Base layer: full trajectory in gray so nothing is ever invisible
             plot_with_pen_lifts(self.ax_traj, self.trial, color="lightgray", linewidth=2, zorder=1)
 
-            # Overlay: color only Writing segments by word
             for _, row in self.seg.iterrows():
                 if row["Type"] != "Writing":
                     continue
-                start_idx, end_idx = int(row["Start"]), int(row["End"])
+                start_idx = int(row["Start"]) - self.trial_offset
+                end_idx = int(row["End"]) - self.trial_offset
                 word_id = int(row["WordIndex"])
 
-                if start_idx >= len(self.trial) or end_idx > len(self.trial):
-                    print(f"⚠️ Skipping out-of-bounds segment: [{start_idx}, {end_idx}] "
-                        f"(trial len={len(self.trial)})")
-                    continue
+                if start_idx < 0 or end_idx < 0 or start_idx >= len(self.trial) or end_idx > len(self.trial):
+                    continue  # belongs to a different trial, silently skip
 
                 subset = self.trial.iloc[start_idx:end_idx]
                 plot_with_pen_lifts(self.ax_traj, subset,
