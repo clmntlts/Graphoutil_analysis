@@ -1,3 +1,0 @@
-trial,n_letters,duration_ms_mean,duration_ms_std,duration_ms_sum,path_length_mean,path_length_std,mean_speed_mean,mean_speed_std,mean_pressure_mean,mean_pressure_std,width_mean,width_std,height_mean,height_std
-1,7,1119.43,483.87,7836.0,3682.83,2011.24,3428.3,1629.87,7600.8,3850.34,868.14,259.7,966.14,427.05
-2,6,1411.0,1108.3,8466.0,7093.28,8291.95,4293.55,2039.27,5603.92,3355.65,1758.83,2021.25,1985.67,2775.34

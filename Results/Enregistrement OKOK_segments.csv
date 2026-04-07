@@ -1,2 +1,0 @@
-trial,segment_id,idx1,idx2,t1,t2,duration_ms,num_pauses,total_pause_duration_ms,net_writing_duration_ms,mean_speed,mean_pressure,path_length,label,unique_segment_id
-1,1,345,429,1.716,2.133,417.00000000000006,0,0,417.00000000000006,7352.526229300006,10438.541176470588,3077.1771936522196,segment_1,T1_S1

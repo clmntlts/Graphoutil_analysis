@@ -1,2 +1,0 @@
-letter_id,idx1,idx2,t1,t2,duration_ms,path_length,straight_line,linearity,width,height,aspect_ratio,mean_speed,mean_pressure,direction,n_loops,label,trial
-1,0,671,0.0,3.323,3323.0,28329.663668259574,1026.8188739987204,0.036245360552909195,5172,2448,2.1127450980392157,8539.436268360998,10072.63392857143,ascending,17,letter_1,8
