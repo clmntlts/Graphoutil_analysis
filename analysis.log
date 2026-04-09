@@ -1589,3 +1589,84 @@ PermissionError: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\
 2026-04-07 15:23:16,674 - trial_analyzer - INFO - Analyzed 40 trials
 2026-04-07 15:23:20,403 - __main__ - INFO - Segmenting words for trial 2
 2026-04-07 15:23:24,187 - __main__ - INFO - Segmenting words for trial 3
+2026-04-07 15:39:07,081 - __main__ - INFO - Saving results...
+2026-04-07 15:39:07,115 - __main__ - INFO - Generating PDF report...
+2026-04-07 15:39:07,116 - visualization - INFO - Generating PDF report to C:\Users\cletesson\Documents\Graphoutil analysis\results\108Nathanmorph_report.pdf
+2026-04-07 15:39:07,342 - visualization - ERROR - Error generating page for trial 0: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 15:39:07,584 - visualization - ERROR - Error generating page for trial 1: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 15:39:07,795 - visualization - ERROR - Error generating page for trial 2: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 15:39:08,035 - visualization - ERROR - Error generating page for trial 3: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 15:39:08,282 - visualization - ERROR - Error generating page for trial 4: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 15:39:08,508 - visualization - ERROR - Error generating page for trial 5: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 15:39:08,742 - visualization - ERROR - Error generating page for trial 6: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 15:39:08,957 - visualization - ERROR - Error generating page for trial 7: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 15:39:09,175 - visualization - ERROR - Error generating page for trial 8: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 15:39:09,505 - visualization - ERROR - Error generating page for trial 9: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 15:39:09,750 - visualization - ERROR - Error generating page for trial 10: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 15:39:09,967 - visualization - ERROR - Error generating page for trial 11: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 15:39:10,177 - visualization - ERROR - Error generating page for trial 12: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 15:39:10,392 - visualization - ERROR - Error generating page for trial 13: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 15:39:10,609 - visualization - ERROR - Error generating page for trial 14: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 15:39:10,845 - visualization - ERROR - Error generating page for trial 15: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 15:39:11,058 - visualization - ERROR - Error generating page for trial 16: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 15:39:11,260 - visualization - ERROR - Error generating page for trial 17: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 15:39:11,493 - visualization - ERROR - Error generating page for trial 18: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 15:39:11,716 - visualization - ERROR - Error generating page for trial 19: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 15:39:11,990 - visualization - ERROR - Error generating page for trial 20: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 15:39:12,230 - visualization - ERROR - Error generating page for trial 21: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 15:39:12,449 - visualization - ERROR - Error generating page for trial 22: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 15:39:12,666 - visualization - ERROR - Error generating page for trial 23: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 15:39:12,903 - visualization - ERROR - Error generating page for trial 24: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 15:39:13,128 - visualization - ERROR - Error generating page for trial 25: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 15:39:13,359 - visualization - ERROR - Error generating page for trial 26: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 15:39:13,585 - visualization - ERROR - Error generating page for trial 27: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 15:39:13,793 - visualization - ERROR - Error generating page for trial 28: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 15:39:14,009 - visualization - ERROR - Error generating page for trial 29: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 15:39:14,242 - visualization - ERROR - Error generating page for trial 30: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 15:39:14,490 - visualization - ERROR - Error generating page for trial 31: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 15:39:14,710 - visualization - ERROR - Error generating page for trial 32: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 15:39:14,962 - visualization - ERROR - Error generating page for trial 33: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 15:39:15,189 - visualization - ERROR - Error generating page for trial 34: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 15:39:15,392 - visualization - ERROR - Error generating page for trial 35: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 15:39:15,619 - visualization - ERROR - Error generating page for trial 36: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 15:39:15,841 - visualization - ERROR - Error generating page for trial 37: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 15:39:16,058 - visualization - ERROR - Error generating page for trial 38: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 15:39:16,278 - visualization - ERROR - Error generating page for trial 39: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+2026-04-07 15:39:16,278 - __main__ - ERROR - Analysis failed: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+Traceback (most recent call last):
+  File "c:\Users\cletesson\Documents\Graphoutil analysis\visualization.py", line 58, in generate_report
+    d = pdf.infodict()
+        ^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\matplotlib\backends\backend_pdf.py", line 2743, in infodict
+    return self._ensure_file().infoDict
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\matplotlib\backends\backend_pdf.py", line 2719, in _ensure_file
+    self._file = PdfFile(self._filename, metadata=self._metadata)  # init.
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\matplotlib\backends\backend_pdf.py", line 688, in __init__
+    fh, opened = cbook.to_filehandle(filename, "wb", return_opened=True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\matplotlib\cbook.py", line 483, in to_filehandle
+    fh = open(fname, flag, encoding=encoding)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\cletesson\Documents\Graphoutil analysis\main_improved.py", line 346, in main
+    report_gen.generate_report(df, all_letters, all_segments)
+  File "c:\Users\cletesson\Documents\Graphoutil analysis\visualization.py", line 45, in generate_report
+    with PdfPages(self.config.pdf_output) as pdf:
+  File "C:\ProgramData\anaconda3\Lib\site-packages\matplotlib\backends\backend_pdf.py", line 2715, in __exit__
+    self.close()
+  File "C:\ProgramData\anaconda3\Lib\site-packages\matplotlib\backends\backend_pdf.py", line 2735, in close
+    PdfFile(self._filename, metadata=self._metadata).close()  # touch the file.
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\matplotlib\backends\backend_pdf.py", line 688, in __init__
+    fh, opened = cbook.to_filehandle(filename, "wb", return_opened=True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\matplotlib\cbook.py", line 483, in to_filehandle
+    fh = open(fname, flag, encoding=encoding)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\cletesson\\Documents\\Graphoutil analysis\\results\\108Nathanmorph_report.pdf'
