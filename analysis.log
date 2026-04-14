@@ -2051,3 +2051,70 @@ Traceback (most recent call last):
   File "c:\Users\cletesson\Graphoutil Analysis\Graphoutil_analysis\data_loader.py", line 183, in load_and_validate
     raise ValueError(f"Data validation failed: {issues}")
 ValueError: Data validation failed: ['Time values are not monotonically increasing']
+2026-04-14 13:59:23,160 - __main__ - INFO - Starting handwriting analysis pipeline
+2026-04-14 13:59:23,166 - __main__ - INFO - Configuration: {'input_file': 'C:\\Users\\cletesson\\Downloads\\25ValentinLMF.xlsx', 'output_dir': 'C:\\Users\\cletesson\\Graphoutil Analysis\\Graphoutil_analysis\\results', 'n_trials': 40, 'sampling_rate': 200, 'min_pause_duration_ms': 20, 'speed_threshold_px_per_s': 50, 'min_letter_duration_ms': 100}
+2026-04-14 13:59:23,166 - __main__ - INFO - Loading data...
+2026-04-14 13:59:23,166 - data_loader - INFO - Loading data from C:\Users\cletesson\Downloads\25ValentinLMF.xlsx
+2026-04-14 13:59:24,870 - data_loader - WARNING - Detected 9 PacketTime overflow(s) — correcting.
+2026-04-14 13:59:24,886 - data_loader - WARNING - Found 20 corrupted timestamp run(s) (66 frames total) — interpolating.
+2026-04-14 13:59:24,886 - data_loader - INFO - Preserved 20 large gap(s) as potential trial boundaries
+2026-04-14 13:59:24,886 - data_loader - INFO - Automatic timestamp interpolation complete.
+2026-04-14 13:59:24,886 - data_loader - INFO - Loaded 49993 data points
+2026-04-14 13:59:24,909 - data_loader - INFO - Loaded segmentation sheet
+2026-04-14 13:59:24,909 - __main__ - INFO - Detecting trials...
+2026-04-14 13:59:24,909 - trial_detector - INFO - Detecting 40 trials...
+2026-04-14 13:59:24,915 - trial_detector - INFO - Found 118 candidate boundaries (gap > 250.0ms)
+2026-04-14 13:59:24,915 - trial_detector - INFO - ADAPTIVE TRIAL SIZE THRESHOLDS:
+2026-04-14 13:59:24,915 - trial_detector - INFO -   Median trial size: 4 points
+2026-04-14 13:59:24,915 - trial_detector - INFO -   25th percentile:   2 points
+2026-04-14 13:59:24,915 - trial_detector - INFO -   10th percentile:   2 points
+2026-04-14 13:59:24,915 - trial_detector - INFO -   Minimum (30%):     1 points
+2026-04-14 13:59:24,915 - trial_detector - INFO - Skipped 0 candidates (small trial constraint)
+2026-04-14 13:59:24,915 - trial_detector - WARNING - Only 36 boundaries with strict constraints. Relaxing to 20% of median...
+2026-04-14 13:59:24,926 - trial_detector - INFO - Selected 39 boundaries
+2026-04-14 13:59:24,926 - trial_detector - INFO - Trial sizes with selected boundaries:
+2026-04-14 13:59:24,926 - trial_detector - INFO -   Trial 0: 881 points
+2026-04-14 13:59:24,926 - trial_detector - INFO -   Trial 1: 698 points
+2026-04-14 13:59:24,926 - trial_detector - INFO -   Trial 2: 796 points
+2026-04-14 13:59:24,926 - trial_detector - INFO -   Trial 3: 2400 points
+2026-04-14 13:59:24,926 - trial_detector - INFO -   Trial 4: 2404 points
+2026-04-14 13:59:24,926 - trial_detector - INFO -   Trial 5: 1878 points
+2026-04-14 13:59:24,926 - trial_detector - INFO -   Trial 6: 1549 points
+2026-04-14 13:59:24,927 - trial_detector - INFO -   Trial 7: 1201 points
+2026-04-14 13:59:24,927 - trial_detector - INFO -   Trial 8: 2606 points
+2026-04-14 13:59:24,927 - trial_detector - INFO -   Trial 9: 1080 points
+2026-04-14 13:59:24,927 - trial_detector - INFO -   Trial 10: 1153 points
+2026-04-14 13:59:24,927 - trial_detector - INFO -   Trial 11: 863 points
+2026-04-14 13:59:24,927 - trial_detector - INFO -   Trial 12: 1549 points
+2026-04-14 13:59:24,927 - trial_detector - INFO -   Trial 13: 1388 points
+2026-04-14 13:59:24,927 - trial_detector - INFO -   Trial 14: 2124 points
+2026-04-14 13:59:24,927 - trial_detector - INFO -   Trial 15: 1300 points
+2026-04-14 13:59:24,927 - trial_detector - INFO -   Trial 16: 1992 points
+2026-04-14 13:59:24,927 - trial_detector - INFO -   Trial 17: 1277 points
+2026-04-14 13:59:24,927 - trial_detector - INFO -   Trial 18: 853 points
+2026-04-14 13:59:24,927 - trial_detector - INFO -   Trial 19: 300 points
+2026-04-14 13:59:24,927 - trial_detector - INFO -   Trial 20: 41 points
+2026-04-14 13:59:24,927 - trial_detector - INFO -   Trial 21: 1088 points
+2026-04-14 13:59:24,927 - trial_detector - INFO -   Trial 22: 1993 points
+2026-04-14 13:59:24,927 - trial_detector - INFO -   Trial 23: 1549 points
+2026-04-14 13:59:24,928 - trial_detector - INFO -   Trial 24: 2078 points
+2026-04-14 13:59:24,928 - trial_detector - INFO -   Trial 25: 2999 points
+2026-04-14 13:59:24,928 - trial_detector - INFO -   Trial 26: 1524 points
+2026-04-14 13:59:24,928 - trial_detector - INFO -   Trial 27: 38 points
+2026-04-14 13:59:24,928 - trial_detector - INFO -   Trial 28: 1008 points
+2026-04-14 13:59:24,928 - trial_detector - INFO -   Trial 29: 1696 points
+2026-04-14 13:59:24,928 - trial_detector - INFO -   Trial 30: 748 points
+2026-04-14 13:59:24,928 - trial_detector - INFO -   Trial 31: 939 points
+2026-04-14 13:59:24,928 - trial_detector - INFO -   Trial 32: 1493 points
+2026-04-14 13:59:24,929 - trial_detector - INFO -   Trial 33: 1193 points
+2026-04-14 13:59:24,929 - trial_detector - INFO -   Trial 34: 114 points
+2026-04-14 13:59:24,929 - trial_detector - INFO -   Trial 35: 31 points
+2026-04-14 13:59:24,929 - trial_detector - INFO -   Trial 36: 1178 points
+2026-04-14 13:59:24,929 - trial_detector - INFO -   Trial 37: 1200 points
+2026-04-14 13:59:24,929 - trial_detector - INFO -   Trial 38: 344 points
+2026-04-14 13:59:24,929 - trial_detector - INFO -   Trial 39: 486 points
+2026-04-14 13:59:31,258 - trial_detector - INFO - Successfully detected 40 trials (Trial IDs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39])
+2026-04-14 13:59:31,270 - __main__ - INFO - Analyzing trials...
+2026-04-14 13:59:31,309 - trial_analyzer - WARNING - Trial 2 has no pressure data
+2026-04-14 13:59:31,410 - trial_analyzer - WARNING - Trial 27 has no pressure data
+2026-04-14 13:59:31,438 - trial_analyzer - INFO - Analyzed 40 trials
