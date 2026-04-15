@@ -2282,3 +2282,291 @@ RuntimeError: Not enough candidates (34) to create 40 trials. Need at least 39 b
 2026-04-14 14:14:00,040 - trial_analyzer - INFO - Analyzed 32 trials
 2026-04-14 14:14:14,991 - __main__ - INFO - Segmenting words for trial 0
 2026-04-14 14:14:20,761 - __main__ - INFO - Segmenting words for trial 1
+2026-04-15 09:54:00,563 - __main__ - INFO - Starting handwriting analysis pipeline
+2026-04-15 09:54:00,563 - __main__ - INFO - Configuration: {'input_file': 'C:\\Users\\cletesson\\Downloads\\25ValentinLMF.xlsx', 'output_dir': 'C:\\Users\\cletesson\\Graphoutil Analysis\\Graphoutil_analysis\\results', 'n_trials': 32, 'sampling_rate': 200, 'min_pause_duration_ms': 20, 'speed_threshold_px_per_s': 50, 'min_letter_duration_ms': 100}
+2026-04-15 09:54:00,563 - __main__ - INFO - Loading data...
+2026-04-15 09:54:00,563 - data_loader - INFO - Loading data from C:\Users\cletesson\Downloads\25ValentinLMF.xlsx
+2026-04-15 09:54:00,609 - __main__ - ERROR - Analysis failed: [Errno 2] No such file or directory: 'C:\\Users\\cletesson\\Downloads\\25ValentinLMF.xlsx'
+Traceback (most recent call last):
+  File "c:\Users\cletesson\Graphoutil Analysis\Graphoutil_analysis\main_improved.py", line 233, in main
+    df, seg = load_and_validate(config)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\cletesson\Graphoutil Analysis\Graphoutil_analysis\data_loader.py", line 541, in load_and_validate
+    df = loader.load_raw_data()
+         ^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\cletesson\Graphoutil Analysis\Graphoutil_analysis\data_loader.py", line 398, in load_raw_data
+    df = pd.read_excel(self.config.input_file)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\io\excel\_base.py", line 495, in read_excel
+    io = ExcelFile(
+         ^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\io\excel\_base.py", line 1550, in __init__
+    ext = inspect_excel_format(
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\io\excel\_base.py", line 1402, in inspect_excel_format
+    with get_handle(
+         ^^^^^^^^^^^
+  File "C:\ProgramData\anaconda3\Lib\site-packages\pandas\io\common.py", line 882, in get_handle
+    handle = open(handle, ioargs.mode)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\cletesson\\Downloads\\25ValentinLMF.xlsx'
+2026-04-15 09:54:54,000 - __main__ - INFO - Starting handwriting analysis pipeline
+2026-04-15 09:54:54,001 - __main__ - INFO - Configuration: {'input_file': 'C:\\Users\\cletesson\\Downloads\\116MelekLMF.xlsx', 'output_dir': 'C:\\Users\\cletesson\\Graphoutil Analysis\\Graphoutil_analysis\\results', 'n_trials': 32, 'sampling_rate': 200, 'min_pause_duration_ms': 20, 'speed_threshold_px_per_s': 50, 'min_letter_duration_ms': 100}
+2026-04-15 09:54:54,002 - __main__ - INFO - Loading data...
+2026-04-15 09:54:54,002 - data_loader - INFO - Loading data from C:\Users\cletesson\Downloads\116MelekLMF.xlsx
+2026-04-15 09:54:55,760 - data_loader - WARNING - Raw anomalies detected: 1 non-monotonic, 114 large jumps
+2026-04-15 09:55:13,488 - data_loader - INFO - Marked span [2039 : 5319] for interpolation
+2026-04-15 09:55:17,737 - data_loader - INFO - Marked span [2830 : 3210] for interpolation
+2026-04-15 09:55:20,344 - data_loader - INFO - Marked span [2625 : 3591] for interpolation
+2026-04-15 09:55:36,269 - data_loader - INFO - Marked span [6841 : 7163] for interpolation
+2026-04-15 09:55:49,595 - data_loader - INFO - Reset all marked spans
+2026-04-15 09:55:53,823 - data_loader - INFO - Marked span [33019 : 33341] for interpolation
+2026-04-15 09:55:57,299 - data_loader - INFO - Reset all marked spans
+2026-04-15 09:55:58,342 - data_loader - INFO - Reset all marked spans
+2026-04-15 09:55:58,536 - data_loader - INFO - Reset all marked spans
+2026-04-15 09:55:58,765 - data_loader - INFO - Reset all marked spans
+2026-04-15 09:55:58,965 - data_loader - INFO - Reset all marked spans
+2026-04-15 09:56:02,198 - data_loader - INFO - Marked span [33136 : 33223] for interpolation
+2026-04-15 09:56:52,173 - data_loader - INFO - Reset all marked spans
+2026-04-15 09:56:53,323 - data_loader - INFO - Reset all marked spans
+2026-04-15 09:56:53,553 - data_loader - INFO - Reset all marked spans
+2026-04-15 09:56:53,739 - data_loader - INFO - Reset all marked spans
+2026-04-15 09:56:53,918 - data_loader - INFO - Reset all marked spans
+2026-04-15 09:56:54,101 - data_loader - INFO - Reset all marked spans
+2026-04-15 09:57:12,384 - data_loader - INFO - Marked span [6870 : 7046] for interpolation
+2026-04-15 09:58:03,485 - data_loader - INFO - Reset all marked spans
+2026-04-15 09:58:04,574 - data_loader - INFO - Reset all marked spans
+2026-04-15 09:58:04,772 - data_loader - INFO - Reset all marked spans
+2026-04-15 09:58:05,143 - data_loader - INFO - Reset all marked spans
+2026-04-15 09:58:05,430 - data_loader - INFO - Reset all marked spans
+2026-04-15 09:58:06,174 - data_loader - INFO - Reset all marked spans
+2026-04-15 09:58:12,472 - data_loader - WARNING - No spans selected — returning original data unchanged
+2026-04-15 09:58:12,483 - data_loader - WARNING - Detected 5 overflow(s) — correcting
+2026-04-15 09:58:12,488 - data_loader - WARNING - Auto-fixing 15 corrupted run(s)
+2026-04-15 09:58:12,503 - data_loader - INFO - Data successfully cleaned and validated
+2026-04-15 09:58:12,541 - __main__ - INFO - Detecting trials...
+2026-04-15 09:58:12,541 - trial_detector - INFO - Detecting 32 trials...
+2026-04-15 09:58:12,569 - trial_detector - INFO - Found 116 candidate boundaries (gap > 250.0ms)
+2026-04-15 09:58:12,574 - trial_detector - INFO - ADAPTIVE TRIAL SIZE THRESHOLDS:
+2026-04-15 09:58:12,574 - trial_detector - INFO -   Median trial size: 6 points
+2026-04-15 09:58:12,574 - trial_detector - INFO -   25th percentile:   3 points
+2026-04-15 09:58:12,574 - trial_detector - INFO -   10th percentile:   2 points
+2026-04-15 09:58:12,574 - trial_detector - INFO -   Minimum (30%):     2 points
+2026-04-15 09:58:12,582 - trial_detector - INFO - Skipped 0 candidates (small trial constraint)
+2026-04-15 09:58:12,582 - trial_detector - INFO - Selected 31 boundaries
+2026-04-15 09:58:12,582 - trial_detector - INFO - Trial sizes with selected boundaries:
+2026-04-15 09:58:12,582 - trial_detector - INFO -   Trial 0: 1419 points
+2026-04-15 09:58:12,582 - trial_detector - INFO -   Trial 1: 1158 points
+2026-04-15 09:58:12,583 - trial_detector - INFO -   Trial 2: 1332 points
+2026-04-15 09:58:12,583 - trial_detector - INFO -   Trial 3: 1035 points
+2026-04-15 09:58:12,583 - trial_detector - INFO -   Trial 4: 1169 points
+2026-04-15 09:58:12,583 - trial_detector - INFO -   Trial 5: 626 points
+2026-04-15 09:58:12,583 - trial_detector - INFO -   Trial 6: 1145 points
+2026-04-15 09:58:12,583 - trial_detector - INFO -   Trial 7: 1037 points
+2026-04-15 09:58:12,583 - trial_detector - INFO -   Trial 8: 1461 points
+2026-04-15 09:58:12,584 - trial_detector - INFO -   Trial 9: 629 points
+2026-04-15 09:58:12,584 - trial_detector - INFO -   Trial 10: 889 points
+2026-04-15 09:58:12,584 - trial_detector - INFO -   Trial 11: 1480 points
+2026-04-15 09:58:12,584 - trial_detector - INFO -   Trial 12: 1196 points
+2026-04-15 09:58:12,584 - trial_detector - INFO -   Trial 13: 1431 points
+2026-04-15 09:58:12,584 - trial_detector - INFO -   Trial 14: 1502 points
+2026-04-15 09:58:12,584 - trial_detector - INFO -   Trial 15: 1018 points
+2026-04-15 09:58:12,585 - trial_detector - INFO -   Trial 16: 1322 points
+2026-04-15 09:58:12,585 - trial_detector - INFO -   Trial 17: 926 points
+2026-04-15 09:58:12,585 - trial_detector - INFO -   Trial 18: 1275 points
+2026-04-15 09:58:12,585 - trial_detector - INFO -   Trial 19: 232 points
+2026-04-15 09:58:12,585 - trial_detector - INFO -   Trial 20: 1280 points
+2026-04-15 09:58:12,585 - trial_detector - INFO -   Trial 21: 641 points
+2026-04-15 09:58:12,585 - trial_detector - INFO -   Trial 22: 1261 points
+2026-04-15 09:58:12,585 - trial_detector - INFO -   Trial 23: 1409 points
+2026-04-15 09:58:12,585 - trial_detector - INFO -   Trial 24: 1075 points
+2026-04-15 09:58:12,585 - trial_detector - INFO -   Trial 25: 1678 points
+2026-04-15 09:58:12,585 - trial_detector - INFO -   Trial 26: 1257 points
+2026-04-15 09:58:12,585 - trial_detector - INFO -   Trial 27: 769 points
+2026-04-15 09:58:12,585 - trial_detector - INFO -   Trial 28: 1224 points
+2026-04-15 09:58:12,585 - trial_detector - INFO -   Trial 29: 1240 points
+2026-04-15 09:58:12,585 - trial_detector - INFO -   Trial 30: 1145 points
+2026-04-15 09:58:12,585 - trial_detector - INFO -   Trial 31: 707 points
+2026-04-15 09:58:22,464 - trial_detector - INFO - Successfully detected 32 trials (Trial IDs: [np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4), np.int64(5), np.int64(6), np.int64(7), np.int64(8), np.int64(9), np.int64(10), np.int64(11), np.int64(12), np.int64(13), np.int64(14), np.int64(15), np.int64(16), np.int64(17), np.int64(18), np.int64(19), np.int64(20), np.int64(21), np.int64(22), np.int64(23), np.int64(24), np.int64(25), np.int64(26), np.int64(27), np.int64(28), np.int64(29), np.int64(30), np.int64(31)])
+2026-04-15 09:58:22,501 - __main__ - INFO - Analyzing trials...
+2026-04-15 09:58:22,635 - trial_analyzer - INFO - Analyzed 32 trials
+2026-04-15 09:58:35,767 - __main__ - INFO - Saving results...
+2026-04-15 09:58:35,803 - __main__ - INFO - Generating PDF report...
+2026-04-15 09:58:35,803 - visualization - INFO - Generating PDF report to C:\Users\cletesson\Graphoutil Analysis\Graphoutil_analysis\results\116MelekLMF_report.pdf
+2026-04-15 09:58:54,748 - visualization - INFO - Report saved successfully: C:\Users\cletesson\Graphoutil Analysis\Graphoutil_analysis\results\116MelekLMF_report.pdf
+2026-04-15 09:58:54,764 - __main__ - INFO - Analysis completed successfully!
+2026-04-15 11:58:15,938 - __main__ - INFO - Starting handwriting analysis pipeline
+2026-04-15 11:58:15,939 - __main__ - INFO - Configuration: {'input_file': 'C:\\Users\\cletesson\\Downloads\\116MelekLMF.xlsx', 'output_dir': 'C:\\Users\\cletesson\\Graphoutil Analysis\\Graphoutil_analysis\\results', 'n_trials': 32, 'sampling_rate': 200, 'min_pause_duration_ms': 20, 'speed_threshold_px_per_s': 50, 'min_letter_duration_ms': 100}
+2026-04-15 11:58:15,940 - __main__ - INFO - Loading data...
+2026-04-15 11:58:15,940 - data_loader - INFO - Loading data from C:\Users\cletesson\Downloads\116MelekLMF.xlsx
+2026-04-15 11:58:17,262 - data_loader - WARNING - Raw anomalies detected: 1 non-monotonic, 114 large jumps
+2026-04-15 11:58:57,324 - data_loader - INFO - Marked span [22566 : 25061] for interpolation
+2026-04-15 11:59:11,556 - data_loader - INFO - Marked span [32412 : 35218] for interpolation
+2026-04-15 11:59:14,620 - data_loader - INFO - Reset all marked spans
+2026-04-15 11:59:15,671 - data_loader - INFO - Reset all marked spans
+2026-04-15 11:59:16,264 - data_loader - INFO - Reset all marked spans
+2026-04-15 11:59:16,455 - data_loader - INFO - Reset all marked spans
+2026-04-15 11:59:16,637 - data_loader - INFO - Reset all marked spans
+2026-04-15 11:59:29,246 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 11:59:30,722 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 11:59:31,831 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 11:59:33,951 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 11:59:34,434 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 11:59:40,101 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 11:59:41,920 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 11:59:42,410 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 11:59:42,767 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 11:59:43,538 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 11:59:44,272 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 11:59:44,749 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 11:59:45,195 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 11:59:45,578 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 11:59:47,215 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 11:59:48,140 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 11:59:53,616 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 11:59:58,084 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 11:59:58,391 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 11:59:58,770 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 11:59:59,090 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 11:59:59,421 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 12:00:00,904 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 12:00:04,124 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 12:00:05,696 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 12:00:07,281 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 12:00:07,999 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 12:00:08,635 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 12:00:09,547 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 12:00:10,096 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 12:00:10,637 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 12:00:11,352 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 12:00:11,826 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 12:00:12,181 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 12:00:12,527 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 12:00:14,015 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 12:00:14,664 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 12:00:14,956 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 12:00:15,205 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 12:00:15,685 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 12:00:15,793 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 12:00:15,929 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 12:00:16,038 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 12:00:16,145 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 12:00:16,248 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 12:00:16,362 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 12:00:16,466 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 12:00:16,577 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 12:00:16,685 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 12:00:17,115 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 12:00:17,223 - matplotlib.legend - WARNING - No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+2026-04-15 12:00:59,867 - data_loader - WARNING - No spans selected — returning original data unchanged
+2026-04-15 12:00:59,876 - data_loader - WARNING - Detected 5 overflow(s) — correcting
+2026-04-15 12:00:59,880 - data_loader - WARNING - Auto-fixing 15 corrupted run(s)
+2026-04-15 12:00:59,889 - data_loader - INFO - Data successfully cleaned and validated
+2026-04-15 12:00:59,917 - __main__ - INFO - Detecting trials...
+2026-04-15 12:00:59,917 - trial_detector - INFO - Detecting 32 trials...
+2026-04-15 12:00:59,930 - trial_detector - INFO - Found 116 candidate boundaries (gap > 250.0ms)
+2026-04-15 12:00:59,934 - trial_detector - INFO - ADAPTIVE TRIAL SIZE THRESHOLDS:
+2026-04-15 12:00:59,934 - trial_detector - INFO -   Median trial size: 6 points
+2026-04-15 12:00:59,934 - trial_detector - INFO -   25th percentile:   3 points
+2026-04-15 12:00:59,935 - trial_detector - INFO -   10th percentile:   2 points
+2026-04-15 12:00:59,935 - trial_detector - INFO -   Minimum (30%):     2 points
+2026-04-15 12:00:59,937 - trial_detector - INFO - Skipped 0 candidates (small trial constraint)
+2026-04-15 12:00:59,938 - trial_detector - INFO - Selected 31 boundaries
+2026-04-15 12:00:59,938 - trial_detector - INFO - Trial sizes with selected boundaries:
+2026-04-15 12:00:59,938 - trial_detector - INFO -   Trial 0: 1419 points
+2026-04-15 12:00:59,939 - trial_detector - INFO -   Trial 1: 1158 points
+2026-04-15 12:00:59,939 - trial_detector - INFO -   Trial 2: 1332 points
+2026-04-15 12:00:59,939 - trial_detector - INFO -   Trial 3: 1035 points
+2026-04-15 12:00:59,939 - trial_detector - INFO -   Trial 4: 1169 points
+2026-04-15 12:00:59,939 - trial_detector - INFO -   Trial 5: 626 points
+2026-04-15 12:00:59,940 - trial_detector - INFO -   Trial 6: 1145 points
+2026-04-15 12:00:59,940 - trial_detector - INFO -   Trial 7: 1037 points
+2026-04-15 12:00:59,941 - trial_detector - INFO -   Trial 8: 1461 points
+2026-04-15 12:00:59,941 - trial_detector - INFO -   Trial 9: 629 points
+2026-04-15 12:00:59,941 - trial_detector - INFO -   Trial 10: 889 points
+2026-04-15 12:00:59,941 - trial_detector - INFO -   Trial 11: 1480 points
+2026-04-15 12:00:59,941 - trial_detector - INFO -   Trial 12: 1196 points
+2026-04-15 12:00:59,942 - trial_detector - INFO -   Trial 13: 1431 points
+2026-04-15 12:00:59,942 - trial_detector - INFO -   Trial 14: 1502 points
+2026-04-15 12:00:59,942 - trial_detector - INFO -   Trial 15: 1018 points
+2026-04-15 12:00:59,942 - trial_detector - INFO -   Trial 16: 1322 points
+2026-04-15 12:00:59,942 - trial_detector - INFO -   Trial 17: 926 points
+2026-04-15 12:00:59,943 - trial_detector - INFO -   Trial 18: 1275 points
+2026-04-15 12:00:59,943 - trial_detector - INFO -   Trial 19: 232 points
+2026-04-15 12:00:59,943 - trial_detector - INFO -   Trial 20: 1280 points
+2026-04-15 12:00:59,943 - trial_detector - INFO -   Trial 21: 641 points
+2026-04-15 12:00:59,943 - trial_detector - INFO -   Trial 22: 1261 points
+2026-04-15 12:00:59,943 - trial_detector - INFO -   Trial 23: 1409 points
+2026-04-15 12:00:59,944 - trial_detector - INFO -   Trial 24: 1075 points
+2026-04-15 12:00:59,944 - trial_detector - INFO -   Trial 25: 1678 points
+2026-04-15 12:00:59,944 - trial_detector - INFO -   Trial 26: 1257 points
+2026-04-15 12:00:59,944 - trial_detector - INFO -   Trial 27: 769 points
+2026-04-15 12:00:59,944 - trial_detector - INFO -   Trial 28: 1224 points
+2026-04-15 12:00:59,945 - trial_detector - INFO -   Trial 29: 1240 points
+2026-04-15 12:00:59,945 - trial_detector - INFO -   Trial 30: 1145 points
+2026-04-15 12:00:59,945 - trial_detector - INFO -   Trial 31: 707 points
+2026-04-15 12:01:58,007 - trial_detector - INFO - Successfully detected 32 trials (Trial IDs: [np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4), np.int64(5), np.int64(6), np.int64(7), np.int64(8), np.int64(9), np.int64(10), np.int64(11), np.int64(12), np.int64(13), np.int64(14), np.int64(15), np.int64(16), np.int64(17), np.int64(18), np.int64(19), np.int64(20), np.int64(21), np.int64(22), np.int64(23), np.int64(24), np.int64(25), np.int64(26), np.int64(27), np.int64(28), np.int64(29), np.int64(30), np.int64(31)])
+2026-04-15 12:01:58,033 - __main__ - INFO - Analyzing trials...
+2026-04-15 12:01:58,232 - trial_analyzer - INFO - Analyzed 32 trials
+2026-04-15 12:02:14,278 - __main__ - INFO - Saving results...
+2026-04-15 12:02:14,297 - __main__ - INFO - Generating PDF report...
+2026-04-15 12:02:14,298 - visualization - INFO - Generating PDF report to C:\Users\cletesson\Graphoutil Analysis\Graphoutil_analysis\results\116MelekLMF_report.pdf
+2026-04-15 12:02:24,664 - visualization - INFO - Report saved successfully: C:\Users\cletesson\Graphoutil Analysis\Graphoutil_analysis\results\116MelekLMF_report.pdf
+2026-04-15 12:02:24,665 - __main__ - INFO - Analysis completed successfully!
+2026-04-15 12:03:42,561 - __main__ - INFO - Starting handwriting analysis pipeline
+2026-04-15 12:03:42,561 - __main__ - INFO - Configuration: {'input_file': 'C:\\Users\\cletesson\\Downloads\\116MelekLMF.xlsx', 'output_dir': 'C:\\Users\\cletesson\\Graphoutil Analysis\\Graphoutil_analysis\\results', 'n_trials': 32, 'sampling_rate': 200, 'min_pause_duration_ms': 20, 'speed_threshold_px_per_s': 50, 'min_letter_duration_ms': 100}
+2026-04-15 12:03:42,561 - __main__ - INFO - Loading data...
+2026-04-15 12:03:42,561 - data_loader - INFO - Loading data from C:\Users\cletesson\Downloads\116MelekLMF.xlsx
+2026-04-15 12:03:43,842 - data_loader - WARNING - Raw anomalies detected: 1 non-monotonic, 114 large jumps
+2026-04-15 12:04:04,418 - data_loader - INFO - Marked span [1392 : 1457] for interpolation
+2026-04-15 12:04:18,993 - data_loader - INFO - Reset all marked spans
+2026-04-15 12:04:53,245 - data_loader - INFO - Marked span [6125 : 8913] for interpolation
+2026-04-15 12:05:12,923 - data_loader - WARNING - Detected 4 overflow(s) — correcting
+2026-04-15 12:05:12,926 - data_loader - WARNING - Auto-fixing 7 corrupted run(s)
+2026-04-15 12:05:12,931 - data_loader - INFO - Data successfully cleaned and validated
+2026-04-15 12:05:12,948 - __main__ - INFO - Detecting trials...
+2026-04-15 12:05:12,948 - trial_detector - INFO - Detecting 32 trials...
+2026-04-15 12:05:12,956 - trial_detector - INFO - Found 89 candidate boundaries (gap > 250.0ms)
+2026-04-15 12:05:12,958 - trial_detector - INFO - ADAPTIVE TRIAL SIZE THRESHOLDS:
+2026-04-15 12:05:12,959 - trial_detector - INFO -   Median trial size: 6 points
+2026-04-15 12:05:12,959 - trial_detector - INFO -   25th percentile:   3 points
+2026-04-15 12:05:12,959 - trial_detector - INFO -   10th percentile:   2 points
+2026-04-15 12:05:12,960 - trial_detector - INFO -   Minimum (30%):     2 points
+2026-04-15 12:05:12,962 - trial_detector - INFO - Skipped 0 candidates (small trial constraint)
+2026-04-15 12:05:12,962 - trial_detector - INFO - Selected 31 boundaries
+2026-04-15 12:05:12,962 - trial_detector - INFO - Trial sizes with selected boundaries:
+2026-04-15 12:05:12,962 - trial_detector - INFO -   Trial 0: 1419 points
+2026-04-15 12:05:12,963 - trial_detector - INFO -   Trial 1: 1158 points
+2026-04-15 12:05:12,963 - trial_detector - INFO -   Trial 2: 379 points
+2026-04-15 12:05:12,963 - trial_detector - INFO -   Trial 3: 954 points
+2026-04-15 12:05:12,963 - trial_detector - INFO -   Trial 4: 1035 points
+2026-04-15 12:05:12,963 - trial_detector - INFO -   Trial 5: 468 points
+2026-04-15 12:05:12,963 - trial_detector - INFO -   Trial 6: 702 points
+2026-04-15 12:05:12,963 - trial_detector - INFO -   Trial 7: 4266 points
+2026-04-15 12:05:12,964 - trial_detector - INFO -   Trial 8: 629 points
+2026-04-15 12:05:12,964 - trial_detector - INFO -   Trial 9: 889 points
+2026-04-15 12:05:12,964 - trial_detector - INFO -   Trial 10: 1480 points
+2026-04-15 12:05:12,964 - trial_detector - INFO -   Trial 11: 1196 points
+2026-04-15 12:05:12,964 - trial_detector - INFO -   Trial 12: 1431 points
+2026-04-15 12:05:12,965 - trial_detector - INFO -   Trial 13: 1502 points
+2026-04-15 12:05:12,965 - trial_detector - INFO -   Trial 14: 1018 points
+2026-04-15 12:05:12,965 - trial_detector - INFO -   Trial 15: 1322 points
+2026-04-15 12:05:12,965 - trial_detector - INFO -   Trial 16: 926 points
+2026-04-15 12:05:12,965 - trial_detector - INFO -   Trial 17: 1275 points
+2026-04-15 12:05:12,965 - trial_detector - INFO -   Trial 18: 232 points
+2026-04-15 12:05:12,965 - trial_detector - INFO -   Trial 19: 1280 points
+2026-04-15 12:05:12,965 - trial_detector - INFO -   Trial 20: 641 points
+2026-04-15 12:05:12,965 - trial_detector - INFO -   Trial 21: 1261 points
+2026-04-15 12:05:12,965 - trial_detector - INFO -   Trial 22: 1409 points
+2026-04-15 12:05:12,965 - trial_detector - INFO -   Trial 23: 1075 points
+2026-04-15 12:05:12,966 - trial_detector - INFO -   Trial 24: 1678 points
+2026-04-15 12:05:12,966 - trial_detector - INFO -   Trial 25: 1257 points
+2026-04-15 12:05:12,966 - trial_detector - INFO -   Trial 26: 769 points
+2026-04-15 12:05:12,966 - trial_detector - INFO -   Trial 27: 1224 points
+2026-04-15 12:05:12,966 - trial_detector - INFO -   Trial 28: 265 points
+2026-04-15 12:05:12,967 - trial_detector - INFO -   Trial 29: 976 points
+2026-04-15 12:05:12,967 - trial_detector - INFO -   Trial 30: 1145 points
+2026-04-15 12:05:12,967 - trial_detector - INFO -   Trial 31: 707 points
+2026-04-15 12:05:17,275 - trial_detector - INFO - Successfully detected 32 trials (Trial IDs: [np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4), np.int64(5), np.int64(6), np.int64(7), np.int64(8), np.int64(9), np.int64(10), np.int64(11), np.int64(12), np.int64(13), np.int64(14), np.int64(15), np.int64(16), np.int64(17), np.int64(18), np.int64(19), np.int64(20), np.int64(21), np.int64(22), np.int64(23), np.int64(24), np.int64(25), np.int64(26), np.int64(27), np.int64(28), np.int64(29), np.int64(30), np.int64(31)])
+2026-04-15 12:05:17,296 - __main__ - INFO - Analyzing trials...
+2026-04-15 12:05:17,404 - trial_analyzer - INFO - Analyzed 32 trials
