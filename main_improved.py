@@ -200,9 +200,9 @@ def main():
         logger.info("Starting handwriting analysis pipeline")
         
         config = AnalysisConfig(
-            input_file=Path(r"C:\Users\cletesson\Downloads\116MelekLMF.xlsx"),
+            input_file=Path(r"C:\Users\cletesson\Downloads\108Nathanmorph.xlsx"),
 
-            n_trials=32,
+            n_trials=40,
 
             # Trial detection
             min_separation_ms=250,
